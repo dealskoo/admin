@@ -1,0 +1,18 @@
+{
+    "name": "dealskoo/admin",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dealskoo\\Admin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jabber",
+            "email": "2898117012@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
