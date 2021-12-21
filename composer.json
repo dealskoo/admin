@@ -1,9 +1,11 @@
 {
     "name": "dealskoo/admin",
-    "description": "",
-    "homepage": "https://www.dealskoo.com",
+    "description": "Laravel Admin Panel",
+    "homepage": "https://github.com/dealskoo/admin",
     "keywords": [
-        ""
+        "Laravel",
+        "Admin Panel",
+        "Dealskoo"
     ],
     "type": "library",
     "license": "MIT",
@@ -12,14 +14,26 @@
             "Dealskoo\\Admin\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Dealskoo\\Admin\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "hadi",
-            "email": "hadi@dealskoo.com"
+            "email": "hadi@dealskoo.com",
+            "homepage": "https://www.dealskoo.com"
         }
     ],
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
     "require": {
-        "laravel/framework": "^8.76"
+        "php": ">=7.0.0",
+        "laravel/framework": ">=7.20"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
@@ -28,6 +42,9 @@
     },
     "extra": {
         "laravel": {
+            "providers": [],
+            "aliases": {
+            }
         }
     }
 }
