@@ -42,7 +42,9 @@
     },
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Dealskoo\\Admin\\Providers\\AdminServiceProvider"
+            ],
             "aliases": {
             }
         }
