@@ -1,7 +1,11 @@
 {
     "name": "dealskoo/admin",
     "description": "Laravel Admin Panel",
-    "homepage": "https://github.com/dealskoo/admin",
+    "homepage": "https://www.dealskoo.com",
+    "support": {
+        "issues": "https://github.com/dealskoo/admin/issues",
+        "source": "https://github.com/dealskoo/admin"
+    },
     "keywords": [
         "Laravel",
         "Admin Panel",
@@ -48,5 +52,8 @@
             "aliases": {
             }
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
