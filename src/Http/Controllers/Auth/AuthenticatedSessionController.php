@@ -10,7 +10,7 @@ class AuthenticatedSessionController extends Controller
 {
     public function create()
     {
-
+        return view('admin::auth.login');
     }
 
     public function store()
