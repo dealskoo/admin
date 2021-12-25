@@ -18,7 +18,7 @@ console:
   namespace: Dealskoo\Admin\Console
 
 model:
-  namespace: Dealskoo\Admin
+  namespace: Dealskoo\Admin\Models
 
 provider:
   namespace: Dealskoo\Admin\Providers
