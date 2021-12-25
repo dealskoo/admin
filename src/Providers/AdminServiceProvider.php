@@ -13,7 +13,7 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../../config/admin.php', 'admin');
     }
 
     /**
@@ -28,5 +28,8 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/admin.php' => config_path('admin.php')
         ], 'config');
+        $this->publishes([
+            __DIR__ . '/../../public' => public_path('vendor/admin')
+        ], 'public');
     }
 }
