@@ -17,6 +17,8 @@ Route::prefix(config('admin.route.prefix'))->name('admin.')->group(function () {
     });
 
     Route::middleware([])->group(function () {
-
+        Route::get('/', function () {
+            return view('admin::dashboard');
+        })->name('dashboard');
     });
 });
