@@ -1,6 +1,6 @@
 @extends('admin::layouts.auth')
 
-@section('title','Recover Password')
+@section('title',trans('admin::auth.recover_password'))
 
 @section('body')
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -18,20 +18,21 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center mt-0 fw-bold">Reset Password</h4>
-                                <p class="text-muted mb-4">Enter your email address and we'll send you an email with
-                                    instructions to reset your password.</p>
+                                <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ trans('admin::auth.reset_password') }}</h4>
+                                <p class="text-muted mb-4">{{ trans('admin::auth.reset_password_tip') }}</p>
                             </div>
 
-                            <form action="#">
+                            <form action="{{ route('admin.password.email') }}" method="post">
                                 <div class="mb-3">
-                                    <label for="emailaddress" class="form-label">Email address</label>
-                                    <input class="form-control" type="email" id="emailaddress" required=""
-                                           placeholder="Enter your email">
+                                    <label for="email"
+                                           class="form-label">{{ trans('admin::auth.email_address') }}</label>
+                                    <input class="form-control" type="email" id="email" required=""
+                                           placeholder="{{ trans('admin::auth.email_address_placeholder') }}">
                                 </div>
 
                                 <div class="mb-0 text-center">
-                                    <button class="btn btn-primary" type="submit">Reset Password</button>
+                                    <button class="btn btn-primary"
+                                            type="submit">{{ trans('admin::auth.reset_password') }}</button>
                                 </div>
                             </form>
                         </div> <!-- end card-body-->
@@ -40,9 +41,9 @@
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
-                            <p class="text-muted">Back to <a href="{{ route('admin.login') }}"
-                                                             class="text-muted ms-1"><b>Log
-                                        In</b></a></p>
+                            <p class="text-muted">{{ trans('admin::auth.back_to') }} <a
+                                    href="{{ route('admin.login') }}"
+                                    class="text-muted ms-1"><b>{{ trans('admin::auth.log_in') }}</b></a></p>
                         </div> <!-- end col -->
                     </div>
                     <!-- end row -->
