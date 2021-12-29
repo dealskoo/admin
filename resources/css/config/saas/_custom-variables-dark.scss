@@ -3,10 +3,10 @@
 //
 
 //Background left-sidebar
-$bg-leftbar:                      linear-gradient(135deg,#8f75da 0,#727cf5 60%);
+$bg-leftbar:                      linear-gradient(135deg,$red 0,$primary 60%);
 $bg-leftbar-light:                #ffffff;
 $bg-leftbar-dark:                 #3a444e;
-$bg-topnav:                         linear-gradient(to bottom, #8f75da, #727cf5);
+$bg-topnav:                         linear-gradient(to bottom, $red, $primary);
 
 // Deatched left sidenav
 $bg-detached-leftbar:             #37404a;
@@ -35,13 +35,13 @@ $menu-item-active:                #ffffff;
 
 // Menu item colors (light)
 $menu-item-light:                 #6c757d;
-$menu-item-light-hover:           #727cf5;
-$menu-item-light-active:          #727cf5;
+$menu-item-light-hover:           $primary;
+$menu-item-light-active:          $primary;
 
 // Detached Menu item colors
 $menu-item-dark:                  #8391a2;
-$menu-item-dark-hover:            #727cf5;
-$menu-item-dark-active:           #727cf5;
+$menu-item-dark-hover:            $primary;
+$menu-item-dark-active:           $primary;
 
 // Dark sidenav Menu item color
 $sidebar-dark-menu-item:          #8391a2;
@@ -51,7 +51,7 @@ $sidebar-dark-menu-item-active:   #ffffff;
 // Rightbar
 $rightbar-width:                    280px;
 $rightbar-bg:                     #37404a;
-$rightbar-title-bg:               #727cf5;
+$rightbar-title-bg:               $primary;
 $rightbar-title-color:            #ffffff;
 $rightbar-title-btn-bg:             lighten($rightbar-title-bg, 5%);
 $rightbar-title-btn-color:        #ffffff;
@@ -67,7 +67,7 @@ $bg-topbar-dark-search:           #464f5b;
 
 // Helpbox
 $help-box-light-bg:               rgba(255,255,255,0.1);
-$help-box-dark-bg:                #727cf5;
+$help-box-dark-bg:                $primary;
 
 // Font weight
 $font-weight-semibold:              600;
@@ -111,4 +111,4 @@ $auth-bg-pattern-img:               url("../images/bg-pattern-dark.png");
 $apex-grid-color:                 #404954;
 
 // Hero
-$hero-bg: linear-gradient(to bottom, #697ded, #5e30c1);
+$hero-bg: linear-gradient(to bottom, $red, $primary);

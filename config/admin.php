@@ -7,5 +7,6 @@ return [
     'logo' => '/vendor/admin/images/logo.svg',
     'logo_dark' => '/vendor/admin/images/logo_dark.svg',
     'logo_sm' => '/vendor/admin/images/logo_sm.svg',
-    'logo_sm_dark' => '/vendor/admin/images/logo_sm_dark.svg'
+    'logo_sm_dark' => '/vendor/admin/images/logo_sm_dark.svg',
+    'copyright' => '2014 - ' . date('Y') . ' ' . config('app.name'),
 ];

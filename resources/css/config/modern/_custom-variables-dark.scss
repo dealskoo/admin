@@ -4,7 +4,7 @@
 
 
 //Background left-sidebar
-$bg-leftbar:                        linear-gradient(135deg, #6379c3 0%, #546ee5 60%);
+$bg-leftbar:                        linear-gradient(135deg, $red 0%, $primary 60%);
 $bg-leftbar-light:                #313a46;
 $bg-leftbar-dark:                 #ffffff;
 $bg-topnav:                       #37404a;
@@ -36,8 +36,8 @@ $menu-item-active:                #ffffff;
 
 // Menu item colors (light)
 $menu-item-light:                 #6c757d;
-$menu-item-light-hover:           #3d73dd;
-$menu-item-light-active:          #3d73dd;
+$menu-item-light-hover:           $primary;
+$menu-item-light-active:          $primary;
 
 // Detached Menu item colors
 $menu-item-dark:                  #8391a2;
@@ -52,7 +52,7 @@ $sidebar-dark-menu-item-active:   #ffffff;
 // Rightbar
 $rightbar-width:                    280px;
 $rightbar-bg:                     #37404a;
-$rightbar-title-bg:               #3d73dd;
+$rightbar-title-bg:               $primary;
 $rightbar-title-color:            #ffffff;
 $rightbar-title-btn-bg:             lighten($rightbar-title-bg, 5%);
 $rightbar-title-btn-color:        #ffffff;
@@ -68,7 +68,7 @@ $bg-topbar-dark-search:           #464f5b;
 
 // Helpbox
 $help-box-light-bg:               rgba(255,255,255,0.1);
-$help-box-dark-bg:                #3d73dd;
+$help-box-dark-bg:                $primary;
 
 // Font weight
 $font-weight-semibold:              600;
@@ -112,4 +112,4 @@ $auth-bg-pattern-img:               url("../images/bg-pattern-dark.png");
 $apex-grid-color:                 #404954;
 
 // Hero
-$hero-bg: linear-gradient(to bottom,#6379c3,#546ee5);
+$hero-bg: linear-gradient(to bottom,$red,$primary);

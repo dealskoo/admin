@@ -22,7 +22,7 @@
 @yield('body')
 
 <footer class="footer footer-alt">
-    2014 - {{ date('Y') }} © {{ config('app.name') }}
+    {{ config('admin.copyright') }}
 </footer>
 
 <!-- bundle -->

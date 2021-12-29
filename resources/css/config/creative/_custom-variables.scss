@@ -36,13 +36,13 @@ $menu-item-active:                #ffffff;
 
 // Menu item colors (light)
 $menu-item-light:                 #6c757d;
-$menu-item-light-hover:           #3688fc;
-$menu-item-light-active:          #3688fc;
+$menu-item-light-hover:           $primary;
+$menu-item-light-active:          $primary;
 
 // Detached Menu item colors
 $menu-item-dark:                  #6c757d;
-$menu-item-dark-hover:            #3688fc;
-$menu-item-dark-active:           #3688fc;
+$menu-item-dark-hover:            $primary;
+$menu-item-dark-active:           $primary;
 
 // Dark sidenav Menu item color
 $sidebar-dark-menu-item:          #8391a2;
@@ -68,7 +68,7 @@ $bg-topbar-dark-search:           #3c4655;
 
 // Helpbox
 $help-box-light-bg:               rgba(255,255,255,0.07);
-$help-box-dark-bg:                #3688fc;
+$help-box-dark-bg:                $primary;
 
 // Font weight
 $font-weight-semibold:              600;
