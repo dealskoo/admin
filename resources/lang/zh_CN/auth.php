@@ -8,7 +8,7 @@ return [
     'password' => '密码',
     'password_placeholder' => '请输入密码',
     'forgot_your_password' => '忘记密码?',
-    'remember_me' => '记住我',
+    'remember_me' => '记住密码',
     'log_in' => '登录',
     'recover_password' => '重置密码',
     'reset_password' => '重置密码',
