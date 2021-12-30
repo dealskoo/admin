@@ -3,8 +3,10 @@
 namespace Dealskoo\Admin\Http\Controllers\Auth;
 
 use Dealskoo\Admin\Http\Controllers\Controller;
+use Dealskoo\Admin\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -13,13 +15,23 @@ class AuthenticatedSessionController extends Controller
         return view('admin::auth.login');
     }
 
-    public function store()
+    /**
+     * @throws ValidationException
+     */
+    public function store(LoginRequest $request)
     {
+        $request->authenticate();
 
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('admin.dashboard'));
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-        return redirect('/');
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('admin.login'));
     }
 }

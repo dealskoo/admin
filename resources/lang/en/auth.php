@@ -13,5 +13,8 @@ return [
     'recover_password' => 'Recover Password',
     'reset_password' => 'Reset Password',
     'reset_password_tip' => "Enter your email address and we'll send you an email with instructions to reset your password.",
-    'back_to' => 'Back to'
+    'back_to' => 'Back to',
+    'failed' => 'These credentials do not match our records.',
+    'password_is_incorrect' => 'The provided password is incorrect.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 ];

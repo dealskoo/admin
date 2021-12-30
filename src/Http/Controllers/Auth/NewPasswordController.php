@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class NewPasswordController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-
+        return view('admin::auth.reset-password', ['request' => $request]);
     }
 
     public function store()
