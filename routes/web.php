@@ -23,5 +23,7 @@ Route::middleware(['web'])->prefix(config('admin.route.prefix'))->name('admin.')
         Route::get('/dashboard', function () {
             return view('admin::dashboard');
         })->name('dashboard');
+
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });
 });

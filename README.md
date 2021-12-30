@@ -4,3 +4,9 @@
 
 - [ ] Admin Management
 - [ ] Menu Management
+
+## Initial Admin Account
+
+```bash
+$ php artisan admin:init
+```

@@ -2,6 +2,7 @@
 
 namespace Dealskoo\Admin\Providers;
 
+use Dealskoo\Admin\Console\InitCommand;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
@@ -23,10 +24,20 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InitCommand::class,
+            ]);
+        }
+
         $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
+
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'admin');
+
         $this->publishes([
             __DIR__ . '/../../config/admin.php' => config_path('admin.php')
         ], 'config');
@@ -36,5 +47,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/admin'),
         ], 'lang');
+
     }
 }

@@ -36,6 +36,7 @@
                                     <label for="email"
                                            class="form-label">{{ trans('admin::auth.email_address') }}</label>
                                     <input class="form-control" type="email" id="email" required=""
+                                           value="{{ old('email') }}"
                                            placeholder="{{ trans('admin::auth.email_address_placeholder') }}">
                                 </div>
 
