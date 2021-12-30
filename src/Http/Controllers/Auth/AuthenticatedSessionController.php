@@ -5,11 +5,15 @@ namespace Dealskoo\Admin\Http\Controllers\Auth;
 use Dealskoo\Admin\Http\Controllers\Controller;
 use Dealskoo\Admin\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin')->only(['destroy']);
+    }
+
     public function create()
     {
         return view('admin::auth.login');
@@ -29,7 +33,7 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request)
     {
-        Auth::guard('admin')->logout();
+        $this->guard()->logout();;
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect(route('admin.login'));
