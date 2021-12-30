@@ -19,10 +19,19 @@
 
                             <div class="text-center w-75 m-auto">
                                 <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ trans('admin::auth.reset_password') }}</h4>
-                                <p class="text-muted mb-4">{{ trans('admin::auth.reset_password_tip') }}</p>
+                                <div class="mb-4">
+                                    @if(empty($errors->all()))
+                                        <p class="text-muted mb-0">{{ trans('admin::auth.reset_password_tip') }}</p>
+                                    @else
+                                        @foreach($errors->all() as $error)
+                                            <p class="text-danger mb-0">{{ $error }}</p>
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
 
                             <form action="{{ route('admin.password.email') }}" method="post">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="email"
                                            class="form-label">{{ trans('admin::auth.email_address') }}</label>

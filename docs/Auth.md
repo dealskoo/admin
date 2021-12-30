@@ -35,11 +35,43 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            if ($request->is('admin/*')) {
+            if ($request->is(config('admin.route.prefix') . '/*')) {
                 return route('admin.login');
             }  else {
                 return route('login');
             }
         }
     }
+```
+
+```php
+namespace App\Http\Middleware;
+
+class RedirectIfAuthenticated
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param Request $request
+     * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @param string|null ...$guards
+     * @return Response|RedirectResponse
+     */
+    public function handle(Request $request, Closure $next, ...$guards)
+    {
+        $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                if ($guard == 'admin') {
+                    return redirect(route('admin.dashboard'));
+                } else {
+                    return redirect(RouteServiceProvider::HOME);
+                }
+            }
+        }
+
+        return $next($request);
+    }
+}
 ```
