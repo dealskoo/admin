@@ -3,11 +3,12 @@
 namespace Dealskoo\Admin\Models;
 
 use Dealskoo\Admin\Notifications\ResetAdminPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authentication;
 use Illuminate\Notifications\Notifiable;
 
-class Admin extends Authentication
+class Admin extends Authentication implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
