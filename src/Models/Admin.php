@@ -2,12 +2,12 @@
 
 namespace Dealskoo\Admin\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Dealskoo\Admin\Notifications\ResetAdminPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authentication;
 use Illuminate\Notifications\Notifiable;
 
-class Admin extends Authentication implements MustVerifyEmail
+class Admin extends Authentication
 {
     use HasFactory, Notifiable;
 
@@ -25,4 +25,9 @@ class Admin extends Authentication implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime'
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetAdminPassword($token));
+    }
 }

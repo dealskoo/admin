@@ -16,8 +16,7 @@
 
 </head>
 
-<body class="loading authentication-bg"
-      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<body class="loading authentication-bg" data-layout-config='{"darkMode":false}'>
 
 @yield('body')
 
