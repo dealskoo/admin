@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>@yield('title') | {{ trans('admin::auth.title') }} - {{ config('app.name') }}</title>
+    <title>@yield('title') | {{ __('admin::auth.title') }} - {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('/favicon.ico')}}">

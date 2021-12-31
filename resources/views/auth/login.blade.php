@@ -1,6 +1,6 @@
 @extends('admin::layouts.auth')
 
-@section('title',trans('admin::auth.log_in'))
+@section('title',__('admin::auth.log_in'))
 
 @section('body')
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -19,10 +19,10 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ trans('admin::auth.sign_in') }}</h4>
+                                <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ __('admin::auth.sign_in') }}</h4>
                                 <div class="mb-4">
                                     @if(empty($errors->all()))
-                                        <p class="text-muted mb-0">{{ trans('admin::auth.sign_in_tip') }}</p>
+                                        <p class="text-muted mb-0">{{ __('admin::auth.sign_in_tip') }}</p>
                                     @else
                                         @foreach($errors->all() as $error)
                                             <p class="text-danger mb-0">{{ $error }}</p>
@@ -35,19 +35,19 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email"
-                                           class="form-label">{{ trans('admin::auth.email_address') }}</label>
+                                           class="form-label">{{ __('admin::auth.email_address') }}</label>
                                     <input class="form-control" type="email" id="email" name="email"
                                            value="{{ old('email') }}" required=""
-                                           placeholder="{{ trans('admin::auth.email_address_placeholder') }}">
+                                           placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <a href="{{ route('admin.password.request') }}"
-                                       class="text-muted float-end"><small>{{ trans('admin::auth.forgot_your_password') }}</small></a>
-                                    <label for="password" class="form-label">{{ trans('admin::auth.password') }}</label>
+                                       class="text-muted float-end"><small>{{ __('admin::auth.forgot_your_password') }}</small></a>
+                                    <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password" class="form-control"
-                                               placeholder="{{ trans('admin::auth.password_placeholder') }}">
+                                               placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
@@ -59,13 +59,13 @@
                                         <input type="checkbox" class="form-check-input" id="checkbox-remember"
                                                name="remember" checked>
                                         <label class="form-check-label"
-                                               for="checkbox-remember">{{ trans('admin::auth.remember_me') }}</label>
+                                               for="checkbox-remember">{{ __('admin::auth.remember_me') }}</label>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
                                     <button class="btn btn-primary"
-                                            type="submit">{{ trans('admin::auth.log_in') }}</button>
+                                            type="submit">{{ __('admin::auth.log_in') }}</button>
                                 </div>
 
                             </form>

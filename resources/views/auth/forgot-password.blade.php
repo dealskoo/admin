@@ -1,6 +1,6 @@
 @extends('admin::layouts.auth')
 
-@section('title',trans('admin::auth.recover_password'))
+@section('title',__('admin::auth.recover_password'))
 
 @section('body')
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
@@ -18,14 +18,18 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ trans('admin::auth.reset_password') }}</h4>
+                                <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ __('admin::auth.reset_password') }}</h4>
                                 <div class="mb-4">
-                                    @if(empty($errors->all()))
-                                        <p class="text-muted mb-0">{{ trans('admin::auth.reset_password_tip') }}</p>
+                                    @if(!empty(session('status')))
+                                        <p class="text-danger mb-0">{{ session('status') }}</p>
                                     @else
-                                        @foreach($errors->all() as $error)
-                                            <p class="text-danger mb-0">{{ $error }}</p>
-                                        @endforeach
+                                        @if(empty($errors->all()))
+                                            <p class="text-muted mb-0">{{ __('admin::auth.reset_password_tip') }}</p>
+                                        @else
+                                            @foreach($errors->all() as $error)
+                                                <p class="text-danger mb-0">{{ $error }}</p>
+                                            @endforeach
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -34,15 +38,15 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email"
-                                           class="form-label">{{ trans('admin::auth.email_address') }}</label>
+                                           class="form-label">{{ __('admin::auth.email_address') }}</label>
                                     <input class="form-control" type="email" id="email" name="email" required=""
-                                           value="{{ old('email') }}"
-                                           placeholder="{{ trans('admin::auth.email_address_placeholder') }}">
+                                           value="{{ old('email') }}" autofocus
+                                           placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                 </div>
 
                                 <div class="mb-0 text-center">
                                     <button class="btn btn-primary"
-                                            type="submit">{{ trans('admin::auth.reset_password') }}</button>
+                                            type="submit">{{ __('admin::auth.reset_password') }}</button>
                                 </div>
                             </form>
                         </div> <!-- end card-body-->
@@ -51,9 +55,9 @@
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
-                            <p class="text-muted">{{ trans('admin::auth.back_to') }} <a
+                            <p class="text-muted">{{ __('admin::auth.back_to') }} <a
                                     href="{{ route('admin.login') }}"
-                                    class="text-muted ms-1"><b>{{ trans('admin::auth.log_in') }}</b></a></p>
+                                    class="text-muted ms-1"><b>{{ __('admin::auth.log_in') }}</b></a></p>
                         </div> <!-- end col -->
                     </div>
                     <!-- end row -->

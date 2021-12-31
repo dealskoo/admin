@@ -883,7 +883,7 @@
                         <div class="text-md-end footer-links d-none d-md-block">
                             @foreach(config('admin.footer_menus') as $menu)
                                 <a target="_blank" href="{{ route($menu['url']) }}">
-                                    {{ trans('admin::dashboard.'.$menu['name']) }}
+                                    {{ __('admin::dashboard.'.$menu['name']) }}
                                 </a>
                             @endforeach
                         </div>
