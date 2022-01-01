@@ -50,7 +50,8 @@
                                        class="text-muted float-end"><small>{{ __('admin::auth.forgot_your_password') }}</small></a>
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" name="password" class="form-control"
+                                        <input type="password" id="password" name="password"
+                                               min="{{ config('admin.password_length') }}" class="form-control"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>

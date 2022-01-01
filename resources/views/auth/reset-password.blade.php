@@ -35,6 +35,7 @@
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" class="form-control"
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -43,10 +44,11 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password"
+                                    <label for="password_confirmation"
                                            class="form-label">{{ __('admin::auth.confirm_password') }}</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control"
+                                        <input type="password" id="password_confirmation" class="form-control"
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.confirm_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
