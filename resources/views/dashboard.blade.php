@@ -300,7 +300,7 @@
                                     </span>
                             <span>
                                         <span class="account-user-name">{{ Auth::user()->name }}</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-position">Owner</span>
                                     </span>
                         </a>
                         <div
@@ -320,12 +320,6 @@
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-edit me-1"></i>
                                 <span>Settings</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-lifebuoy me-1"></i>
-                                <span>Support</span>
                             </a>
 
                             <!-- item-->
