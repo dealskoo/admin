@@ -19,23 +19,33 @@
 
                             <div class="text-center w-75 m-auto">
                                 <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ __('admin::auth.create_new_password') }}</h4>
-                                <p class="text-muted mb-4">{{ __('admin::auth.create_new_password_tip',['length'=>config('admin.password_length')]) }}</p>
+                                <div class="mb-4">
+                                    @if(empty($errors->all()))
+                                        <p class="text-muted mb-4">{{ __('admin::auth.create_new_password_tip',['length'=>config('admin.password_length')]) }}</p>
+                                    @else
+                                        @foreach($errors->all() as $error)
+                                            <p class="text-danger mb-0">{{ $error }}</p>
+                                        @endforeach
+                                    @endif
+                                </div>
                             </div>
 
                             <form action="{{ route('admin.password.update') }}" method="post">
                                 @csrf
 
+                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">{{ __('admin::auth.email_address') }}</label>
-                                    <input class="form-control" type="email" id="email" required=""
+                                    <input class="form-control" type="email" id="email" name="email" autofocus
+                                           value="{{ old('email',$request->email) }}" required
                                            placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control"
-                                               min="{{ config('admin.password_length') }}"
+                                        <input type="password" id="password" name="password" class="form-control"
+                                               required min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -47,8 +57,8 @@
                                     <label for="password_confirmation"
                                            class="form-label">{{ __('admin::auth.confirm_password') }}</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password_confirmation" class="form-control"
-                                               min="{{ config('admin.password_length') }}"
+                                        <input type="password" id="password_confirmation" name="password_confirmation"
+                                               required class="form-control" min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.confirm_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>

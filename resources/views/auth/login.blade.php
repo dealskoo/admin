@@ -51,7 +51,7 @@
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password"
-                                               min="{{ config('admin.password_length') }}" class="form-control"
+                                               min="{{ config('admin.password_length') }}" class="form-control" required
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
