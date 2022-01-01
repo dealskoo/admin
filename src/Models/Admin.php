@@ -7,10 +7,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authentication;
 use Illuminate\Notifications\Notifiable;
+use Laravolt\Avatar\Facade as Avatar;
 
 class Admin extends Authentication implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
+
+    protected $appends = ['avatar_url'];
 
     protected $fillable = [
         'name',
@@ -26,6 +29,13 @@ class Admin extends Authentication implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime'
     ];
+
+    public function getAvatarUrlAttribute()
+    {
+        return empty($this->avatar) ?
+            Avatar::create($this->email)->toGravatar(['d' => 'identicon', 'r' => 'pg', 's' => 100]) :
+            $this->avatar;
+    }
 
     public function sendPasswordResetNotification($token)
     {

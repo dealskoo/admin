@@ -295,7 +295,7 @@
                            role="button" aria-haspopup="false"
                            aria-expanded="false">
                                     <span class="account-user-avatar">
-                                        <img src="{{ asset('/vendor/admin/images/logo_sm.svg') }}" alt="user-image"
+                                        <img src="{{ Auth::user()->avatar_url }}" alt="user-image"
                                              class="rounded-circle">
                                     </span>
                             <span>
