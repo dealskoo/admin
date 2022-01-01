@@ -19,8 +19,7 @@
 
 </head>
 
-<body class="loading"
-      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
+<body class="loading">
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
@@ -938,10 +937,6 @@
             <!-- Left Sidebar-->
             <h5 class="mt-4">Left Sidebar</h5>
             <hr class="mt-1"/>
-            <div class="form-check form-switch mb-1">
-                <input class="form-check-input" type="checkbox" name="theme" value="default" id="default-check">
-                <label class="form-check-label" for="default-check">Default</label>
-            </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="theme" value="light" id="light-check" checked>

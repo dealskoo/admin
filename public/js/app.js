@@ -7,7 +7,7 @@
 
 /**
  * LeftSidebar
- * @param {*} $ 
+ * @param {*} $
  */
 
 
@@ -40,7 +40,7 @@
     LeftSidebar.prototype.deactivateCondensedSidebar = function() {
         this.body.removeAttr('data-leftbar-compact-mode');
     },
-  
+
     /**
      * Activates the scrollable sidenar
      */
@@ -61,7 +61,7 @@
     LeftSidebar.prototype.activateDefaultTheme = function () {
         this._reset();
     },
-    
+
     /**
      * Activates the light theme
      */
@@ -100,14 +100,14 @@
                     if (self.body.attr('data-leftbar-compact-mode') === 'condensed') {
                         self.deactivateCondensedSidebar();
                     } else {
-                        self.activateCondensedSidebar(); 
+                        self.activateCondensedSidebar();
                     }
                 }
-            
+
         });
 
         // sidebar - main menu
-        if ($(".side-nav").length) { 
+        if ($(".side-nav").length) {
             var navCollapse = $('.side-nav li .collapse');
             var navToggle = $(".side-nav li [data-bs-toggle='collapse']");
             navToggle.on('click', function(e) {
@@ -130,13 +130,13 @@
                     $(this).parent().addClass("menuitem-active");
                     $(this).parent().parent().parent().addClass("show");
                     $(this).parent().parent().parent().parent().addClass("menuitem-active"); // add active to li of the current link
-                    
+
                     var firstLevelParent = $(this).parent().parent().parent().parent().parent().parent();
                     if (firstLevelParent.attr('id') !== 'sidebar-menu')
                         firstLevelParent.addClass("show");
-                    
+
                     $(this).parent().parent().parent().parent().parent().parent().parent().addClass("menuitem-active");
-                    
+
                     var secondLevelParent = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent();
                     if (secondLevelParent.attr('id') !== 'wrapper')
                         secondLevelParent.addClass("show");
@@ -149,7 +149,7 @@
         }
 
 
-               
+
         //Horizontal Menu (For SM Screen)
         var AllNavs = document.querySelectorAll('ul.navbar-nav .dropdown .dropdown-toggle');
 
@@ -170,7 +170,7 @@
                     isInner = true;
                  }
             });
-            
+
             element.addEventListener('hide.bs.dropdown', function(event){
                 if(isInner){
                     event.preventDefault();
@@ -178,8 +178,8 @@
                     isInner = false;
                 }
             });
-            
-            
+
+
             element.addEventListener('show.bs.dropdown', function(event){
                 if(!isInner && !element.parentElement.classList.contains('nav-item')){
                     event.preventDefault();
@@ -187,12 +187,12 @@
                     isInner = true;
                 }
             });
-            
-         
+
+
         });
 
 
- 
+
 
     },
 
@@ -202,14 +202,14 @@
     LeftSidebar.prototype.init = function() {
         this.initMenu();
     },
-  
+
     $.LeftSidebar = new LeftSidebar, $.LeftSidebar.Constructor = LeftSidebar
 }(window.jQuery),
 
 
 /**
  * Topbar
- * @param {*} $ 
+ * @param {*} $
  */
 function ($) {
     'use strict';
@@ -286,7 +286,7 @@ function ($) {
 
 /**
  * RightBar
- * @param {*} $ 
+ * @param {*} $
  */
 function ($) {
     'use strict';
@@ -296,7 +296,7 @@ function ($) {
         this.window = $(window)
     };
 
-    /** 
+    /**
      * Select the option based on saved config
     */
    RightBar.prototype._selectOptionsFromConfig = function() {
@@ -308,7 +308,7 @@ function ($) {
 
             switch (config.sideBarTheme) {
                 case 'default':
-                    $('#default-check').prop('checked', true);
+                    $('#dark-check').prop('checked', true);
                     break;
                 case 'light':
                     $('#light-check').prop('checked', true);
@@ -332,7 +332,7 @@ function ($) {
                 $('#light-mode-check').prop('checked', true);
                 if (config.layout === 'vertical')
                     $('input[type=checkbox][name=theme]').prop('disabled', false);
-            } 
+            }
             if (config.isDarkModeEnabled) {
                 $('#dark-mode-check').prop('checked', true);
                 if (config.layout === 'vertical')
@@ -340,7 +340,7 @@ function ($) {
             }
         }
     },
-  
+
     /**
      * Toggles the right sidebar
      */
@@ -448,7 +448,7 @@ function ($) {
 
             self._selectOptionsFromConfig();
 
-        });        
+        });
 
         // reset
         $('#resetBtn').on('click', function (e) {
@@ -466,14 +466,14 @@ function ($) {
 
 /**
  * Layout and theme manager
- * @param {*} $ 
+ * @param {*} $
  */
 
 function ($) {
     'use strict';
 
     // Layout and theme manager
-    var SIDEBAR_THEME_DEFAULT = 'default';
+    var SIDEBAR_THEME_DEFAULT = 'dark';
     var SIDEBAR_THEME_LIGHT = 'light';
     var SIDEBAR_THEME_DARK = 'dark';
 
@@ -497,21 +497,21 @@ function ($) {
     */
     LayoutThemeApp.prototype._saveConfig = function(newConfig) {
         $.extend(this._config, newConfig);
-        // sessionStorage.setItem('_HYPER_CONFIG_', JSON.stringify(this._config));
+        sessionStorage.setItem('_ADMIN_CONFIG_', JSON.stringify(this._config));
     },
 
     /**
      * Get the stored config
      */
     LayoutThemeApp.prototype._getStoredConfig = function() {
-        var bodyConfig = this.body.data('layoutConfig');
+        var bodyConfig = JSON.parse(sessionStorage.getItem('_ADMIN_CONFIG_'));
         var config = DEFAULT_CONFIG;
         if (bodyConfig) {
-            config['sideBarTheme'] = bodyConfig['leftSideBarTheme'];
-            config['isBoxed'] = bodyConfig['layoutBoxed'];
-            config['isCondensed'] = bodyConfig['leftSidebarCondensed'];
-            config['isScrollable'] = bodyConfig['leftSidebarScrollable'];
-            config['isDarkModeEnabled'] = bodyConfig['darkMode'];
+            config['sideBarTheme'] = bodyConfig.sideBarTheme ?? 'dark';
+            config['isBoxed'] = bodyConfig.isBoxed??false;
+            config['isCondensed'] = bodyConfig.isCondensed??false;
+            config['isScrollable'] = bodyConfig.isScrollable??false;
+            config['isDarkModeEnabled'] = bodyConfig.isDarkModeEnabled??false;
         }
         return config;
     },
@@ -661,7 +661,7 @@ function ($) {
         setTimeout(function() {
             self.body.css('visibility', 'visible');
         }, 500);
-        
+
 
         if (!this.body.attr('data-layout') === "detached") {
             $.LeftSidebar.activateDarkTheme();
@@ -683,7 +683,7 @@ function ($) {
         setTimeout(function() {
             self.body.css('visibility', 'visible');
         }, 500);
-        
+
         this._saveConfig({ isDarkModeEnabled: false });
     }
 
@@ -706,21 +706,21 @@ function ($) {
      */
     LayoutThemeApp.prototype.reset = function(callback) {
         this.clearSavedConfig();
-        
+
         var self = this;
         if($("#main-style-container").length) {
             self.defaultSelectedStyle = $("#main-style-container").attr('href');
         }
         self.deactivateCondensedSidebar();
         self.deactivateDarkMode();
-        self.activateDefaultSidebarTheme();
+        self.activateDarkSidebarTheme();
         self.activateFluid();
         // calling the call back to let the caller know that it's done
         callback();
     },
 
     /**
-     * 
+     *
      */
     LayoutThemeApp.prototype.init = function() {
         var self = this;
@@ -728,7 +728,7 @@ function ($) {
         if($("#main-style-container").length) {
             self.defaultSelectedStyle = $("#main-style-container").attr('href');
         }
-        
+
         // initilize the menu
         this._applyConfig();
 
@@ -747,6 +747,7 @@ function ($) {
 
     $.LayoutThemeApp = new LayoutThemeApp, $.LayoutThemeApp.Constructor = LayoutThemeApp
 }(window.jQuery);
+
 /**
  * Theme: Hyper - Responsive Bootstrap 5 Admin Dashboard
  * Author: Coderthemes

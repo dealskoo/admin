@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="loading authentication-bg" data-layout-config='{"darkMode":false}'>
+<body class="loading authentication-bg">
 
 @yield('body')
 
