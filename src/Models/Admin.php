@@ -31,4 +31,9 @@ class Admin extends Authentication implements MustVerifyEmail
     {
         $this->notify(new ResetAdminPassword($token));
     }
+
+    public function routeNotificationForMail($notification)
+    {
+        return [$this->email => $this->name];
+    }
 }
