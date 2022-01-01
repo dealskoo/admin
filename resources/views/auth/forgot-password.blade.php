@@ -83,12 +83,12 @@
                                         <label for="email"
                                                class="form-label">{{ __('admin::auth.email_address') }}</label>
                                         <input class="form-control" type="email" id="email" name="email" required=""
-                                               value="{{ old('email') }}" autofocus
+                                               value="{{ old('email') }}" autofocus tabindex="1"
                                                placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                     </div>
 
                                     <div class="mb-0 text-center">
-                                        <button class="btn btn-primary"
+                                        <button class="btn btn-primary" tabindex="2"
                                                 type="submit">{{ __('admin::auth.reset_password') }}</button>
                                     </div>
                                 </form>

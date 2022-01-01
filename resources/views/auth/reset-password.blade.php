@@ -37,7 +37,7 @@
                                 <div class="mb-3">
                                     <label for="email" class="form-label">{{ __('admin::auth.email_address') }}</label>
                                     <input class="form-control" type="email" id="email" name="email" autofocus
-                                           value="{{ old('email',$request->email) }}" required
+                                           value="{{ old('email',$request->email) }}" required tabindex="1"
                                            placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                 </div>
 
@@ -45,7 +45,7 @@
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password" class="form-control"
-                                               required min="{{ config('admin.password_length') }}"
+                                               required min="{{ config('admin.password_length') }}" tabindex="2"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -58,7 +58,8 @@
                                            class="form-label">{{ __('admin::auth.confirm_password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password_confirmation" name="password_confirmation"
-                                               required class="form-control" min="{{ config('admin.password_length') }}"
+                                               required tabindex="3" class="form-control"
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.confirm_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -67,7 +68,7 @@
                                 </div>
 
                                 <div class="mb-3 text-center">
-                                    <button class="btn btn-primary"
+                                    <button class="btn btn-primary" tabindex="4"
                                             type="submit">{{ __('admin::auth.create_new_password') }}</button>
                                 </div>
 

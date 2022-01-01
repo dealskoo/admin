@@ -41,7 +41,7 @@
                                     <label for="email"
                                            class="form-label">{{ __('admin::auth.email_address') }}</label>
                                     <input class="form-control" type="email" id="email" name="email"
-                                           value="{{ old('email') }}" required=""
+                                           value="{{ old('email') }}" required="" tabindex="1" autofocus
                                            placeholder="{{ __('admin::auth.email_address_placeholder') }}">
                                 </div>
 
@@ -50,7 +50,7 @@
                                        class="text-muted float-end"><small>{{ __('admin::auth.forgot_your_password') }}</small></a>
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" name="password"
+                                        <input type="password" id="password" name="password" tabindex="2"
                                                min="{{ config('admin.password_length') }}" class="form-control" required
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
@@ -62,14 +62,14 @@
                                 <div class="mb-3 mb-3">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="checkbox-remember"
-                                               name="remember" checked>
+                                               name="remember" tabindex="3" checked>
                                         <label class="form-check-label"
                                                for="checkbox-remember">{{ __('admin::auth.remember_me') }}</label>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary"
+                                    <button class="btn btn-primary" tabindex="4"
                                             type="submit">{{ __('admin::auth.log_in') }}</button>
                                 </div>
 

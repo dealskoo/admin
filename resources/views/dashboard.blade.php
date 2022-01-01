@@ -20,7 +20,7 @@
 </head>
 
 <body class="loading"
-      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+      data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": false}'>
 <!-- Begin page -->
 <div class="wrapper">
     <!-- ========== Left Sidebar Start ========== -->
@@ -32,7 +32,7 @@
                         <img src="{{ asset(config('admin.logo_dark')) }}" alt="" height="40">
                     </span>
             <span class="logo-sm">
-                        <img src="{{ asset(config('admin.logo_sm_dark')) }}" alt="" height="40">
+                        <img src="{{ asset(config('admin.logo_sm_dark')) }}" alt="" height="30">
                     </span>
         </a>
 
@@ -42,7 +42,7 @@
                         <img src="{{ asset(config('admin.logo')) }}" alt="" height="40">
                     </span>
             <span class="logo-sm">
-                        <img src="{{ asset(config('admin.logo_sm')) }}" alt="" height="40">
+                        <img src="{{ asset(config('admin.logo_sm')) }}" alt="" height="30">
                     </span>
         </a>
 
