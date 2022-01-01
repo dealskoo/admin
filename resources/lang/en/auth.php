@@ -20,4 +20,8 @@ return [
     'back_to' => 'Back to',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'confirm_email' => 'Confirm Email',
+    'login' => 'Login',
+    'please_check_your_email' => 'Please check your email',
+    'a_email_has_been_send_to' => 'A email has been send to <b>:email</b>. <br>Please check for an email from :company and click on the included link to reset your password.',
 ];
