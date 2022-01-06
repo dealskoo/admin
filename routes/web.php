@@ -1,5 +1,6 @@
 <?php
 
+use Dealskoo\Admin\Http\Controllers\AccountController;
 use Dealskoo\Admin\Http\Controllers\Auth\AuthenticatedSessionController;
 use Dealskoo\Admin\Http\Controllers\Auth\NewPasswordController;
 use Dealskoo\Admin\Http\Controllers\Auth\PasswordResetLinkController;
@@ -23,6 +24,8 @@ Route::middleware(['web'])->prefix(config('admin.route.prefix'))->name('admin.')
         Route::get('/dashboard', function () {
             return view('admin::dashboard');
         })->name('dashboard');
+
+        Route::get('/account', [AccountController::class, 'create'])->name('account');
 
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     });
