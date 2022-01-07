@@ -57,12 +57,12 @@
                        aria-controls="sidebarDashboards" class="side-nav-link">
                         <i class="uil-home-alt"></i>
                         <span class="badge bg-success float-end">4</span>
-                        <span> Dashboards </span>
+                        <span>Dashboards</span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="side-nav-second-level">
                             <li>
-                                <a href="dashboard-analytics.html">Analytics</a>
+                                <a href="#">Analytics</a>
                             </li>
                         </ul>
                     </div>
@@ -71,43 +71,43 @@
                     <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
                        aria-controls="sidebarEcommerce" class="side-nav-link">
                         <i class="uil-store"></i>
-                        <span> Ecommerce </span>
+                        <span>Ecommerce</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEcommerce">
                         <ul class="side-nav-second-level">
                             <li>
-                                <a href="apps-ecommerce-products.html">Products</a>
+                                <a href="#">Products</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-products-details.html">Products Details</a>
+                                <a href="#">Products Details</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-orders.html">Orders</a>
+                                <a href="#">Orders</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-orders-details.html">Order Details</a>
+                                <a href="#">Order Details</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-customers.html">Customers</a>
+                                <a href="#">Customers</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-shopping-cart.html">Shopping Cart</a>
+                                <a href="#">Shopping Cart</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-checkout.html">Checkout</a>
+                                <a href="#">Checkout</a>
                             </li>
                             <li>
-                                <a href="apps-ecommerce-sellers.html">Sellers</a>
+                                <a href="#">Sellers</a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="side-nav-item">
-                    <a href="landing.html" target="_blank" class="side-nav-link">
+                    <a href="#" target="_blank" class="side-nav-link">
                         <i class="uil-globe"></i>
                         <span class="badge bg-secondary text-light float-end">New</span>
-                        <span> Landing </span>
+                        <span>Landing</span>
                     </a>
                 </li>
             </ul>
@@ -313,12 +313,6 @@
                             <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
                                 <span>My Account</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="mdi mdi-account-edit me-1"></i>
-                                <span>Settings</span>
                             </a>
 
                             <!-- item-->
