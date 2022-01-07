@@ -50,7 +50,7 @@
             <!--- Sidemenu -->
             <ul class="side-nav">
 
-                <li class="side-nav-title side-nav-item">Navigation</li>
+                <li class="side-nav-title side-nav-item">{{ __('admin::admin.navigation') }}</li>
 
                 <li class="side-nav-item">
                     <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false"
@@ -202,9 +202,9 @@
                                 <h5 class="m-0">
                                             <span class="float-end">
                                                 <a href="{{ route('admin.notification.all_read') }}" class="text-dark">
-                                                    <small>Clear All</small>
+                                                    <small>{{ __('admin::admin.clear_all') }}</small>
                                                 </a>
-                                            </span>Notification
+                                            </span>{{ __('admin::admin.notification') }}
                                 </h5>
                             </div>
 
@@ -278,7 +278,7 @@
                             <!-- All-->
                             <a href="{{ route('admin.notification.list') }}"
                                class="dropdown-item text-center text-primary notify-item notify-all">
-                                View All
+                                {{ __('admin::admin.view_all') }}
                             </a>
 
                         </div>
@@ -306,30 +306,30 @@
                             class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                             <!-- item-->
                             <div class=" dropdown-header noti-title">
-                                <h6 class="text-overflow m-0">Welcome !</h6>
+                                <h6 class="text-overflow m-0">{{ __('admin::admin.welcome') }} !</h6>
                             </div>
 
                             <!-- item-->
                             <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
-                                <span>My Account</span>
+                                <span>{{ __('admin::admin.my_account') }}</span>
                             </a>
 
                             <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-edit me-1"></i>
-                                <span>Update Email</span>
+                                <span>{{ __('admin::admin.update_email') }}</span>
                             </a>
 
                             <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-lock-outline me-1"></i>
-                                <span>Update Password</span>
+                                <span>{{ __('admin::admin.update_password') }}</span>
                             </a>
                             <!-- item-->
                             <a href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                class="dropdown-item notify-item">
                                 <i class="mdi mdi-logout me-1"></i>
-                                <span>Logout</span>
+                                <span>{{ __('admin::admin.logout') }}</span>
                             </a>
                             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                                   class="d-none">@csrf</form>
@@ -343,10 +343,12 @@
                 <div class="app-search dropdown d-none d-lg-block">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control dropdown-toggle" placeholder="Search..."
+                            <input type="text" class="form-control dropdown-toggle"
+                                   placeholder="{{ __('admin::admin.search_placeholder') }}"
                                    id="top-search">
                             <span class="mdi mdi-magnify search-icon"></span>
-                            <button class="input-group-text btn-primary" type="submit">Search</button>
+                            <button class="input-group-text btn-primary"
+                                    type="submit">{{ __('admin::admin.search') }}</button>
                         </div>
                     </form>
 
@@ -457,74 +459,74 @@
         <a href="javascript:void(0);" class="end-bar-toggle float-end">
             <i class="dripicons-cross noti-icon"></i>
         </a>
-        <h5 class="m-0">Settings</h5>
+        <h5 class="m-0">{{ __('admin::admin.settings') }}</h5>
     </div>
 
     <div class="rightbar-content h-100" data-simplebar>
 
         <div class="p-3">
             <!-- Settings -->
-            <h5>Color Scheme</h5>
+            <h5>{{ __('admin::admin.color_scheme') }}</h5>
             <hr class="mt-1"/>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light"
                        id="light-mode-check" checked>
-                <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                <label class="form-check-label" for="light-mode-check">{{ __('admin::admin.light_mode') }}</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark"
                        id="dark-mode-check">
-                <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                <label class="form-check-label" for="dark-mode-check">{{ __('admin::admin.dark_mode') }}</label>
             </div>
 
 
             <!-- Width -->
-            <h5 class="mt-4">Width</h5>
+            <h5 class="mt-4">{{ __('admin::admin.width') }}</h5>
             <hr class="mt-1"/>
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="width" value="fluid" id="fluid-check" checked>
-                <label class="form-check-label" for="fluid-check">Fluid</label>
+                <label class="form-check-label" for="fluid-check">{{ __('admin::admin.fluid') }}</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="width" value="boxed" id="boxed-check">
-                <label class="form-check-label" for="boxed-check">Boxed</label>
+                <label class="form-check-label" for="boxed-check">{{ __('admin::admin.boxed') }}</label>
             </div>
 
 
             <!-- Left Sidebar-->
-            <h5 class="mt-4">Left Sidebar</h5>
+            <h5 class="mt-4">{{ __('admin::admin.left_sidebar') }}</h5>
             <hr class="mt-1"/>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="theme" value="light" id="light-check" checked>
-                <label class="form-check-label" for="light-check">Light</label>
+                <label class="form-check-label" for="light-check">{{ __('admin::admin.light') }}</label>
             </div>
 
             <div class="form-check form-switch mb-3">
                 <input class="form-check-input" type="checkbox" name="theme" value="dark" id="dark-check">
-                <label class="form-check-label" for="dark-check">Dark</label>
+                <label class="form-check-label" for="dark-check">{{ __('admin::admin.dark') }}</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="compact" value="fixed" id="fixed-check" checked>
-                <label class="form-check-label" for="fixed-check">Fixed</label>
+                <label class="form-check-label" for="fixed-check">{{ __('admin::admin.fixed') }}</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="compact" value="condensed" id="condensed-check">
-                <label class="form-check-label" for="condensed-check">Condensed</label>
+                <label class="form-check-label" for="condensed-check">{{ __('admin::admin.condensed') }}</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="compact" value="scrollable" id="scrollable-check">
-                <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                <label class="form-check-label" for="scrollable-check">{{ __('admin::admin.scrollable') }}</label>
             </div>
 
             <div class="d-grid mt-4">
-                <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+                <button class="btn btn-primary" id="resetBtn">{{ __('admin::admin.reset_to_default') }}</button>
             </div>
         </div> <!-- end padding-->
 
