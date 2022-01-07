@@ -315,6 +315,15 @@
                                 <span>My Account</span>
                             </a>
 
+                            <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
+                                <i class="mdi mdi-account-edit me-1"></i>
+                                <span>Update Email</span>
+                            </a>
+
+                            <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
+                                <i class="mdi mdi-lock-outline me-1"></i>
+                                <span>Update Password</span>
+                            </a>
                             <!-- item-->
                             <a href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -421,7 +430,7 @@
                         <div class="text-md-end footer-links d-none d-md-block">
                             @foreach(config('admin.footer_menus') as $menu)
                                 <a target="_blank" href="{{ route($menu['url']) }}">
-                                    {{ __('admin::dashboard.'.$menu['name']) }}
+                                    {{ __('admin::admin.'.$menu['name']) }}
                                 </a>
                             @endforeach
                         </div>
