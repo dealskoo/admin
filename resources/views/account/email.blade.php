@@ -33,12 +33,25 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">{{ __('admin::admin.email') }}</label>
-                                    <input type="email" class="form-control" id="email"
-                                           placeholder="{{ __('admin::admin.email_placeholder') }}">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" id="email"
+                                               placeholder="{{ __('admin::admin.email_placeholder') }}">
+                                        <button class="btn btn-secondary"
+                                                type="button">{{ __('admin::admin.get_verification_code') }}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- end row -->
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="email_verification_code"
+                                           class="form-label">{{ __('admin::admin.email_verification_code') }}</label>
+                                    <input type="text" class="form-control" id="email_verification_code"
+                                           placeholder="{{ __('admin::admin.email_verification_code_placeholder') }}">
+                                </div>
+                            </div>
+                        </div> <!-- end row -->
                         <div class="text-end">
                             <button type="submit" class="btn btn-success mt-2"><i
                                     class="mdi mdi-content-save"></i> {{ __('admin::admin.save') }}

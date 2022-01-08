@@ -45,4 +45,7 @@ return [
     'new_password_placeholder' => '请填写新密码',
     'confirm_new_password' => '确认新密码',
     'confirm_new_password_placeholder' => '请确认新密码',
+    'get_verification_code' => '获取验证码',
+    'email_verification_code' => '验证码',
+    'email_verification_code_placeholder' => '请填写验证码'
 ];

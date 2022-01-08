@@ -45,4 +45,7 @@ return [
     'new_password_placeholder' => 'Enter a new password',
     'confirm_new_password' => 'Confirm new Password',
     'confirm_new_password_placeholder' => 'Confirm new password',
+    'get_verification_code' => 'Get verification code',
+    'email_verification_code' => 'Verification code',
+    'email_verification_code_placeholder' => 'Enter verification code'
 ];
