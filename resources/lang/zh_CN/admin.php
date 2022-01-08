@@ -38,5 +38,11 @@ return [
     'fixed' => '固定',
     'condensed' => '浓缩',
     'scrollable' => '滚动',
-    'reset_to_default' => '重置'
+    'reset_to_default' => '重置',
+    'password' => '密码',
+    'password_placeholder' => '请填写密码',
+    'new_password' => '新密码',
+    'new_password_placeholder' => '请填写新密码',
+    'confirm_new_password' => '确认新密码',
+    'confirm_new_password_placeholder' => '请确认新密码',
 ];

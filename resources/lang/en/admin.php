@@ -38,5 +38,11 @@ return [
     'fixed' => 'Fixed',
     'condensed' => 'Condensed',
     'scrollable' => 'Scrollable',
-    'reset_to_default' => 'Reset to Default'
+    'reset_to_default' => 'Reset to Default',
+    'password' => 'Password',
+    'password_placeholder' => 'Enter a password',
+    'new_password' => 'New Password',
+    'new_password_placeholder' => 'Enter a new password',
+    'confirm_new_password' => 'Confirm new Password',
+    'confirm_new_password_placeholder' => 'Confirm new password',
 ];

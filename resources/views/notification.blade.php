@@ -1,6 +1,6 @@
 @extends('admin::layouts.panel')
 
-@section('title',__('admin::notification.title'))
+@section('title',__('admin::admin.notification'))
 @section('body')
 
 @endsection
