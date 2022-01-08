@@ -9,11 +9,6 @@ use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin')->only(['destroy']);
-    }
-
     public function create()
     {
         return view('admin::auth.login');

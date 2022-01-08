@@ -9,6 +9,7 @@ return [
     'name' => 'Name',
     'name_placeholder' => 'Enter your name',
     'email' => 'Email',
+    'email_placeholder' => 'Enter your email',
     'role' => 'Role',
     'personal_info' => 'Personal Info',
     'bio' => 'Bio',

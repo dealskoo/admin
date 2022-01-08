@@ -75,3 +75,20 @@ class RedirectIfAuthenticated
     }
 }
 ```
+
+`App\Http\Kernel.php`
+
+```php
+    protected $routeMiddleware = [
+        'auth' => Authenticate::class,
+        'auth.basic' => AuthenticateWithBasicAuth::class,
+        'cache.headers' => SetCacheHeaders::class,
+        'can' => Authorize::class,
+        'guest' => RedirectIfAuthenticated::class,
+        'password.confirm' => RequirePassword::class,
+        'signed' => ValidateSignature::class,
+        'throttle' => ThrottleRequests::class,
+        'verified' => EnsureEmailIsVerified::class,
+        'admin_locale' => \Dealskoo\Admin\Http\Middleware\AdminLocalization::class,
+    ];
+```

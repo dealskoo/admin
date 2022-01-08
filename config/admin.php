@@ -19,4 +19,11 @@ return [
         'name' => 'contact_us',
         'url' => 'admin.login'
     ]],
+    'languages' => ['en' => [
+        'icon' => '/vendor/admin/images/flags/us.svg',
+        'name' => 'English'
+    ], 'zh_CN' => [
+        'icon' => '/vendor/admin/images/flags/cn.svg',
+        'name' => '简体中文'
+    ]],
 ];

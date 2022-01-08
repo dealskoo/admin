@@ -4,10 +4,13 @@ use Dealskoo\Admin\Http\Controllers\AccountController;
 use Dealskoo\Admin\Http\Controllers\Auth\AuthenticatedSessionController;
 use Dealskoo\Admin\Http\Controllers\Auth\NewPasswordController;
 use Dealskoo\Admin\Http\Controllers\Auth\PasswordResetLinkController;
+use Dealskoo\Admin\Http\Controllers\LocalizationController;
 use Dealskoo\Admin\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web'])->prefix(config('admin.route.prefix'))->name('admin.')->group(function () {
+Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))->name('admin.')->group(function () {
+
+    Route::get('/locale/{locale}', [LocalizationController::class, '__invoke'])->name('locale');
 
     Route::middleware(['guest:admin'])->group(function () {
         Route::get('/', function () {
@@ -26,7 +29,26 @@ Route::middleware(['web'])->prefix(config('admin.route.prefix'))->name('admin.')
             return view('admin::dashboard');
         })->name('dashboard');
 
-        Route::get('/account', [AccountController::class, 'create'])->name('account');
+
+        Route::prefix('/account')->name('account.')->group(function () {
+            Route::get('/', function () {
+                return view('admin::account.profile');
+            })->name('profile');
+
+            Route::post('/', [AccountController::class, 'store'])->name('profile');
+
+            Route::get('/email', function () {
+                return view('admin::account.email');
+            })->name('email');
+
+            Route::post('/email', [AccountController::class, 'email'])->name('email');
+
+            Route::get('/password', function () {
+                return view('admin::account.password');
+            })->name('password');
+
+            Route::post('/password', [AccountController::class, 'password'])->name('password');
+        });
 
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 

@@ -142,50 +142,29 @@
                             </form>
                         </div>
                     </li>
+                    @php
+                        $locale_code = \Illuminate\Support\Facades\Session::get('admin_locale','en');
+                        $locale = config('admin.languages')[$locale_code];
+                    @endphp
                     <li class="dropdown notification-list topbar-dropdown">
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
-                            <img src="{{ asset('/vendor/admin/images/flags/us.svg') }}" alt="user-image"
+                            <img src="{{ asset($locale['icon']) }}" alt="user-image"
                                  class="me-0 me-sm-1" height="12">
-                            <span class="align-middle d-none d-sm-inline-block">English</span> <i
+                            <span class="align-middle d-none d-sm-inline-block">{{ $locale['name'] }}</span> <i
                                 class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
-
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="{{ asset('/vendor/admin/images/flags/cn.svg') }}" alt="user-image"
-                                     class="me-1" height="12">
-                                <span class="align-middle">简体中文</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="{{ asset('/vendor/admin/images/flags/de.svg') }}" alt="user-image"
-                                     class="me-1" height="12">
-                                <span class="align-middle">German</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="{{ asset('/vendor/admin/images/flags/it.svg') }}" alt="user-image"
-                                     class="me-1" height="12">
-                                <span class="align-middle">Italian</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="{{ asset('/vendor/admin/images/flags/es.svg') }}" alt="user-image"
-                                     class="me-1" height="12">
-                                <span class="align-middle">Spanish</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <img src="{{ asset('/vendor/admin/images/flags/ru.svg') }}" alt="user-image"
-                                     class="me-1" height="12">
-                                <span class="align-middle">Russian</span>
-                            </a>
-
+                            @foreach(config('admin.languages') as $code => $language)
+                                @if($locale_code!=$code)
+                                    <a href="{{ route('admin.locale',['locale'=>$code]) }}"
+                                       class="dropdown-item notify-item">
+                                        <img src="{{ asset($language['icon']) }}" alt="user-image"
+                                             class="me-1" height="12">
+                                        <span class="align-middle">{{ $language['name'] }}</span>
+                                    </a>
+                                @endif
+                            @endforeach
                         </div>
                     </li>
 
@@ -310,17 +289,17 @@
                             </div>
 
                             <!-- item-->
-                            <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
+                            <a href="{{ route('admin.account.profile') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
                                 <span>{{ __('admin::admin.my_account') }}</span>
                             </a>
 
-                            <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
+                            <a href="{{ route('admin.account.email') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-account-edit me-1"></i>
                                 <span>{{ __('admin::admin.update_email') }}</span>
                             </a>
 
-                            <a href="{{ route('admin.account') }}" class="dropdown-item notify-item">
+                            <a href="{{ route('admin.account.password') }}" class="dropdown-item notify-item">
                                 <i class="mdi mdi-lock-outline me-1"></i>
                                 <span>{{ __('admin::admin.update_password') }}</span>
                             </a>
