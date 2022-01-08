@@ -25,14 +25,16 @@
         <div class="col-xl-8 col-lg-7">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('admin.account.profile') }}" method="post">
+                        @csrf
                         <h5 class="mb-4 text-uppercase"><i
                                 class="mdi mdi-account-circle me-1"></i> {{ __('admin::admin.personal_info') }}</h5>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">{{ __('admin::admin.name') }}</label>
-                                    <input type="text" class="form-control" id="name"
+                                    <input type="text" class="form-control" id="name" name="name" required
+                                           value="{{ old('name',Auth::user()->name) }}"
                                            placeholder="{{ __('admin::admin.name_placeholder') }}">
                                 </div>
                             </div>
@@ -43,7 +45,7 @@
                                 <div class="mb-3">
                                     <label for="bio" class="form-label">{{ __('admin::admin.bio') }}</label>
                                     <textarea class="form-control" id="bio" rows="4"
-                                              placeholder="{{ __('admin::admin.bio_placeholder') }}"></textarea>
+                                              placeholder="{{ __('admin::admin.bio_placeholder') }}">{{ old('bio',Auth::user()->bio) }}</textarea>
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->

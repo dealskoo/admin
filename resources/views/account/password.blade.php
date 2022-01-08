@@ -25,15 +25,21 @@
         <div class="col-xl-8 col-lg-7">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('admin.account.password') }}" method="post">
+                        @csrf
                         <h5 class="mb-4 text-uppercase"><i
                                 class="mdi mdi-lock-outline me-1"></i> {{ __('admin::admin.update_password') }}</h5>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="password" class="form-label">{{ __('admin::admin.password') }}</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="{{ __('admin::admin.password_placeholder') }}">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                               placeholder="{{ __('admin::admin.password_placeholder') }}">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -43,8 +49,14 @@
                                 <div class="mb-3">
                                     <label for="new_password"
                                            class="form-label">{{ __('admin::admin.new_password') }}</label>
-                                    <input type="password" class="form-control" id="new_password" name="new_password"
-                                           placeholder="{{ __('admin::admin.new_password_placeholder') }}">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="new_password"
+                                               name="new_password"
+                                               placeholder="{{ __('admin::admin.new_password_placeholder') }}">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -54,9 +66,14 @@
                                 <div class="mb-3">
                                     <label for="confirm_new_password"
                                            class="form-label">{{ __('admin::admin.confirm_new_password') }}</label>
-                                    <input type="password" class="form-control" id="confirm_new_password"
-                                           name="new_password_confirmation"
-                                           placeholder="{{ __('admin::admin.confirm_new_password_placeholder') }}">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="confirm_new_password"
+                                               name="new_password_confirmation"
+                                               placeholder="{{ __('admin::admin.confirm_new_password_placeholder') }}">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- end row -->

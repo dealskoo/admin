@@ -25,7 +25,8 @@
         <div class="col-xl-8 col-lg-7">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('admin.account.email') }}" method="post">
+                        @csrf
                         <h5 class="mb-4 text-uppercase"><i
                                 class="mdi mdi-account-edit me-1"></i> {{ __('admin::admin.update_email') }}</h5>
                         <div class="row">
