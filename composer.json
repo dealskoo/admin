@@ -41,8 +41,7 @@
         "php": ">=7.0.0",
         "dealskoo/core": "dev-master",
         "laravel/framework": ">=7.20",
-        "laravolt/avatar": "^4.1",
-        "mews/captcha": "^3.2"
+        "laravolt/avatar": "^4.1"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
