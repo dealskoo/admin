@@ -24,7 +24,7 @@ class AccountController extends Controller
     {
         $request->validate(['email' => ['required', 'email', 'unique:admins']]);
         Notification::route('mail', $request->input('email'))->notify(new EmailChangeNotification());
-        return redirect()->back()->with('success', __('Email Verify Notification Send Success'));
+        return redirect()->back()->withInput($request->only(['email']))->with('success', __('Email Verify Notification Send Success'));
     }
 
     public function emailVerify(Request $request)
