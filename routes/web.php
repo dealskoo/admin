@@ -41,7 +41,9 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
                 return view('admin::account.email');
             })->name('email');
 
-            Route::post('/email', [AccountController::class, 'email'])->name('email');
+            Route::middleware(['throttle:6,1'])->post('/email', [AccountController::class, 'email'])->name('email');
+
+            Route::middleware(['signed', 'throttle:6,1'])->get('/email/verify/{hash}', [AccountController::class, 'emailVerify'])->name('email.verify');
 
             Route::get('/password', function () {
                 return view('admin::account.password');

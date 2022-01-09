@@ -2,9 +2,10 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
-use Dealskoo\Admin\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
@@ -21,12 +22,22 @@ class AccountController extends Controller
 
     public function email(Request $request)
     {
-
+        $request->validate(['email' => ['required', 'email', 'unique:admins']]);
+        Notification::route('mail', $request->input('email'))->notify(new EmailChangeNotification());
+        return redirect()->back()->with('success', __('Email Verify Notification Send Success'));
     }
 
-    public function giveEmailVerificationCode()
+    public function emailVerify(Request $request)
     {
-
+        $email = Session::get('admin_email_change_verify');
+        if (hash_equals($request->route('hash'), sha1($email))) {
+            $admin = $request->user();
+            $admin->email = $email;
+            $admin->save();
+            return redirect()->route('admin.account.email')->with('success', __('Email Change Success'));
+        } else {
+            return redirect()->route('admin.account.email')->withErrors([__('Link expired')]);
+        }
     }
 
     public function password(Request $request)
