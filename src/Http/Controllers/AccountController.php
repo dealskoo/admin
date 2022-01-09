@@ -24,6 +24,11 @@ class AccountController extends Controller
 
     }
 
+    public function giveEmailVerificationCode()
+    {
+
+    }
+
     public function password(Request $request)
     {
         $request->validate([
