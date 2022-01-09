@@ -143,7 +143,7 @@
                         </div>
                     </li>
                     @php
-                        $locale_code = \Illuminate\Support\Facades\Session::get('admin_locale','en');
+                        $locale_code = session('admin_locale','en');
                         $locale = config('admin.languages')[$locale_code];
                     @endphp
                     <li class="dropdown notification-list topbar-dropdown">

@@ -47,5 +47,6 @@ return [
     'confirm_new_password_placeholder' => 'Confirm new password',
     'get_verification_code' => 'Get verification code',
     'email_verification_code' => 'Verification code',
-    'email_verification_code_placeholder' => 'Enter verification code'
+    'email_verification_code_placeholder' => 'Enter verification code',
+    'update_success' => 'Updated success!'
 ];

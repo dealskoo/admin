@@ -29,12 +29,26 @@
                         @csrf
                         <h5 class="mb-4 text-uppercase"><i
                                 class="mdi mdi-lock-outline me-1"></i> {{ __('admin::admin.update_password') }}</h5>
+                        @if(!empty(session('success')))
+                            <div class="alert alert-success">
+                                <p class="mb-0">{{ session('success') }}</p>
+                            </div>
+                        @endif
+                        @if(!empty($errors->all()))
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <p class="mb-0">{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="password" class="form-label">{{ __('admin::admin.password') }}</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="password" name="password"
+                                               required tabindex="1" autofocus
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::admin.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -51,7 +65,8 @@
                                            class="form-label">{{ __('admin::admin.new_password') }}</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="new_password"
-                                               name="new_password"
+                                               name="new_password" tabindex="2"
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::admin.new_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -68,7 +83,8 @@
                                            class="form-label">{{ __('admin::admin.confirm_new_password') }}</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="confirm_new_password"
-                                               name="new_password_confirmation"
+                                               name="new_password_confirmation" tabindex="3"
+                                               min="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::admin.confirm_new_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -79,7 +95,7 @@
                         </div> <!-- end row -->
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-success mt-2"><i
+                            <button type="submit" class="btn btn-success mt-2" tabindex="4"><i
                                     class="mdi mdi-content-save"></i> {{ __('admin::admin.save') }}
                             </button>
                         </div>
