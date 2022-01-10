@@ -28,35 +28,12 @@
                     @include('admin::includes.notification-sidebar')
                     <div class="page-aside-right">
                         <div class="mt-3">
-                            <h5 class="font-18">Your elite author Graphic Optimization reward is ready!</h5>
+                            <h5 class="font-18">{{ $notification->data['title'] }}</h5>
                             <hr>
                             <div class="d-flex mb-3 mt-1">
-                                <small>Dec 14, 2017, 5:17 AM</small>
+                                <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
                             </div>
-
-                            <p>Hi Coderthemes!</p>
-                            <p>Clicking ‘Order Service’ on the right-hand side of the above page will present you with
-                                an order page. This service has the following Briefing Guidelines that will need to be
-                                filled before placing your order:</p>
-                            <ol>
-                                <li>Your design preferences (Color, style, shapes, Fonts, others)</li>
-                                <li>Tell me, why is your item different?</li>
-                                <li>Do you want to bring up a specific feature of your item? If yes, please tell me</li>
-                                <li>Do you have any preference or specific thing you would like to change or improve on
-                                    your item page?
-                                </li>
-                                <li>Do you want to include your item's or your provider's logo on the page? if yes,
-                                    please send it to me in vector format (Ai or EPS)
-                                </li>
-                                <li>Please provide me with the copy or text to display</li>
-                            </ol>
-
-                            <p>Filling in this form with the above information will ensure that they will be able to
-                                start work quickly.</p>
-                            <p>You can complete your order by putting your coupon code into the Promotional code box and
-                                clicking ‘Apply Coupon’.</p>
-                            <p><b>Best,</b> <br> Graphic Studio</p>
-
+                            @include($notification->data['view'])
                         </div>
                         <!-- end .mt-4 -->
 

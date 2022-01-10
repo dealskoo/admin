@@ -169,11 +169,16 @@
                         </div>
                     </li>
 
+                    @php
+                        $notifications = Auth::user()->unreadNotifications()->paginate(10);
+                    @endphp
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                            aria-haspopup="false" aria-expanded="false">
                             <i class="dripicons-bell noti-icon"></i>
-                            <span class="noti-icon-badge"></span>
+                            @if($notifications->total()>0)
+                                <span class="noti-icon-badge"></span>
+                            @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
 
@@ -189,70 +194,22 @@
                             </div>
 
                             <div style="max-height: 230px;" data-simplebar>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-primary">
-                                        <i class="mdi mdi-comment-account-outline"></i>
-                                    </div>
-                                    <p class="notify-details">Caleb Flakelar commented on Admin
-                                        <small class="text-muted">1 min ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-info">
-                                        <i class="mdi mdi-account-plus"></i>
-                                    </div>
-                                    <p class="notify-details">New user registered.
-                                        <small class="text-muted">5 hours ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon">
-                                        <img src="{{ asset('/vendor/admin/images/logo_sm.svg') }}"
-                                             class="img-fluid rounded-circle"
-                                             alt=""/></div>
-                                    <p class="notify-details">Cristina Pride</p>
-                                    <p class="text-muted mb-0 user-msg">
-                                        <small>Hi, How are you? What about our next meeting</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-primary">
-                                        <i class="mdi mdi-comment-account-outline"></i>
-                                    </div>
-                                    <p class="notify-details">Caleb Flakelar commented on Admin
-                                        <small class="text-muted">4 days ago</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon">
-                                        <img src="{{ asset('/vendor/admin/images/logo_sm.svg') }}"
-                                             class="img-fluid rounded-circle"
-                                             alt=""/></div>
-                                    <p class="notify-details">Karen Robinson</p>
-                                    <p class="text-muted mb-0 user-msg">
-                                        <small>Wow ! this admin looks good and awesome design</small>
-                                    </p>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <div class="notify-icon bg-info">
-                                        <i class="mdi mdi-heart"></i>
-                                    </div>
-                                    <p class="notify-details">Carlos Crouch liked
-                                        <b>Admin</b>
-                                        <small class="text-muted">13 days ago</small>
-                                    </p>
-                                </a>
+                                @foreach($notifications as $notification)
+                                    <a href="{{ route('admin.notification',$notification) }}"
+                                       class="dropdown-item notify-item">
+                                        <div class="notify-icon bg-primary">
+                                            <i class="mdi {{ $notification->data['icon'] }}"></i>
+                                        </div>
+                                        <p class="notify-details">{{ $notification->data['title'] }}
+                                            @if(empty($notification->data['message']))
+                                                <small
+                                                    class="text-muted">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
+                                            @else
+                                                <small class="text-muted">{{ $notification->data['message'] }}</small>
+                                            @endif
+                                        </p>
+                                    </a>
+                                @endforeach
                             </div>
 
                             <!-- All-->

@@ -26,39 +26,24 @@
                     <div class="page-aside-right">
                         <div class="mt-3">
                             <ul class="email-list">
-                                <li class="unread">
-                                    <div>
-                                        <a href="javascript: void(0);" class="email-title">Lucas Kriebel (via
-                                            Twitter)</a>
-                                    </div>
-                                    <div class="email-content">
-                                        <div class="email-date">11:49 am</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <a href="javascript: void(0);" class="email-title">Randy, me (5)</a>
-                                    </div>
-                                    <div class="email-content">
-                                        <div class="email-date">5:01 am</div>
-                                    </div>
-                                </li>
+                                @foreach($notifications as $notification)
+                                    <li @if(!$notification->read_at)class="unread"@endif>
+                                        <div>
+                                            <a href="{{ route('admin.notification',$notification) }}"
+                                               class="email-title">{{ $notification->data['title'] }}</a>
+                                        </div>
+                                        <div class="email-content">
+                                            <div
+                                                class="email-date">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                         <!-- end .mt-4 -->
 
                         <div class="row">
-                            <div class="col-7 mt-1">
-                                Showing 1 - 20 of 289
-                            </div> <!-- end col-->
-                            <div class="col-5">
-                                <div class="btn-group float-end">
-                                    <button type="button" class="btn btn-light btn-sm"><i
-                                            class="mdi mdi-chevron-left"></i></button>
-                                    <button type="button" class="btn btn-info btn-sm"><i
-                                            class="mdi mdi-chevron-right"></i></button>
-                                </div>
-                            </div> <!-- end col-->
+                            {{ $notifications->withQueryString()->links() }}
                         </div>
                         <!-- end row-->
                     </div>
