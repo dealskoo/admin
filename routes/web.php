@@ -4,8 +4,10 @@ use Dealskoo\Admin\Http\Controllers\AccountController;
 use Dealskoo\Admin\Http\Controllers\Auth\AuthenticatedSessionController;
 use Dealskoo\Admin\Http\Controllers\Auth\NewPasswordController;
 use Dealskoo\Admin\Http\Controllers\Auth\PasswordResetLinkController;
+use Dealskoo\Admin\Http\Controllers\DashboardController;
 use Dealskoo\Admin\Http\Controllers\LocalizationController;
 use Dealskoo\Admin\Http\Controllers\NotificationController;
+use Dealskoo\Admin\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))->name('admin.')->group(function () {
@@ -25,10 +27,9 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
     });
 
     Route::middleware(['auth:admin'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin::dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'handle'])->name('dashboard');
 
+        Route::get('/search', [SearchController::class, 'handle'])->name('search');
 
         Route::prefix('/account')->name('account.')->group(function () {
             Route::get('/', function () {

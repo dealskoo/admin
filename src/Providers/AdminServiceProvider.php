@@ -3,6 +3,10 @@
 namespace Dealskoo\Admin\Providers;
 
 use Dealskoo\Admin\Console\InitCommand;
+use Dealskoo\Admin\Contracts\Dashboard;
+use Dealskoo\Admin\Contracts\Searcher;
+use Dealskoo\Admin\Contracts\Support\DefaultDashboard;
+use Dealskoo\Admin\Contracts\Support\DefaultSearcher;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
@@ -15,6 +19,8 @@ class AdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/admin.php', 'admin');
+        $this->app->bind(Dashboard::class, DefaultDashboard::class);
+        $this->app->bind(Searcher::class, DefaultSearcher::class);
     }
 
     /**
