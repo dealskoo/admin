@@ -44,7 +44,7 @@ return [
     'password_placeholder' => 'Enter a password',
     'new_password' => 'New Password',
     'new_password_placeholder' => 'Enter a new password',
-    'confirm_new_password' => 'Confirm new Password',
+    'confirm_new_password' => 'Confirm new password',
     'confirm_new_password_placeholder' => 'Confirm new password',
     'update_success' => 'Updated success!'
 ];
