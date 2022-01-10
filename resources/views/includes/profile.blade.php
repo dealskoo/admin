@@ -13,7 +13,7 @@
                     {{ Auth::user()->bio }}
                 </p>
             @endisset
-            <p class="text-muted mb-2 font-13"><strong>{{ __('admin::admin.name') }} :</strong><span
+            <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.name') }} :</strong><span
                     class="ms-2">{{ Auth::user()->name }}</span></p>
 
             <p class="text-muted mb-2 font-13"><strong>{{ __('admin::admin.email') }} :</strong><span
