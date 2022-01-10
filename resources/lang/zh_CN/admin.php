@@ -22,6 +22,7 @@ return [
     'search_placeholder' => '搜索...',
     'search' => '搜索',
     'notification' => '通知',
+    'notifications' => '通知',
     'clear_all' => '清空所有',
     'view_all' => '查看所有',
     'navigation' => '导航',

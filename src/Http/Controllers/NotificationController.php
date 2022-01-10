@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
-use Dealskoo\Admin\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -10,6 +9,12 @@ class NotificationController extends Controller
     public function list(Request $request)
     {
         $notifications = $request->user()->notifications()->paginate(10);
+        return view('admin::notifications', ['notifications' => $notifications]);
+    }
+
+    public function unread(Request $request)
+    {
+        $notifications = $request->user()->unreadNotifications()->paginate(10);
         return view('admin::notifications', ['notifications' => $notifications]);
     }
 

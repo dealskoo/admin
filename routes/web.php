@@ -56,6 +56,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
 
         Route::name('notification.')->group(function () {
             Route::get('/notifications', [NotificationController::class, 'list'])->name('list');
+            Route::get('/notifications/unread', [NotificationController::class, 'unread'])->name('unread');
             Route::get('/notifications/all_read', [NotificationController::class, 'allRead'])->name('all_read');
             Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('show');
         });

@@ -22,6 +22,7 @@ return [
     'search_placeholder' => 'Search...',
     'search' => 'Search',
     'notification' => 'Notification',
+    'notifications' => 'Notifications',
     'clear_all' => 'Clear All',
     'view_all' => 'View All',
     'navigation' => 'Navigation',
