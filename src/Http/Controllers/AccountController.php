@@ -30,11 +30,11 @@ class AccountController extends Controller
 
         if ($request->hasFile('file')) {
             $image = $request->file('file');
-            $seller = $request->user();
-            $filename = $seller->id . '.' . $image->guessExtension();
+            $admin = $request->user();
+            $filename = $admin->id . '.' . $image->guessExtension();
             $path = $request->file('file')->storeAs('admin/avatars', $filename);
-            $seller->avatar = $path;
-            $seller->save();
+            $admin->avatar = $path;
+            $admin->save();
             return ['url' => Storage::url($path)];
         } else {
             throwException(__('Please upload file'));
