@@ -28,13 +28,13 @@
                             <ul class="email-list">
                                 @foreach($notifications as $notification)
                                     <li @if(!$notification->read_at)class="unread"@endif>
-                                        <div>
-                                            <a href="{{ route('admin.notification',$notification) }}"
-                                               class="email-title">{{ $notification->data['title'] }}</a>
-                                        </div>
-                                        <div class="email-content">
-                                            <div
-                                                class="email-date">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <a href="{{ route('admin.notification.show',$notification) }}">{{ $notification->data['title'] }}</a>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                            </div>
                                         </div>
                                     </li>
                                 @endforeach

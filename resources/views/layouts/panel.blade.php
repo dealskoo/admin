@@ -195,7 +195,7 @@
 
                             <div style="max-height: 230px;" data-simplebar>
                                 @foreach($notifications as $notification)
-                                    <a href="{{ route('admin.notification',$notification) }}"
+                                    <a href="{{ route('admin.notification.show',$notification) }}"
                                        class="dropdown-item notify-item">
                                         <div class="notify-icon bg-primary">
                                             <i class="mdi {{ $notification->data['icon'] }}"></i>

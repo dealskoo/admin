@@ -29,14 +29,34 @@ abstract class AdminNotification extends Notification
         ];
     }
 
-    abstract protected function title($notifiable): string;
+    /**
+     * @param $notifiable
+     * @return string
+     */
+    abstract protected function title($notifiable);
 
-    abstract protected function icon($notifiable): string;
+    /**
+     * @param $notifiable
+     * @return string
+     */
+    abstract protected function icon($notifiable);
 
-    abstract protected function message($notifiable): string;
+    /**
+     * @param $notifiable
+     * @return string
+     */
+    abstract protected function message($notifiable);
 
-    abstract protected function data($notifiable): array;
+    /**
+     * @param $notifiable
+     * @return array
+     */
+    abstract protected function data($notifiable);
 
-    abstract protected function view($notifiable): string;
+    /**
+     * @param $notifiable
+     * @return string
+     */
+    abstract protected function view($notifiable);
 
 }
