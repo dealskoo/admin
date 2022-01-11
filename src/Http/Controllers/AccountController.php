@@ -6,6 +6,8 @@ use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\throwException;
 
 class AccountController extends Controller
 {
@@ -18,6 +20,25 @@ class AccountController extends Controller
         $admin->fill($request->only(['name', 'bio']));
         $admin->save();
         return redirect()->back()->with('success', __('admin::admin.update_success'));
+    }
+
+    public function avatar(Request $request)
+    {
+        $request->validate([
+            'file' => ['required', 'image', 'max:1000']
+        ]);
+
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $seller = $request->user();
+            $filename = $seller->id . '.' . $image->guessExtension();
+            $path = $request->file('file')->storeAs('admin/avatars', $filename);
+            $seller->avatar = $path;
+            $seller->save();
+            return ['url' => Storage::url($path)];
+        } else {
+            throwException(__('Please upload file'));
+        }
     }
 
     public function email(Request $request)

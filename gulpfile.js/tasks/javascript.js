@@ -37,7 +37,7 @@ const
         // It's important to keep files at this order
         // so that `app.min.js` can be executed properly
         return gulp
-            .src([baseAssets + "js/layout.js", baseAssets + "js/hyper.js"])
+            .src([baseAssets + "js/layout.js", baseAssets + "js/hyper.js", baseAssets + "js/admin.js"])
             .pipe(sourcemaps.init())
             .pipe(concat("app.js"))
             .pipe(gulp.dest(out))

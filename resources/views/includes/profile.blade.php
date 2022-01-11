@@ -1,7 +1,14 @@
 <div class="card text-center">
     <div class="card-body">
-        <img src="{{ Auth::user()->avatar_url }}" class="rounded-circle avatar-lg img-thumbnail"
-             alt="profile-image">
+        <div class="avatar-box">
+            <img src="{{ Auth::user()->avatar_url }}" class="rounded-circle avatar-lg img-thumbnail avatar-pic"
+                 alt="profile-image">
+            <div class="upload-image">
+                <i class="mdi mdi-camera upload-button"></i>
+                <input class="file-upload" type="file" accept="image/*"
+                       data-action="{{ route('admin.account.avatar') }}"/>
+            </div>
+        </div>
 
         <h4 class="mb-0 mt-2">{{ Auth::user()->name }}</h4>
         <p class="text-muted font-14">Owner</p>

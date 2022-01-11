@@ -21150,3 +21150,44 @@ div.dataTables_scrollBody > table > :not(:first-child) {
 .gantt-container .popup-wrapper .pointer {
   display: none;
 }
+
+.avatar-box {
+  display: block;
+  position: relative;
+  max-width: 100px;
+  max-height: 100px;
+  margin: auto;
+}
+
+.avatar-pic {
+  max-width: 100px;
+  max-height: 100px;
+  display: block;
+}
+
+.file-upload {
+  display: none;
+}
+
+.upload-image {
+  display: inline-block;
+  position: absolute;
+  top: 67px;
+  right: 10px;
+  color: #666666;
+  -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.upload-image:hover {
+  -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.upload-button {
+  font-size: 1.8em;
+}
+.upload-button:hover {
+  -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: #999;
+}

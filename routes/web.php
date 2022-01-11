@@ -38,6 +38,8 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
 
             Route::post('/', [AccountController::class, 'store'])->name('profile');
 
+            Route::post('/avatar', [AccountController::class, 'avatar'])->name('avatar');
+
             Route::get('/email', function () {
                 return view('admin::account.email');
             })->name('email');
