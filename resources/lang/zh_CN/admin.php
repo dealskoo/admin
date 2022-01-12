@@ -46,5 +46,9 @@ return [
     'new_password_placeholder' => '请填写新密码',
     'confirm_new_password' => '确认新密码',
     'confirm_new_password_placeholder' => '请确认新密码',
-    'update_success' => '更新成功!'
+    'update_success' => '更新成功!',
+    'admins' => '管理员',
+    'admins_list' => '管理员列表',
+    'roles' => '角色',
+    'roles_list' => '角色列表',
 ];

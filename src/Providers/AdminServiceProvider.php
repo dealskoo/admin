@@ -66,6 +66,10 @@ class AdminServiceProvider extends ServiceProvider
             $menu->addHeader('admin::admin.navigation');
             $menu->setPresenter(AdminPresenter::class);
             $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
+            $menu->dropdown('admin::admin.settings', function ($sub) {
+                $sub->route('admin.roles.index', 'admin::admin.roles');
+                $sub->route('admin.admins.index', 'admin::admin.admins');
+            }, ['icon' => 'uil-bright'])->order(100);
         });
     }
 }

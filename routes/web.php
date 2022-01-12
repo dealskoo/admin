@@ -1,12 +1,14 @@
 <?php
 
 use Dealskoo\Admin\Http\Controllers\AccountController;
+use Dealskoo\Admin\Http\Controllers\AdminController;
 use Dealskoo\Admin\Http\Controllers\Auth\AuthenticatedSessionController;
 use Dealskoo\Admin\Http\Controllers\Auth\NewPasswordController;
 use Dealskoo\Admin\Http\Controllers\Auth\PasswordResetLinkController;
 use Dealskoo\Admin\Http\Controllers\DashboardController;
 use Dealskoo\Admin\Http\Controllers\LocalizationController;
 use Dealskoo\Admin\Http\Controllers\NotificationController;
+use Dealskoo\Admin\Http\Controllers\RoleController;
 use Dealskoo\Admin\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,5 +66,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
             Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('show');
         });
 
+        Route::resource('roles', RoleController::class);
+        Route::resource('admins', AdminController::class);
     });
 });

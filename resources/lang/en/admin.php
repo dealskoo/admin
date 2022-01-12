@@ -46,5 +46,9 @@ return [
     'new_password_placeholder' => 'Enter a new password',
     'confirm_new_password' => 'Confirm new password',
     'confirm_new_password_placeholder' => 'Confirm new password',
-    'update_success' => 'Updated success!'
+    'update_success' => 'Updated success!',
+    'admins' => 'Admins',
+    'admins_list' => 'Admins List',
+    'roles' => 'Roles',
+    'roles_list' => 'Roles List',
 ];

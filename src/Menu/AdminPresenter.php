@@ -41,7 +41,6 @@ class AdminPresenter extends Presenter
 			<a class="side-nav-link" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>'
             . $item->getIcon() . '<span>' . __($item->title) . '</span></a></li>' . PHP_EOL;
     }
-
     /**
      * {@inheritdoc }.
      */
@@ -87,9 +86,9 @@ class AdminPresenter extends Presenter
         $id = Str::random();
 
         return '
-		<li class="side-nav-item' . $this->getActiveStateOnChild($item) . '">
+		<li class="side-nav-item ' . $this->getActiveStateOnChild($item) . '">
 			<a class="side-nav-link" data-bs-toggle="collapse" href="#' . $id . '">
-				' . $item->getIcon() . '<span>' . __($item->title) . '<span> <span class="menu-arrow"></span>
+				' . $item->getIcon() . '<span>' . __($item->title) . '</span> <span class="menu-arrow"></span>
 			</a>
 			<div id="' . $id . '" class="collapse ' . $this->getActiveStateOnChild($item, 'in') . '">
 					<ul class="side-nav-second-level">
@@ -103,5 +102,27 @@ class AdminPresenter extends Presenter
     public function getMultiLevelDropdownWrapper($item)
     {
         return $this->getMenuWithDropDownWrapper($item);
+    }
+
+    public function getChildMenuItems(MenuItem $item)
+    {
+        $results = '';
+        foreach ($item->getChilds() as $child) {
+            if ($child->hidden()) {
+                continue;
+            }
+
+            if ($child->hasSubMenu()) {
+                $results .= $this->getMultiLevelDropdownWrapper($child);
+            } elseif ($child->isHeader()) {
+                $results .= $this->getHeaderWrapper($child);
+            } elseif ($child->isDivider()) {
+                $results .= $this->getDividerWrapper();
+            } else {
+                $results .= $this->getMenuWithoutDropdownWrapper($child);
+            }
+        }
+
+        return $results;
     }
 }
