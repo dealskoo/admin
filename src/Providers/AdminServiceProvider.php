@@ -64,13 +64,6 @@ class AdminServiceProvider extends ServiceProvider
             $menu->addHeader('admin::admin.navigation');
             $menu->setPresenter(AdminPresenter::class);
             $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
-            $menu->dropdown('admin::admin.dashboard', function ($sub) {
-                $sub->url('#', 'admin::admin.dashboard');
-                $sub->url('#', 'admin::admin.dashboard');
-                $sub->dropdown('BBS', function ($bs) {
-                    $bs->url('#', 'DD');
-                });
-            }, ['icon' => 'uil-apps']);
         });
     }
 }
