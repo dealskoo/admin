@@ -48,71 +48,7 @@
 
         <div class="h-100" id="leftside-menu-container" data-simplebar>
 
-            <!--- Sidemenu -->
-            <ul class="side-nav">
-
-                <li class="side-nav-title side-nav-item">{{ __('admin::admin.navigation') }}</li>
-
-                <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false"
-                       aria-controls="sidebarDashboards" class="side-nav-link">
-                        <i class="uil-home-alt"></i>
-                        <span class="badge bg-success float-end">4</span>
-                        <span>Dashboards</span>
-                    </a>
-                    <div class="collapse" id="sidebarDashboards">
-                        <ul class="side-nav-second-level">
-                            <li>
-                                <a href="#">Analytics</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
-                       aria-controls="sidebarEcommerce" class="side-nav-link">
-                        <i class="uil-store"></i>
-                        <span>Ecommerce</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarEcommerce">
-                        <ul class="side-nav-second-level">
-                            <li>
-                                <a href="#">Products</a>
-                            </li>
-                            <li>
-                                <a href="#">Products Details</a>
-                            </li>
-                            <li>
-                                <a href="#">Orders</a>
-                            </li>
-                            <li>
-                                <a href="#">Order Details</a>
-                            </li>
-                            <li>
-                                <a href="#">Customers</a>
-                            </li>
-                            <li>
-                                <a href="#">Shopping Cart</a>
-                            </li>
-                            <li>
-                                <a href="#">Checkout</a>
-                            </li>
-                            <li>
-                                <a href="#">Sellers</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="side-nav-item">
-                    <a href="#" target="_blank" class="side-nav-link">
-                        <i class="uil-globe"></i>
-                        <span class="badge bg-secondary text-light float-end">New</span>
-                        <span>Landing</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- End Sidebar -->
+            {!! \Nwidart\Menus\Facades\Menu::render('admin_navbar') !!}
 
             <div class="clearfix"></div>
 

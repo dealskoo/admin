@@ -7,7 +7,9 @@ use Dealskoo\Admin\Contracts\Dashboard;
 use Dealskoo\Admin\Contracts\Searcher;
 use Dealskoo\Admin\Contracts\Support\DefaultDashboard;
 use Dealskoo\Admin\Contracts\Support\DefaultSearcher;
+use Dealskoo\Admin\Menu\AdminPresenter;
 use Illuminate\Support\ServiceProvider;
+use Nwidart\Menus\Facades\Menu;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,9 @@ class AdminServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/admin.php', 'admin');
         $this->app->bind(Dashboard::class, DefaultDashboard::class);
         $this->app->bind(Searcher::class, DefaultSearcher::class);
+        $this->app->singleton('admin_menu', function () {
+            return Menu::instance('admin_navbar');
+        });
     }
 
     /**
@@ -54,5 +59,18 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/admin'),
         ], 'lang');
 
+        Menu::create('admin_navbar', function ($menu) {
+            $menu->enableOrdering();
+            $menu->addHeader('admin::admin.navigation');
+            $menu->setPresenter(AdminPresenter::class);
+            $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
+            $menu->dropdown('admin::admin.dashboard', function ($sub) {
+                $sub->url('#', 'admin::admin.dashboard');
+                $sub->url('#', 'admin::admin.dashboard');
+                $sub->dropdown('BBS', function ($bs) {
+                    $bs->url('#', 'DD');
+                });
+            }, ['icon' => 'uil-apps']);
+        });
     }
 }
