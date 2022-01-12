@@ -39,7 +39,6 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "dealskoo/core": "dev-master",
         "laravel/framework": ">=7.20",
         "laravolt/avatar": "^4.1",
         "nwidart/laravel-menus": "^7.0"
