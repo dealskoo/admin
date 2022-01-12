@@ -54,7 +54,8 @@
                 "Dealskoo\\Admin\\Providers\\AdminServiceProvider"
             ],
             "aliases": {
-                "AdminMenu": "Dealskoo\\Admin\\Facades\\AdminMenu"
+                "AdminMenu": "Dealskoo\\Admin\\Facades\\AdminMenu",
+                "PermissionManager": "Dealskoo\\Admin\\Facades\\PermissionManager"
             }
         }
     },

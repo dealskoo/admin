@@ -8,6 +8,7 @@ use Dealskoo\Admin\Contracts\Searcher;
 use Dealskoo\Admin\Contracts\Support\DefaultDashboard;
 use Dealskoo\Admin\Contracts\Support\DefaultSearcher;
 use Dealskoo\Admin\Menu\AdminPresenter;
+use Dealskoo\Admin\PermissionManager;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Menus\Facades\Menu;
 
@@ -26,6 +27,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin_menu', function () {
             return Menu::instance('admin_navbar');
         });
+        $this->app->singleton('permission_manager', PermissionManager::class);
     }
 
     /**
