@@ -32,7 +32,8 @@
                         <table id="admins_table" class="table table-centered w-100 dt-responsive nowrap">
                             <thead class="table-light">
                             <tr>
-                                <th class="all">{{ __('admin::admin.name') }}</th>
+                                <th>{{ __('admin::admin.id') }}</th>
+                                <th>{{ __('admin::admin.name') }}</th>
                                 <th>{{ __('admin::admin.email') }}</th>
                                 <th>{{ __('admin::admin.role') }}</th>
                                 <th>{{ __('admin::admin.created_at') }}</th>
@@ -44,7 +45,7 @@
                             <tbody>
                             @foreach($admins as $admin)
                                 <tr>
-
+                                    <td>{{ $admin->id }}</td>
                                     <td class="table-user">
                                         <img src="{{ Auth::user()->avatar_url }}"
                                              alt="{{ Auth::user()->name }}"
@@ -63,14 +64,12 @@
                                     <td>
                                         {{ \Carbon\Carbon::parse($admin->created_at)->diffForHumans() }}
                                     </td>
-
                                     <td>
                                         {{ \Carbon\Carbon::parse($admin->updated_at)->diffForHumans() }}
                                     </td>
                                     <td>
                                         <span class="badge bg-success">Active</span>
                                     </td>
-
                                     <td class="table-action">
                                         <a href="{{ route('admin.admins.show',$admin) }}"
                                            class="action-icon"> <i
@@ -102,17 +101,20 @@
                 "language": language,
                 "pageLength": pageLength,
                 "columns": [
-                    {'name': 'name', 'orderable': true},
                     {'orderable': true},
                     {'orderable': true},
+                    {'orderable': true},
+                    {'orderable': false},
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': false},
                 ],
-                "order": [[0, "asc"]],
+                "order": [[0, "desc"]],
                 "drawCallback": function () {
                     $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                    $('#admins_table tr td:nth-child(2)').addClass('table-user');
+                    $('#admins_table tr td:nth-child(8)').addClass('table-action');
                 }
             })
         });

@@ -63,4 +63,5 @@ return [
     'datatable_pagination' => 'Showing _START_ to _END_ of _TOTAL_',
     'nothing_found' => 'Nothing found',
     'datatable_filtered' => '(filtered from _MAX_ total entries)',
+    'id' => 'ID',
 ];
