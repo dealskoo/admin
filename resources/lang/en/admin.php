@@ -56,5 +56,7 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'status' => 'Status',
-    'action' => 'Action'
+    'action' => 'Action',
+    'no_data_to_show' => 'No data to show',
+    'page_not_found' => 'Page Not Found'
 ];

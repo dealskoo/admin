@@ -56,5 +56,7 @@ return [
     'created_at' => '创建时间',
     'updated_at' => '更新时间',
     'status' => '状态',
-    'action' => '操作'
+    'action' => '操作',
+    'no_data_to_show' => '没有数据显示',
+    'page_not_found' => '页面没有找到'
 ];

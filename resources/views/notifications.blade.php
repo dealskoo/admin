@@ -24,23 +24,27 @@
                 <div class="card-body">
                     @include('admin::includes.notification-sidebar')
                     <div class="page-aside-right">
-                        <div class="mt-3">
-                            <ul class="email-list">
-                                @foreach($notifications as $notification)
-                                    <li @if(!$notification->read_at)class="unread"@endif>
-                                        <div class="row">
-                                            <div class="col-lg-10">
-                                                <a href="{{ route('admin.notification.show',$notification) }}">{{ $notification->data['title'] }}</a>
+                        @if(count($notifications)>0)
+                            <div class="mt-3">
+                                <ul class="email-list">
+                                    @foreach($notifications as $notification)
+                                        <li @if(!$notification->read_at)class="unread"@endif>
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                    <a href="{{ route('admin.notification.show',$notification) }}">{{ $notification->data['title'] }}</a>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-2">
-                                                <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- end .mt-4 -->
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    @else
+                        @include('admin::nodata')
+                    @endif
+                    <!-- end .mt-4 -->
 
                         <div class="row">
                             {{ $notifications->withQueryString()->links('admin::pagination.simple') }}
