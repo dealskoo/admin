@@ -13,13 +13,14 @@
     <link href="{{ asset('/vendor/admin/css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/vendor/admin/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/vendor/admin/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/vendor/admin/css/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css"/>
     <!-- third party css end -->
 
     <!-- App css -->
     <link href="{{ asset('/vendor/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/vendor/admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style"/>
     <link href="{{ asset('/vendor/admin/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style"/>
-
+    @yield('css')
 </head>
 
 <body class="loading">
@@ -362,6 +363,28 @@
 <script src="{{ asset('/vendor/admin/js/vendor/apexcharts.min.js') }}"></script>
 <script src="{{ asset('/vendor/admin/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('/vendor/admin/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script src="{{ asset('/vendor/admin/js/vendor/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/vendor/admin/js/vendor/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('/vendor/admin/js/vendor/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/vendor/admin/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('/vendor/admin/js/vendor/dataTables.select.min.js') }}"></script>
+<script type="text/javascript">
+    let language = {
+        "aria": "",
+        "paginate": {
+            "previous": "<i class='mdi mdi-chevron-left'>",
+            "next": "<i class='mdi mdi-chevron-right'>"
+        },
+        "processing": "<div class=\"spinner-border text-danger\" role=\"status\"></div>",
+        "zeroRecords": "{{ __('admin::admin.nothing_found') }}",
+        "info": "{{ __('admin::admin.datatable_pagination') }}",
+        "infoFiltered": "{{ __('admin::admin.datatable_filtered') }}",
+        "search": "{{ __('admin::admin.search') }}",
+        "lengthMenu": "{{ __('admin::admin.display') }} <select class='form-select form-select-sm ms-1 me-1'><option value='10'>10</option><option value='20'>20</option></select> {{ __('admin::admin.entries') }}",
+    };
+    let pageLength = 10;
+</script>
+@yield('script')
 <!-- third party js ends -->
 
 </body>

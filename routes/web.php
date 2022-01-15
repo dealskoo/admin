@@ -66,7 +66,9 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
             Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('show');
         });
 
+        Route::get('/roles/table', [RoleController::class, 'table'])->name('roles.table');
         Route::resource('roles', RoleController::class);
+        Route::get('/admins/table', [AdminController::class, 'table'])->name('admins.table');
         Route::resource('admins', AdminController::class);
     });
 });

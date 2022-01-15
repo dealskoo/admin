@@ -11,6 +11,11 @@ class RoleController extends Controller
         return view('admin::role.index');
     }
 
+    public function table(Request $request)
+    {
+
+    }
+
     public function create()
     {
         return view('admin::role.create');

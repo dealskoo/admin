@@ -9,8 +9,13 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        return view('admin::admin.index', ['admins' => []]);
+    }
+
+    public function table(Request $request)
+    {
         $admins = Admin::query()->paginate();
-        return view('admin::admin.index', ['admins' => $admins]);
+        return ['draw' => $request->draw, 'recordsTotal' => 10, 'recordsFiltered' => 10, 'data' => $admins];
     }
 
     public function create()
