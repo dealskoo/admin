@@ -2,13 +2,15 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
+use Dealskoo\Admin\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin::admin.index');
+        $admins = Admin::query()->paginate();
+        return view('admin::admin.index', ['admins' => $admins]);
     }
 
     public function create()

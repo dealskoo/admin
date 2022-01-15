@@ -51,4 +51,10 @@ return [
     'admins_list' => '管理员列表',
     'roles' => '角色',
     'roles_list' => '角色列表',
+    'add_admin' => '添加管理员',
+    'display' => '显示',
+    'created_at' => '创建时间',
+    'updated_at' => '更新时间',
+    'status' => '状态',
+    'action' => '操作'
 ];

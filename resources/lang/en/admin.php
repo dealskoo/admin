@@ -51,4 +51,10 @@ return [
     'admins_list' => 'Admins List',
     'roles' => 'Roles',
     'roles_list' => 'Roles List',
+    'add_admin' => 'Add Admin',
+    'display' => 'Display',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'status' => 'Status',
+    'action' => 'Action'
 ];
