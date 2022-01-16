@@ -35,7 +35,6 @@
                                 <th>{{ __('admin::admin.id') }}</th>
                                 <th>{{ __('admin::admin.name') }}</th>
                                 <th>{{ __('admin::admin.email') }}</th>
-                                <th>{{ __('admin::admin.role') }}</th>
                                 <th>{{ __('admin::admin.created_at') }}</th>
                                 <th>{{ __('admin::admin.updated_at') }}</th>
                                 <th>{{ __('admin::admin.status') }}</th>
@@ -43,46 +42,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($admins as $admin)
-                                <tr>
-                                    <td>{{ $admin->id }}</td>
-                                    <td class="table-user">
-                                        <img src="{{ Auth::user()->avatar_url }}"
-                                             alt="{{ Auth::user()->name }}"
-                                             title="{{ Auth::user()->name }}" class="me-2 rounded-circle">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="{{ route('admin.admins.show',$admin) }}"
-                                               class="text-body">{{ Auth::user()->name }}</a>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        {{ $admin->email }}
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Owner</span>
-                                    </td>
-                                    <td>
-                                        {{ \Carbon\Carbon::parse($admin->created_at)->diffForHumans() }}
-                                    </td>
-                                    <td>
-                                        {{ \Carbon\Carbon::parse($admin->updated_at)->diffForHumans() }}
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success">Active</span>
-                                    </td>
-                                    <td class="table-action">
-                                        <a href="{{ route('admin.admins.show',$admin) }}"
-                                           class="action-icon"> <i
-                                                class="mdi mdi-eye"></i></a>
-                                        <a href="{{ route('admin.admins.edit',$admin) }}"
-                                           class="action-icon"> <i
-                                                class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="{{ route('admin.admins.destroy',$admin) }}"
-                                           class="action-icon"> <i
-                                                class="mdi mdi-delete"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -104,7 +63,6 @@
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': true},
-                    {'orderable': false},
                     {'orderable': true},
                     {'orderable': true},
                     {'orderable': true},

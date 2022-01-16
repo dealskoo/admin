@@ -10,14 +10,14 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin::admin.index', ['admins' => []]);
+        return view('admin::admin.index');
     }
 
     public function table(Request $request)
     {
         $page_size = $request->input('length', 10);
         $keyword = $request->input('search.value');
-        $columns = ['id', 'name', 'email', '', 'created_at', 'updated_at', 'status'];
+        $columns = ['id', 'name', 'email', 'created_at', 'updated_at', 'status'];
         $column = $columns[$request->input('order.0.column', 0)];
         $desc = $request->input('order.0.dir', 'desc');
         $query = Admin::query();
@@ -31,13 +31,19 @@ class AdminController extends Controller
         foreach ($admins as $admin) {
             $row = [];
             $row[] = $admin->id;
-            $row[] = '<img src="' . $admin->avatar_url . '" alt="' . $admin->name . '" title="' . $admin->name . '" class="me-2 rounded-circle"><p class="m-0 d-inline-block align-middle font-16"><a href="' . route('admin.admins.show', $admin) . '" class="text-body">' . $admin->name . '</a></p>';
+            $row[] = '<img src="' . $admin->avatar_url . '" alt="' . $admin->name . '" title="' . $admin->name . '" class="me-2 rounded-circle"><p class="m-0 d-inline-block align-middle font-16">' . $admin->name . '</p>';
             $row[] = $admin->email;
-            $row[] = '';
-            $row[] = Carbon::parse($admin->created_at)->diffForHumans();
-            $row[] = Carbon::parse($admin->updated_at)->diffForHumans();
-            $row[] = $admin->is_active ? 'active' : 'deactive';
-            $row[] = '';
+            $row[] = Carbon::parse($admin->created_at)->format('Y-m-d H:i:s');
+            $row[] = Carbon::parse($admin->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $admin->status ? '<span class="badge bg-success">' . __('admin::admin.active') . '</span>' : '<span class="badge bg-danger">' . __('admin::admin.inactive') . '</span>';
+
+            $view_link = '<a href="#" class="action-icon"><i class="mdi mdi-eye"></i></a>';
+
+            $edit_link = '<a href="#" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
+
+            $destroy_link = '<a href="#" class="action-icon"> <i class="mdi mdi-delete"></i></a>';
+
+            $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
         return [

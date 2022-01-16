@@ -64,4 +64,6 @@ return [
     'nothing_found' => 'Nothing found',
     'datatable_filtered' => '(filtered from _MAX_ total entries)',
     'id' => 'ID',
+    'active' => 'Active',
+    'inactive' => 'Inactive'
 ];
