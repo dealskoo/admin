@@ -47,6 +47,7 @@ return [
     'confirm_new_password' => 'Confirm new password',
     'confirm_new_password_placeholder' => 'Confirm new password',
     'update_success' => 'Updated success!',
+    'added_success' => 'Added success!',
     'admins' => 'Admins',
     'admins_list' => 'Admins List',
     'roles' => 'Roles',
@@ -67,4 +68,5 @@ return [
     'active' => 'Active',
     'inactive' => 'Inactive',
     'c_name' => 'Name',
+    'add_role' => 'Add Role',
 ];

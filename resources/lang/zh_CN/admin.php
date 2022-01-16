@@ -47,6 +47,7 @@ return [
     'confirm_new_password' => '确认新密码',
     'confirm_new_password_placeholder' => '请确认新密码',
     'update_success' => '更新成功!',
+    'added_success' => '添加成功!',
     'admins' => '管理员',
     'admins_list' => '管理员列表',
     'roles' => '角色',
@@ -65,4 +66,5 @@ return [
     'datatable_filtered' => '(从 _MAX_ 总计条目中筛选)',
     'id' => '编号',
     'c_name' => '名称',
+    'add_role' => '添加角色',
 ];

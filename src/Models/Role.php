@@ -12,4 +12,14 @@ class Role extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * @param $permissionKey
+     * @return bool
+     */
+    public function do($permissionKey)
+    {
+
+        return true;
+    }
 }

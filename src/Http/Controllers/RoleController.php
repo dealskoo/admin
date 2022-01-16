@@ -58,17 +58,24 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => ['required', 'unique:roles']
+        ]);
+        $role = new Role($request->only(['name']));
+        $role->save();
+        return redirect()->back()->with('success', __('admin::admin.added_success'));
     }
 
     public function show($id)
     {
-        return view('admin::role.show');
+        $role = Role::query()->findOrFail($id);
+        return view('admin::role.show', ['role' => $role]);
     }
 
     public function edit($id)
     {
-
+        $role = Role::query()->findOrFail($id);
+        return view('admin::role.edit', ['role' => $role]);
     }
 
     public function update($id)

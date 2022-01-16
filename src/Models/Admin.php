@@ -48,4 +48,14 @@ class Admin extends Authentication implements MustVerifyEmail
     {
         return [$this->email => $this->name];
     }
+
+    /**
+     * @param $permissionKey
+     * @return bool
+     */
+    public function do($permissionKey)
+    {
+
+        return true;
+    }
 }
