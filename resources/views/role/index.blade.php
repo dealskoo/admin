@@ -33,7 +33,7 @@
                             <thead class="table-light">
                             <tr>
                                 <th>{{ __('admin::admin.id') }}</th>
-                                <th>{{ __('admin::admin.name') }}</th>
+                                <th>{{ __('admin::admin.c_name') }}</th>
                                 <th>{{ __('admin::admin.created_at') }}</th>
                                 <th>{{ __('admin::admin.updated_at') }}</th>
                                 <th>{{ __('admin::admin.action') }}</th>

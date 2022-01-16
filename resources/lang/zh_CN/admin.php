@@ -63,5 +63,6 @@ return [
     'datatable_pagination' => '显示 _START_ 到 _END_ 共 _TOTAL_',
     'nothing_found' => '没有数据',
     'datatable_filtered' => '(从 _MAX_ 总计条目中筛选)',
-    'id' => '编号'
+    'id' => '编号',
+    'c_name' => '名称',
 ];

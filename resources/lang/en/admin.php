@@ -65,5 +65,6 @@ return [
     'datatable_filtered' => '(filtered from _MAX_ total entries)',
     'id' => 'ID',
     'active' => 'Active',
-    'inactive' => 'Inactive'
+    'inactive' => 'Inactive',
+    'c_name' => 'Name',
 ];
