@@ -380,9 +380,9 @@
         "info": "{{ __('admin::admin.datatable_pagination') }}",
         "infoFiltered": "{{ __('admin::admin.datatable_filtered') }}",
         "search": "{{ __('admin::admin.search') }}",
-        "lengthMenu": "{{ __('admin::admin.display') }} <select class='form-select form-select-sm ms-1 me-1'><option value='10'>10</option><option value='20'>20</option></select> {{ __('admin::admin.entries') }}",
+        "lengthMenu": "{{ __('admin::admin.display') }} <select class='form-select form-select-sm ms-1 me-1'><option value='1'>1</option><option value='10'>10</option><option value='20'>20</option></select> {{ __('admin::admin.entries') }}",
     };
-    let pageLength = 10;
+    let pageLength = 1;
 </script>
 @yield('script')
 <!-- third party js ends -->

@@ -56,7 +56,7 @@
             $('#admins_table').dataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ route('admin.admins.table') }}",
+                "ajax": "{{ route('admin.admins.index') }}",
                 "language": language,
                 "pageLength": pageLength,
                 "columns": [

@@ -54,7 +54,7 @@
             $('#roles_table').dataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "{{ route('admin.roles.table') }}",
+                "ajax": "{{ route('admin.roles.index') }}",
                 "language": language,
                 "pageLength": pageLength,
                 "columns": [
