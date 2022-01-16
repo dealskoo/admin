@@ -41,8 +41,7 @@
         "php": ">=7.0.0",
         "laravel/framework": ">=7.20",
         "laravolt/avatar": "^4.1",
-        "nwidart/laravel-menus": "^7.0",
-        "yajra/laravel-datatables": "^1.5"
+        "nwidart/laravel-menus": "^7.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
