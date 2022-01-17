@@ -66,5 +66,8 @@ return [
     'datatable_filtered' => '(从 _MAX_ 总计条目中筛选)',
     'id' => '编号',
     'c_name' => '名称',
+    'c_name_placeholder' => '请填写名称',
     'add_role' => '添加角色',
+    'edit_role' => '编辑角色',
+    'role_information' => '角色信息',
 ];

@@ -39,10 +39,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">{{ __('admin::admin.name') }}</label>
+                                    <label for="name" class="form-label">{{ __('admin::admin.c_name') }}</label>
                                     <input type="text" class="form-control" id="name" name="name" required
                                            value="{{ old('name') }}" autofocus tabindex="1"
-                                           placeholder="{{ __('admin::admin.name_placeholder') }}">
+                                           placeholder="{{ __('admin::admin.c_name_placeholder') }}">
                                 </div>
                             </div>
                         </div> <!-- end row -->

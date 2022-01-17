@@ -43,9 +43,9 @@ class AdminController extends Controller
             $row[] = Carbon::parse($admin->updated_at)->format('Y-m-d H:i:s');
             $row[] = $admin->status ? '<span class="badge bg-success">' . __('admin::admin.active') . '</span>' : '<span class="badge bg-danger">' . __('admin::admin.inactive') . '</span>';
 
-            $view_link = '<a href="#" class="action-icon"><i class="mdi mdi-eye"></i></a>';
+            $view_link = '<a href="' . route('admin.admins.show', $admin) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
 
-            $edit_link = '<a href="#" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
+            $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
             $destroy_link = '<a href="#" class="action-icon"> <i class="mdi mdi-delete"></i></a>';
 

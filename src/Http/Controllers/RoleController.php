@@ -44,7 +44,7 @@ class RoleController extends Controller
 
             $edit_link = '<a href="' . route('admin.roles.edit', $role) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-            $destroy_link = '<a href="#" class="action-icon"> <i class="mdi mdi-delete"></i></a>';
+            $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="roles_table" data-url="' . route('admin.roles.destroy', $role) . '"> <i class="mdi mdi-delete"></i></a>';
 
             $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
@@ -89,11 +89,11 @@ class RoleController extends Controller
         $role = Role::query()->findOrFail($id);
         $role->fill($request->only(['name']));
         $role->save();
-        return redirect()->back('success', __('admin::admin.update_success'));
+        return redirect()->back()->with('success', __('admin::admin.update_success'));
     }
 
     public function destroy($id)
     {
-
+        return ['status' => Role::destroy($id)];
     }
 }

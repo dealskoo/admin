@@ -68,5 +68,8 @@ return [
     'active' => 'Active',
     'inactive' => 'Inactive',
     'c_name' => 'Name',
+    'c_name_placeholder' => 'Enter a name',
     'add_role' => 'Add Role',
+    'edit_role' => 'Edit Role',
+    'role_information' => 'Role information'
 ];
