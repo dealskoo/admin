@@ -90,5 +90,6 @@ class RedirectIfAuthenticated
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'admin_locale' => \Dealskoo\Admin\Http\Middleware\AdminLocalization::class,
+        'admin_active' => \Dealskoo\Admin\Http\Middleware\ActiveAuth::class,
     ];
 ```
