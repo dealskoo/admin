@@ -47,7 +47,10 @@ class AdminController extends Controller
 
             $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-            $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
+            $destroy_link = '';
+            if (!$admin->owner) {
+                $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
+            }
 
             $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
@@ -72,12 +75,14 @@ class AdminController extends Controller
 
     public function show($id)
     {
-        return view('admin::admin.show');
+        $admin = Admin::query()->findOrFail($id);
+        return view('admin::admin.show', ['admin' => $admin]);
     }
 
     public function edit($id)
     {
-
+        $admin = Admin::query()->findOrFail($id);
+        return view('admin::admin.edit', ['admin' => $admin]);
     }
 
     public function update($id)
