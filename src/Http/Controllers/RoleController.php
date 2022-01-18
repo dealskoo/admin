@@ -3,6 +3,7 @@
 namespace Dealskoo\Admin\Http\Controllers;
 
 use Carbon\Carbon;
+use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class RoleController extends Controller
 
             $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="roles_table" data-url="' . route('admin.roles.destroy', $role) . '"> <i class="mdi mdi-delete"></i></a>';
 
-            $row[] = $view_link . $edit_link . $edit_permission . $destroy_link;
+            $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
         return [
@@ -59,7 +60,8 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view('admin::role.create');
+        $permissions = PermissionManager::all();
+        return view('admin::role.create', ['permissions' => $permissions]);
     }
 
     public function store(Request $request)
@@ -81,7 +83,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::query()->findOrFail($id);
-        return view('admin::role.edit', ['role' => $role]);
+        $permissions = PermissionManager::all();
+        return view('admin::role.edit', ['role' => $role, 'permissions' => $permissions]);
     }
 
     public function update(Request $request, $id)
@@ -95,15 +98,5 @@ class RoleController extends Controller
     public function destroy($id)
     {
         return ['status' => Role::destroy($id)];
-    }
-
-    public function permissions(Request $request, $id)
-    {
-        return view('admin::role.permission');
-    }
-
-    public function permission(Request $request, $id)
-    {
-
     }
 }
