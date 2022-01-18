@@ -16,6 +16,10 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
 
     Route::get('/locale/{locale}', [LocalizationController::class, '__invoke'])->name('locale');
 
+    Route::get('/banned', function () {
+        return view('admin::auth.banned');
+    })->name('banned');
+
     Route::middleware(['guest:admin'])->group(function () {
         Route::get('/', function () {
             return redirect(\route('admin.dashboard'), 301);
@@ -28,7 +32,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
         Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.update');
     });
 
-    Route::middleware(['auth:admin'])->group(function () {
+    Route::middleware(['auth:admin', 'admin_active'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'handle'])->name('dashboard');
 
         Route::get('/search', [SearchController::class, 'handle'])->name('search');

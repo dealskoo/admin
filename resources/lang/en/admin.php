@@ -73,5 +73,7 @@ return [
     'edit_role' => 'Edit Role',
     'role_information' => 'Role information',
     'admin_information' => 'Admin information',
-    'edit_admin' => 'Edit Admin'
+    'edit_admin' => 'Edit Admin',
+    'your_account_has_been_banned' => 'Your account has been banned',
+    'if_you_have_any_questions' => 'If you have any questions, please contact the administrator'
 ];
