@@ -21,6 +21,7 @@ class Admin extends Authentication implements MustVerifyEmail
         'bio',
         'email',
         'password',
+        'status'
     ];
 
     protected $hidden = [
@@ -29,7 +30,9 @@ class Admin extends Authentication implements MustVerifyEmail
     ];
 
     protected $casts = [
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
+        'owner' => 'boolean',
+        'status' => 'boolean',
     ];
 
     public function getAvatarUrlAttribute()

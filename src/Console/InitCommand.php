@@ -46,10 +46,10 @@ class InitCommand extends Command
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
-            'owner' => true,
             'status' => true,
             'email_verified_at' => now(),
         ]);
+        $admin->owner = true;
         if ($admin->save()) {
             $this->info('Admin create success!');
             $this->line('<info>email: </info>' . $email);
