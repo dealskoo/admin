@@ -58,11 +58,6 @@ class Admin extends Authentication implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
-    public function permissions()
-    {
-        return $this->morphMany(Permission::class, 'permission_able');
-    }
-
     /**
      * @param $permissionKey
      * @return bool

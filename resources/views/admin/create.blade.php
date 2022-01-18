@@ -57,6 +57,19 @@
                             </div>
                         </div> <!-- end row -->
                         <div class="row">
+                            @foreach($roles as $role)
+                                <div class="col-6 col-md-2 mb-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="role_checkbox_{{$role->id}}"
+                                               name="roles[]"
+                                               value="{{$role->id}}">
+                                        <label for="role_checkbox_{{$role->id}}"
+                                               class="form-check-label">{{ $role->name  }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="row">
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="bio" class="form-label">{{ __('admin::admin.bio') }}</label>

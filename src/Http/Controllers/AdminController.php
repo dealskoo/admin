@@ -50,21 +50,12 @@ class AdminController extends Controller
 
             $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-            $edit_role = '';
-
-            $edit_permission = '';
-
             $destroy_link = '';
             if (!$admin->owner) {
-
-                $edit_role = '<a href="' . route('admin.admins.roles', $admin) . '" class="action-icon"><i class="mdi mdi-account-multiple-plus"></i></a>';
-
-                $edit_permission = '<a href="' . route('admin.admins.permissions', $admin) . '" class="action-icon"><i class="mdi mdi-account-lock"></i></a>';
-
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 
-            $row[] = $view_link . $edit_link . $edit_role . $edit_permission . $destroy_link;
+            $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
         return [
@@ -77,19 +68,23 @@ class AdminController extends Controller
 
     public function create()
     {
-        return view('admin::admin.create');
+        $roles = Role::all();
+        return view('admin::admin.create', ['roles' => $roles]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:admins']
+            'email' => ['required', 'email', 'unique:admins'],
+            'roles' => ['array']
         ]);
         $admin = new Admin($request->only(['name', 'email', 'bio']));
         $admin->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
         $admin->status = $request->boolean('status');
         $admin->save();
+        $ids = $request->input('roles');
+        $admin->roles()->sync($ids);
         Password::broker('admins')->sendResetLink($request->only('email'));
         return back()->with('success', __('admin::admin.added_success'));
     }
@@ -103,53 +98,27 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admin = Admin::query()->findOrFail($id);
-        return view('admin::admin.edit', ['admin' => $admin]);
+        $roles = Role::all();
+        return view('admin::admin.edit', ['admin' => $admin, 'roles' => $roles]);
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string'],
+            'roles' => ['array']
         ]);
         $admin = Admin::query()->findOrFail($id);
         $admin->fill($request->only(['name', 'bio']));
         $admin->status = $request->boolean('status');
         $admin->save();
+        $ids = $request->input('roles');
+        $admin->roles()->sync($ids);
         return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function destroy($id)
     {
         return ['status' => Admin::destroy($id)];
-    }
-
-    public function roles(Request $request, $id)
-    {
-        $admin = Admin::query()->findOrFail($id);
-        $roles = Role::all();
-        return view('admin::admin.role', ['admin' => $admin, 'roles' => $roles]);
-    }
-
-    public function role(Request $request, $id)
-    {
-        $request->validate([
-            'roles' => ['array']
-        ]);
-        $admin = Admin::query()->findOrFail($id);
-        $ids = $request->input('roles');
-        $admin->roles()->sync($ids);
-        return back()->with('success', __('admin::admin.update_success'));
-    }
-
-    public function permissions(Request $request, $id)
-    {
-        $admin = Admin::query()->findOrFail($id);
-        $permissions = PermissionManager::all();
-        return view('admin::admin.permission', ['admin' => $admin, 'permissions' => $permissions]);
-    }
-
-    public function permission(Request $request, $id)
-    {
-
     }
 }

@@ -76,8 +76,5 @@ return [
     'edit_admin' => 'Edit Admin',
     'your_account_has_been_banned' => 'Your account has been banned',
     'if_you_have_any_questions' => 'If you have any questions, please contact the administrator',
-    'admin_role' => 'Admin roles',
-    'admin_permission' => 'Admin permissions',
-    'role_permission' => 'Role permissions',
     'owner' => 'Owner',
 ];
