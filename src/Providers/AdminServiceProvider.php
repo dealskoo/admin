@@ -7,8 +7,9 @@ use Dealskoo\Admin\Contracts\Dashboard;
 use Dealskoo\Admin\Contracts\Searcher;
 use Dealskoo\Admin\Contracts\Support\DefaultDashboard;
 use Dealskoo\Admin\Contracts\Support\DefaultSearcher;
+use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Menu\AdminPresenter;
-use Dealskoo\Admin\PermissionManager;
+use Dealskoo\Admin\Permission;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Menus\Facades\Menu;
 
@@ -27,7 +28,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->singleton('admin_menu', function () {
             return Menu::instance('admin_navbar');
         });
-        $this->app->singleton('permission_manager', PermissionManager::class);
+        $this->app->singleton('permission_manager', \Dealskoo\Admin\PermissionManager::class);
     }
 
     /**
@@ -71,5 +72,18 @@ class AdminServiceProvider extends ServiceProvider
                 $sub->route('admin.admins.index', 'admin::admin.admins');
             }, ['icon' => 'uil-bright'])->order(100);
         });
+
+        PermissionManager::add(new Permission('admin.settings', 'Settings'));
+        PermissionManager::add(new Permission('roles.index', 'Role List'), 'admin.settings');
+        PermissionManager::add(new Permission('roles.show', 'View Role'), 'roles.index');
+        PermissionManager::add(new Permission('roles.create', 'Create Role'), 'roles.index');
+        PermissionManager::add(new Permission('roles.edit', 'Edit Role'), 'roles.index');
+        PermissionManager::add(new Permission('roles.destroy', 'Destroy Role'), 'roles.index');
+
+        PermissionManager::add(new Permission('admins.index', 'Admin List'), 'admin.settings');
+        PermissionManager::add(new Permission('admins.show', 'View Admin'), 'admins.index');
+        PermissionManager::add(new Permission('admins.create', 'Create Admin'), 'admins.index');
+        PermissionManager::add(new Permission('admins.edit', 'Edit Admin'), 'admins.index');
+        PermissionManager::add(new Permission('admins.destroy', 'Destroy Admin'), 'admins.index');
     }
 }

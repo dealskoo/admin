@@ -3,6 +3,7 @@
 namespace Dealskoo\Admin;
 
 use Dealskoo\Admin\Exceptions\PermissionExistsException;
+use Illuminate\Support\Collection;
 
 class PermissionManager
 {
@@ -26,11 +27,11 @@ class PermissionManager
     }
 
     /**
-     * @return array
+     * @return Collection
      */
     public function all()
     {
-        return $this->permissions->all();
+        return $this->permissions;
     }
 
     public function getPermission($key)

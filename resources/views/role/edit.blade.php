@@ -47,6 +47,19 @@
                                 </div>
                             </div>
                         </div> <!-- end row -->
+                        <div class="row">
+                            @foreach($permissions->all() as $key=>$permission)
+                                <div class="col-6 col-md-2 mb-1">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="permission_{{$key}}"
+                                               name="permissions[]" {{ $role->canDo($key)?'checked':'' }}
+                                               value="{{$key}}">
+                                        <label for="permission_{{$key}}"
+                                               class="form-check-label">{{ __($permission['permission']->getName()) }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-success mt-2" tabindex="2"><i
                                     class="mdi mdi-content-save"></i> {{ __('admin::admin.save') }}
