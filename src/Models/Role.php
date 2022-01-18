@@ -21,7 +21,7 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->morphToMany(Permission::class, 'permission_able');
+        return $this->morphMany(Permission::class, 'permission_able');
     }
 
     /**
