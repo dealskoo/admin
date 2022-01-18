@@ -14,9 +14,4 @@ class Permission extends Model
     protected $fillable = [
         'key'
     ];
-
-    public function permission_able()
-    {
-        return $this->morphTo();
-    }
 }

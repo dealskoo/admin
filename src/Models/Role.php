@@ -21,16 +21,15 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->morphMany(Permission::class, 'permission_able');
+        return $this->hasMany(Permission::class);
     }
 
     /**
      * @param $permissionKey
      * @return bool
      */
-    public function do($permissionKey)
+    public function canDo($permissionKey)
     {
-
-        return true;
+        return $this->permissions->contains('key', $permissionKey);
     }
 }

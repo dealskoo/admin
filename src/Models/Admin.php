@@ -62,9 +62,13 @@ class Admin extends Authentication implements MustVerifyEmail
      * @param $permissionKey
      * @return bool
      */
-    public function do($permissionKey)
+    public function canDo($permissionKey)
     {
-
-        return true;
+        foreach ($this->roles as $role) {
+            if ($role->canDo($permissionKey)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
