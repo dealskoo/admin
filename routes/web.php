@@ -70,7 +70,14 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
             Route::get('/notification/{notification}', [NotificationController::class, 'show'])->name('show');
         });
 
+        Route::get('roles/{id}/permissions', [RoleController::class, 'permissions'])->name('roles.permissions');
+        Route::post('roles/{id}/permissions', [RoleController::class, 'permission'])->name('roles.permission');
         Route::resource('roles', RoleController::class);
+
+        Route::get('admins/{id}/roles', [AdminController::class, 'roles'])->name('admins.roles');
+        Route::post('admins/{id}/roles', [AdminController::class, 'role'])->name('admins.role');
+        Route::get('admins/{id}/permissions', [AdminController::class, 'permissions'])->name('admins.permissions');
+        Route::post('admins/{id}/permissions', [AdminController::class, 'permission'])->name('admins.permission');
         Route::resource('admins', AdminController::class);
     });
 });

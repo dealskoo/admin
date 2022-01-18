@@ -27,8 +27,11 @@
                     class="ms-2">{{ Auth::user()->email }}</span>
             </p>
 
-            <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.role') }} :</strong><span
-                    class="ms-2">Owner</span></p>
+            <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.role') }} :</strong>
+                @foreach(Auth::user()->roles as $role)
+                    <span class="ms-1 badge bg-success">{{ $role->name }}</span>
+                @endforeach
+            </p>
         </div>
 
     </div> <!-- end card-body -->

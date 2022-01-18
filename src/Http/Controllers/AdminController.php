@@ -48,12 +48,16 @@ class AdminController extends Controller
 
             $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
+            $edit_role = '<a href="' . route('admin.admins.roles', $admin) . '" class="action-icon"><i class="mdi mdi-account-multiple-plus"></i></a>';
+
+            $edit_permission = '<a href="' . route('admin.admins.permissions', $admin) . '" class="action-icon"><i class="mdi mdi-account-lock"></i></a>';
+
             $destroy_link = '';
             if (!$admin->owner) {
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 
-            $row[] = $view_link . $edit_link . $destroy_link;
+            $row[] = $view_link . $edit_link . $edit_role . $edit_permission . $destroy_link;
             $rows[] = $row;
         }
         return [
@@ -110,5 +114,25 @@ class AdminController extends Controller
     public function destroy($id)
     {
         return ['status' => Admin::destroy($id)];
+    }
+
+    public function roles(Request $request, $id)
+    {
+
+    }
+
+    public function role(Request $request, $id)
+    {
+
+    }
+
+    public function permissions(Request $request, $id)
+    {
+
+    }
+
+    public function permission(Request $request, $id)
+    {
+
     }
 }

@@ -44,8 +44,11 @@
                                 class="ms-2">{{ $admin->email }}</span>
                         </p>
 
-                        <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.role') }} :</strong><span
-                                class="ms-1 badge bg-success">Owner</span></p>
+                        <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.role') }} :</strong>
+                            @foreach($admin->roles as $role)
+                                <span class="ms-1 badge bg-success">{{ $role->name }}</span>
+                            @endforeach
+                        </p>
 
                         <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.created_at') }} :</strong><span
                                 class="ms-2">{{ $admin->created_at }}</span>

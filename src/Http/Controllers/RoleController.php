@@ -44,9 +44,11 @@ class RoleController extends Controller
 
             $edit_link = '<a href="' . route('admin.roles.edit', $role) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
+            $edit_permission = '<a href="' . route('admin.roles.permissions', $role) . '" class="action-icon"><i class="mdi mdi-account-lock"></i></a>';
+
             $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="roles_table" data-url="' . route('admin.roles.destroy', $role) . '"> <i class="mdi mdi-delete"></i></a>';
 
-            $row[] = $view_link . $edit_link . $destroy_link;
+            $row[] = $view_link . $edit_link . $edit_permission . $destroy_link;
             $rows[] = $row;
         }
         return [
@@ -95,5 +97,15 @@ class RoleController extends Controller
     public function destroy($id)
     {
         return ['status' => Role::destroy($id)];
+    }
+
+    public function permissions(Request $request, $id)
+    {
+
+    }
+
+    public function permission(Request $request, $id)
+    {
+
     }
 }
