@@ -65,6 +65,8 @@ return [
     'nothing_found' => '没有数据',
     'datatable_filtered' => '(从 _MAX_ 总计条目中筛选)',
     'id' => '编号',
+    'active' => '可用',
+    'inactive' => '禁用',
     'c_name' => '名称',
     'c_name_placeholder' => '请填写名称',
     'add_role' => '添加角色',

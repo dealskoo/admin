@@ -47,6 +47,7 @@ class InitCommand extends Command
             'email' => $email,
             'password' => Hash::make($password),
             'owner' => true,
+            'status' => true,
             'email_verified_at' => now(),
         ]);
         if ($admin->save()) {

@@ -47,7 +47,7 @@
                             </div>
                         </div> <!-- end row -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-success mt-2" tabindex="3"><i
+                            <button type="submit" class="btn btn-success mt-2" tabindex="2"><i
                                     class="mdi mdi-content-save"></i> {{ __('admin::admin.save') }}
                             </button>
                         </div>
