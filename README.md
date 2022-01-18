@@ -6,6 +6,7 @@
 - [x] Menu Management
 - [x] Permission Management
 - [x] Role Management
+- [x] Multi Language
 
 ## Install
 
