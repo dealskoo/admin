@@ -18,7 +18,7 @@
                         <div class="card-body p-4">
 
                             <div class="text-center m-auto">
-                                <i class=" uil-multiply text-danger" style="font-size: 80px"></i>
+                                <i class="uil-multiply text-danger" style="font-size: 80px"></i>
                                 <h4 class="text-dark-50 text-center mt-4 fw-bold">{{ __('admin::admin.your_account_has_been_banned') }}</h4>
                                 <p class="text-muted mb-4">
                                     {{ __('admin::admin.if_you_have_any_questions') }}
