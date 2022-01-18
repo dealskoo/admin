@@ -2,7 +2,9 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
+use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Admin;
+use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Password;
@@ -123,17 +125,27 @@ class AdminController extends Controller
 
     public function roles(Request $request, $id)
     {
-        return view('admin::admin.role');
+        $admin = Admin::query()->findOrFail($id);
+        $roles = Role::all();
+        return view('admin::admin.role', ['admin' => $admin, 'roles' => $roles]);
     }
 
     public function role(Request $request, $id)
     {
-
+        $request->validate([
+            'roles' => ['array']
+        ]);
+        $admin = Admin::query()->findOrFail($id);
+        $ids = $request->input('roles');
+        $admin->roles()->sync($ids);
+        return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function permissions(Request $request, $id)
     {
-        return view('admin::admin.permission');
+        $admin = Admin::query()->findOrFail($id);
+        $permissions = PermissionManager::all();
+        return view('admin::admin.permission', ['admin' => $admin, 'permissions' => $permissions]);
     }
 
     public function permission(Request $request, $id)
