@@ -72,4 +72,6 @@ return [
     'add_role' => '添加角色',
     'edit_role' => '编辑角色',
     'role_information' => '角色信息',
+    'admin_information' => '管理员信息',
+    'edit_admin' => '编辑管理员'
 ];

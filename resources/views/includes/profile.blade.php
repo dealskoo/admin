@@ -11,7 +11,7 @@
         </div>
 
         <h4 class="mb-0 mt-2">{{ Auth::user()->name }}</h4>
-        <p class="text-muted font-14">Owner</p>
+        <p class="text-muted font-14">{!! Auth::user()->status?'<span class="badge bg-success">'.__('admin::admin.active').'</span>':'<span class="badge bg-danger">'.__('admin::admin.inactive').'</span>' !!}</p>
 
         <div class="text-start mt-3">
             @isset(Auth::user()->bio)

@@ -3,7 +3,6 @@
 namespace Dealskoo\Admin\Http\Controllers;
 
 use Dealskoo\Admin\Models\Admin;
-use Dealskoo\Admin\Notifications\ResetAdminPassword;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Password;
@@ -76,7 +75,10 @@ class AdminController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:admins']
         ]);
-        $admin = new Admin($request->only(['name', 'email', 'bio', 'status']));
+        $admin = new Admin($request->only(['name', 'email', 'bio']));
+        $admin->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $admin->status = $request->boolean('status');
+        $admin->save();
         Password::broker('admins')->sendResetLink($request->only('email'));
         return back()->with('success', __('admin::admin.added_success'));
     }
@@ -93,13 +95,20 @@ class AdminController extends Controller
         return view('admin::admin.edit', ['admin' => $admin]);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-
+        $request->validate([
+            'name' => ['required', 'string'],
+        ]);
+        $admin = Admin::query()->findOrFail($id);
+        $admin->fill($request->only(['name', 'bio']));
+        $admin->status = $request->boolean('status');
+        $admin->save();
+        return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function destroy($id)
     {
-
+        return ['status' => Admin::destroy($id)];
     }
 }

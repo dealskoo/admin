@@ -5,6 +5,7 @@ namespace Dealskoo\Admin\Models;
 use Dealskoo\Admin\Notifications\ResetAdminPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authentication;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,7 @@ use Laravolt\Avatar\Facade as Avatar;
 
 class Admin extends Authentication implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $appends = ['avatar_url'];
 

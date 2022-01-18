@@ -71,5 +71,7 @@ return [
     'c_name_placeholder' => 'Enter a name',
     'add_role' => 'Add Role',
     'edit_role' => 'Edit Role',
-    'role_information' => 'Role information'
+    'role_information' => 'Role information',
+    'admin_information' => 'Admin information',
+    'edit_admin' => 'Edit Admin'
 ];
