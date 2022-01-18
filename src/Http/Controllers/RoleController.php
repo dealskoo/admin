@@ -4,6 +4,7 @@ namespace Dealskoo\Admin\Http\Controllers;
 
 use Carbon\Carbon;
 use Dealskoo\Admin\Facades\PermissionManager;
+use Dealskoo\Admin\Models\Permission;
 use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,12 @@ class RoleController extends Controller
         ]);
         $role = new Role($request->only(['name']));
         $role->save();
+        $role->permissions()->delete();
+        $permissions = [];
+        foreach ($request->input('permissions') as $perm) {
+            $permissions[] = new Permission(['key' => $perm]);
+        }
+        $role->permissions()->saveMany($permissions);
         return back()->with('success', __('admin::admin.added_success'));
     }
 
@@ -91,12 +98,18 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'unique:roles'],
+            'name' => ['required'],
             'permissions' => ['array']
         ]);
         $role = Role::query()->findOrFail($id);
         $role->fill($request->only(['name']));
         $role->save();
+        $role->permissions()->delete();
+        $permissions = [];
+        foreach ($request->input('permissions') as $perm) {
+            $permissions[] = new Permission(['key' => $perm]);
+        }
+        $role->permissions()->saveMany($permissions);
         return back()->with('success', __('admin::admin.update_success'));
     }
 
