@@ -118,7 +118,7 @@ class AdminController extends Controller
 
     public function roles(Request $request, $id)
     {
-
+        return view('admin::admin.role');
     }
 
     public function role(Request $request, $id)
@@ -128,7 +128,7 @@ class AdminController extends Controller
 
     public function permissions(Request $request, $id)
     {
-
+        return view('admin::admin.permission');
     }
 
     public function permission(Request $request, $id)

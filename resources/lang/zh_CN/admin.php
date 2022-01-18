@@ -75,5 +75,8 @@ return [
     'admin_information' => '管理员信息',
     'edit_admin' => '编辑管理员',
     'your_account_has_been_banned' => '您的账号已被禁用',
-    'if_you_have_any_questions' => '如何有任何问题，请联系管理员'
+    'if_you_have_any_questions' => '如何有任何问题，请联系管理员',
+    'admin_role' => '管理员角色',
+    'admin_permission' => '管理员权限',
+    'role_permission' => '角色权限'
 ];

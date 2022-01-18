@@ -101,7 +101,7 @@ class RoleController extends Controller
 
     public function permissions(Request $request, $id)
     {
-
+        return view('admin::role.permission');
     }
 
     public function permission(Request $request, $id)
