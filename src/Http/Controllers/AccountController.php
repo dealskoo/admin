@@ -19,7 +19,7 @@ class AccountController extends Controller
         $admin = $request->user();
         $admin->fill($request->only(['name', 'bio']));
         $admin->save();
-        return redirect()->back()->with('success', __('admin::admin.update_success'));
+        return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function avatar(Request $request)
@@ -45,7 +45,7 @@ class AccountController extends Controller
     {
         $request->validate(['email' => ['required', 'email', 'unique:admins']]);
         Notification::route('mail', $request->input('email'))->notify(new EmailChangeNotification());
-        return redirect()->back()->withInput($request->only(['email']))->with('success', __('Email Verify Notification Send Success'));
+        return back()->withInput($request->only(['email']))->with('success', __('Email Verify Notification Send Success'));
     }
 
     public function emailVerify(Request $request)
@@ -80,7 +80,7 @@ class AccountController extends Controller
             $admin = $request->user();
             $admin->password = bcrypt($request->input('new_password'));
             $admin->save();
-            return redirect()->back()->with('success', __('admin::admin.update_success'));
+            return back()->with('success', __('admin::admin.update_success'));
         }
     }
 }

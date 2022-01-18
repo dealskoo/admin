@@ -69,7 +69,7 @@ class RoleController extends Controller
         ]);
         $role = new Role($request->only(['name']));
         $role->save();
-        return redirect()->back()->with('success', __('admin::admin.added_success'));
+        return back()->with('success', __('admin::admin.added_success'));
     }
 
     public function show($id)
@@ -89,7 +89,7 @@ class RoleController extends Controller
         $role = Role::query()->findOrFail($id);
         $role->fill($request->only(['name']));
         $role->save();
-        return redirect()->back()->with('success', __('admin::admin.update_success'));
+        return back()->with('success', __('admin::admin.update_success'));
     }
 
     public function destroy($id)

@@ -3,8 +3,10 @@
 namespace Dealskoo\Admin\Http\Controllers;
 
 use Dealskoo\Admin\Models\Admin;
+use Dealskoo\Admin\Notifications\ResetAdminPassword;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
 {
@@ -70,7 +72,13 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:admins']
+        ]);
+        $admin = new Admin($request->only(['name', 'email', 'bio', 'status']));
+        Password::broker('admins')->sendResetLink($request->only('email'));
+        return back()->with('success', __('admin::admin.added_success'));
     }
 
     public function show($id)
