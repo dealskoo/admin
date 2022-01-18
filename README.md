@@ -2,11 +2,18 @@
 
 ## TODO
 
-- [ ] Admin Management
-- [ ] Menu Management
+- [x] Admin Management
+- [x] Menu Management
+- [x] Permission Management
+- [x] Role Management
 
 ## Initial Admin Account
 
 ```bash
 $ php artisan admin:init
 ```
+
+## Register Guards
+
+
+## Add Middleware
