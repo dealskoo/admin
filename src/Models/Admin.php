@@ -60,7 +60,7 @@ class Admin extends Authentication implements MustVerifyEmail
 
     public function permissions()
     {
-
+        return $this->morphToMany(Permission::class, 'permission_able');
     }
 
     /**
