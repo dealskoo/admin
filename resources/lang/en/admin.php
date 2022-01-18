@@ -78,5 +78,6 @@ return [
     'if_you_have_any_questions' => 'If you have any questions, please contact the administrator',
     'admin_role' => 'Admin roles',
     'admin_permission' => 'Admin permissions',
-    'role_permission' => 'Role permissions'
+    'role_permission' => 'Role permissions',
+    'owner' => 'Owner',
 ];

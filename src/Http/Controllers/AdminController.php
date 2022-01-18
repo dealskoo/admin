@@ -48,12 +48,17 @@ class AdminController extends Controller
 
             $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-            $edit_role = '<a href="' . route('admin.admins.roles', $admin) . '" class="action-icon"><i class="mdi mdi-account-multiple-plus"></i></a>';
+            $edit_role = '';
 
-            $edit_permission = '<a href="' . route('admin.admins.permissions', $admin) . '" class="action-icon"><i class="mdi mdi-account-lock"></i></a>';
+            $edit_permission = '';
 
             $destroy_link = '';
             if (!$admin->owner) {
+
+                $edit_role = '<a href="' . route('admin.admins.roles', $admin) . '" class="action-icon"><i class="mdi mdi-account-multiple-plus"></i></a>';
+
+                $edit_permission = '<a href="' . route('admin.admins.permissions', $admin) . '" class="action-icon"><i class="mdi mdi-account-lock"></i></a>';
+
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 

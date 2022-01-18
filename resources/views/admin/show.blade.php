@@ -45,9 +45,13 @@
                         </p>
 
                         <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.role') }} :</strong>
-                            @foreach($admin->roles as $role)
-                                <span class="ms-1 badge bg-success">{{ $role->name }}</span>
-                            @endforeach
+                            @if($admin->owner)
+                                <span class="ms-1 badge bg-success">{{ __('admin::admin.owner') }}</span>
+                            @else
+                                @foreach($admin->roles as $role)
+                                    <span class="ms-1 badge bg-success">{{ $role->name }}</span>
+                                @endforeach
+                            @endif
                         </p>
 
                         <p class="text-muted mb-1 font-13"><strong>{{ __('admin::admin.created_at') }} :</strong><span

@@ -78,5 +78,6 @@ return [
     'if_you_have_any_questions' => '如何有任何问题，请联系管理员',
     'admin_role' => '管理员角色',
     'admin_permission' => '管理员权限',
-    'role_permission' => '角色权限'
+    'role_permission' => '角色权限',
+    'owner' => '所有者',
 ];
