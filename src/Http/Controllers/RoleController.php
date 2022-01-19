@@ -125,7 +125,7 @@ class RoleController extends Controller
             abort(403);
         }
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'unique:roles,name,' . $id . ',id'],
             'permissions' => ['array']
         ]);
         $role = Role::query()->findOrFail($id);
