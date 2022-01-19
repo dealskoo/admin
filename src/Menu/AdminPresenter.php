@@ -2,6 +2,7 @@
 
 namespace Dealskoo\Admin\Menu;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Nwidart\Menus\MenuItem;
 use Nwidart\Menus\Presenters\Presenter;
@@ -37,10 +38,16 @@ class AdminPresenter extends Presenter
      */
     public function getMenuWithoutDropdownWrapper($item)
     {
-        return '<li' . $this->getActiveState($item) . '>
+        $properties = $item->getProperties();
+        if (array_key_exists('permission', $properties['attributes']) && !Auth::user()->canDo($properties['attributes']['permission'])) {
+            return '';
+        } else {
+            return '<li' . $this->getActiveState($item) . '>
 			<a class="side-nav-link" href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>'
-            . $item->getIcon() . '<span>' . __($item->title) . '</span></a></li>' . PHP_EOL;
+                . $item->getIcon() . '<span>' . __($item->title) . '</span></a></li>' . PHP_EOL;
+        }
     }
+
     /**
      * {@inheritdoc }.
      */
@@ -83,9 +90,13 @@ class AdminPresenter extends Presenter
      */
     public function getMenuWithDropDownWrapper($item)
     {
-        $id = Str::random();
+        $properties = $item->getProperties();
+        if (array_key_exists('permission', $properties['attributes']) && !Auth::user()->canDo($properties['attributes']['permission'])) {
+            return '';
+        } else {
+            $id = Str::random();
 
-        return '
+            return '
 		<li class="side-nav-item ' . $this->getActiveStateOnChild($item) . '">
 			<a class="side-nav-link" data-bs-toggle="collapse" href="#' . $id . '">
 				' . $item->getIcon() . '<span>' . __($item->title) . '</span> <span class="menu-arrow"></span>
@@ -97,6 +108,7 @@ class AdminPresenter extends Presenter
 			</div>
 		</li>
 		' . PHP_EOL;
+        }
     }
 
     public function getMultiLevelDropdownWrapper($item)
