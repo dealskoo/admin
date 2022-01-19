@@ -378,6 +378,7 @@
         "processing": "<div class=\"spinner-border text-danger\" role=\"status\"></div>",
         "zeroRecords": "{{ __('admin::admin.nothing_found') }}",
         "info": "{{ __('admin::admin.datatable_pagination') }}",
+        "infoEmpty": "{{ __('admin::admin.datatable_info_empty') }}",
         "infoFiltered": "{{ __('admin::admin.datatable_filtered') }}",
         "search": "{{ __('admin::admin.search') }}",
         "lengthMenu": "{{ __('admin::admin.display') }} <select class='form-select form-select-sm ms-1 me-1'><option value='10'>10</option><option value='20'>20</option></select> {{ __('admin::admin.entries') }}",
