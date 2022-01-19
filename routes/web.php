@@ -72,6 +72,7 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
 
         Route::resource('roles', RoleController::class);
 
+        Route::get('admins/{id}/login', [AdminController::class, 'login'])->name('admins.login');
         Route::resource('admins', AdminController::class);
     });
 });

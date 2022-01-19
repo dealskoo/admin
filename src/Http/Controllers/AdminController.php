@@ -7,6 +7,7 @@ use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
@@ -43,6 +44,7 @@ class AdminController extends Controller
         $can_view = $request->user()->canDo('admins.show');
         $can_edit = $request->user()->canDo('admins.edit');
         $can_destroy = $request->user()->canDo('admins.destroy');
+        $can_login = $request->user()->canDo('admins.login');
 
         foreach ($admins as $admin) {
             $row = [];
@@ -56,6 +58,10 @@ class AdminController extends Controller
             if ($can_view) {
                 $view_link = '<a href="' . route('admin.admins.show', $admin) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
             }
+            $login_link = '';
+            if ($can_login && $admin->id != $request->user()->id) {
+                $login_link = '<a href="' . route('admin.admins.login', $admin) . '" class="action-icon"><i class="mdi mdi-login-variant"></i></a>';
+            }
 
             $edit_link = '';
             if ($can_edit) {
@@ -67,7 +73,7 @@ class AdminController extends Controller
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 
-            $row[] = $view_link . $edit_link . $destroy_link;
+            $row[] = $view_link . $login_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
         return [
@@ -150,5 +156,15 @@ class AdminController extends Controller
             abort(403);
         }
         return ['status' => Admin::destroy($id)];
+    }
+
+    public function login(Request $request, $id)
+    {
+        if (!$request->user()->canDo('admins.login')) {
+            abort(403);
+        }
+        $admin = Admin::query()->findOrFail($id);
+        $this->guard()->login($admin);
+        return redirect(route('admin.dashboard'));
     }
 }

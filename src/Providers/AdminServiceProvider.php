@@ -85,5 +85,6 @@ class AdminServiceProvider extends ServiceProvider
         PermissionManager::add(new Permission('admins.create', 'Create Admin'), 'admins.index');
         PermissionManager::add(new Permission('admins.edit', 'Edit Admin'), 'admins.index');
         PermissionManager::add(new Permission('admins.destroy', 'Destroy Admin'), 'admins.index');
+        PermissionManager::add(new Permission('admins.login', 'Login Admin'), 'admins.login');
     }
 }
