@@ -12,6 +12,9 @@ class RoleController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->user()->canDo('roles.index')) {
+            abort(403);
+        }
         if ($request->ajax()) {
             return $this->table($request);
         } else {
@@ -35,19 +38,28 @@ class RoleController extends Controller
         $count = $query->count();
         $roles = $query->skip($start)->take($limit)->get();
         $rows = [];
+        $can_view = $request->user()->canDo('roles.show');
+        $can_edit = $request->user()->canDo('roles.edit');
+        $can_destroy = $request->user()->canDo('roles.destroy');
         foreach ($roles as $role) {
             $row = [];
             $row[] = $role->id;
             $row[] = $role->name;
             $row[] = Carbon::parse($role->created_at)->format('Y-m-d H:i:s');
             $row[] = Carbon::parse($role->updated_at)->format('Y-m-d H:i:s');
+            $view_link = '';
+            if ($can_view) {
+                $view_link = '<a href="' . route('admin.roles.show', $role) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
+            }
 
-            $view_link = '<a href="' . route('admin.roles.show', $role) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
-
-            $edit_link = '<a href="' . route('admin.roles.edit', $role) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
-
-            $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="roles_table" data-url="' . route('admin.roles.destroy', $role) . '"> <i class="mdi mdi-delete"></i></a>';
-
+            $edit_link = '';
+            if ($can_edit) {
+                $edit_link = '<a href="' . route('admin.roles.edit', $role) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
+            }
+            $destroy_link = '';
+            if ($can_destroy) {
+                $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="roles_table" data-url="' . route('admin.roles.destroy', $role) . '"> <i class="mdi mdi-delete"></i></a>';
+            }
             $row[] = $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
@@ -59,14 +71,20 @@ class RoleController extends Controller
         ];
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->user()->canDo('roles.create')) {
+            abort(403);
+        }
         $permissions = PermissionManager::all();
         return view('admin::role.create', ['permissions' => $permissions]);
     }
 
     public function store(Request $request)
     {
+        if (!$request->user()->canDo('roles.create')) {
+            abort(403);
+        }
         $request->validate([
             'name' => ['required', 'unique:roles'],
             'permissions' => ['array']
@@ -75,21 +93,27 @@ class RoleController extends Controller
         $role->save();
         $role->permissions()->delete();
         $permissions = [];
-        foreach ($request->input('permissions') as $perm) {
+        foreach ($request->input('permissions', []) as $perm) {
             $permissions[] = new Permission(['key' => $perm]);
         }
         $role->permissions()->saveMany($permissions);
         return back()->with('success', __('admin::admin.added_success'));
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if (!$request->user()->canDo('roles.show')) {
+            abort(403);
+        }
         $role = Role::query()->findOrFail($id);
         return view('admin::role.show', ['role' => $role]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        if (!$request->user()->canDo('roles.edit')) {
+            abort(403);
+        }
         $role = Role::query()->findOrFail($id);
         $permissions = PermissionManager::all();
         return view('admin::role.edit', ['role' => $role, 'permissions' => $permissions]);
@@ -97,6 +121,9 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!$request->user()->canDo('roles.edit')) {
+            abort(403);
+        }
         $request->validate([
             'name' => ['required'],
             'permissions' => ['array']
@@ -106,15 +133,18 @@ class RoleController extends Controller
         $role->save();
         $role->permissions()->delete();
         $permissions = [];
-        foreach ($request->input('permissions') as $perm) {
+        foreach ($request->input('permissions', []) as $perm) {
             $permissions[] = new Permission(['key' => $perm]);
         }
         $role->permissions()->saveMany($permissions);
         return back()->with('success', __('admin::admin.update_success'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        if (!$request->user()->canDo('roles.destroy')) {
+            abort(403);
+        }
         return ['status' => Role::destroy($id)];
     }
 }

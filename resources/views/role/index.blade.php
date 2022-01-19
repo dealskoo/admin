@@ -22,12 +22,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row mb-2">
-                        <div class="col-12">
-                            <a href="{{ route('admin.roles.create') }}" class="btn btn-danger mb-2"><i
-                                    class="mdi mdi-plus-circle me-2"></i> {{ __('admin::admin.add_role') }}</a>
+                    @if(Auth::user()->canDo('roles.create'))
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <a href="{{ route('admin.roles.create') }}" class="btn btn-danger mb-2"><i
+                                        class="mdi mdi-plus-circle me-2"></i> {{ __('admin::admin.add_role') }}</a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="table-responsive">
                         <table id="roles_table" class="table table-centered w-100 dt-responsive nowrap">
                             <thead class="table-light">

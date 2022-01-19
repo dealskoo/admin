@@ -13,6 +13,9 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        if (!$request->user()->canDo('admins.index')) {
+            abort(403);
+        }
         if ($request->ajax()) {
             return $this->table($request);
         } else {
@@ -37,6 +40,10 @@ class AdminController extends Controller
         $count = $query->count();
         $admins = $query->skip($start)->take($limit)->get();
         $rows = [];
+        $can_view = $request->user()->canDo('admins.show');
+        $can_edit = $request->user()->canDo('admins.edit');
+        $can_destroy = $request->user()->canDo('admins.destroy');
+
         foreach ($admins as $admin) {
             $row = [];
             $row[] = $admin->id;
@@ -45,13 +52,18 @@ class AdminController extends Controller
             $row[] = Carbon::parse($admin->created_at)->format('Y-m-d H:i:s');
             $row[] = Carbon::parse($admin->updated_at)->format('Y-m-d H:i:s');
             $row[] = $admin->status ? '<span class="badge bg-success">' . __('admin::admin.active') . '</span>' : '<span class="badge bg-danger">' . __('admin::admin.inactive') . '</span>';
+            $view_link = '';
+            if ($can_view) {
+                $view_link = '<a href="' . route('admin.admins.show', $admin) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
+            }
 
-            $view_link = '<a href="' . route('admin.admins.show', $admin) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
-
-            $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
+            $edit_link = '';
+            if ($can_edit) {
+                $edit_link = '<a href="' . route('admin.admins.edit', $admin) . '" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>';
+            }
 
             $destroy_link = '';
-            if (!$admin->owner) {
+            if (!$admin->owner && $can_destroy) {
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 
@@ -66,14 +78,20 @@ class AdminController extends Controller
         ];
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->user()->canDo('admins.create')) {
+            abort(403);
+        }
         $roles = Role::all();
         return view('admin::admin.create', ['roles' => $roles]);
     }
 
     public function store(Request $request)
     {
+        if (!$request->user()->canDo('admins.create')) {
+            abort(403);
+        }
         $request->validate([
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:admins'],
@@ -83,20 +101,26 @@ class AdminController extends Controller
         $admin->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
         $admin->status = $request->boolean('status');
         $admin->save();
-        $ids = $request->input('roles');
+        $ids = $request->input('roles', []);
         $admin->roles()->sync($ids);
         Password::broker('admins')->sendResetLink($request->only('email'));
         return back()->with('success', __('admin::admin.added_success'));
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if (!$request->user()->canDo('admins.show')) {
+            abort(403);
+        }
         $admin = Admin::query()->findOrFail($id);
         return view('admin::admin.show', ['admin' => $admin]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        if (!$request->user()->canDo('admins.edit')) {
+            abort(403);
+        }
         $admin = Admin::query()->findOrFail($id);
         $roles = Role::all();
         return view('admin::admin.edit', ['admin' => $admin, 'roles' => $roles]);
@@ -104,6 +128,9 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!$request->user()->canDo('admins.edit')) {
+            abort(403);
+        }
         $request->validate([
             'name' => ['required', 'string'],
             'roles' => ['array']
@@ -112,13 +139,16 @@ class AdminController extends Controller
         $admin->fill($request->only(['name', 'bio']));
         $admin->status = $request->boolean('status');
         $admin->save();
-        $ids = $request->input('roles');
+        $ids = $request->input('roles', []);
         $admin->roles()->sync($ids);
         return back()->with('success', __('admin::admin.update_success'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        if (!$request->user()->canDo('admins.destroy')) {
+            abort(403);
+        }
         return ['status' => Admin::destroy($id)];
     }
 }
