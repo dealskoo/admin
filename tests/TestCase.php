@@ -6,6 +6,7 @@ use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Providers\AdminServiceProvider;
 use Dealskoo\Admin\Tests\Http\Kernel;
+use Illuminate\Encryption\Encrypter;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -30,6 +31,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.key', 'base64:' . base64_encode(Encrypter::generateKey('AES-256-CBC')));
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
             'driver' => 'sqlite',
