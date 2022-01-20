@@ -1,3 +1,5 @@
+## configure `auth.php`
+
 ```php
 return [
     'guards' => [
@@ -18,6 +20,8 @@ return [
             'throttle' => 60,
         ]
     ]
+    
+    'password_length' => 8,
 ];
 ```
 

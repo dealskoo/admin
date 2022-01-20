@@ -2,6 +2,10 @@
 
 namespace Dealskoo\Admin\Tests\Http;
 
+use Dealskoo\Admin\Http\Middleware\ActiveAuth;
+use Dealskoo\Admin\Http\Middleware\AdminLocalization;
+use Dealskoo\Admin\Tests\Http\Middleware\Authenticate;
+use Dealskoo\Admin\Tests\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -11,8 +15,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Orchestra\Testbench\Http\Kernel as HttpKernel;
-use Orchestra\Testbench\Http\Middleware\Authenticate;
-use Orchestra\Testbench\Http\Middleware\RedirectIfAuthenticated;
 
 class Kernel extends HttpKernel
 {
@@ -27,5 +29,7 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'admin_locale' => AdminLocalization::class,
+        'admin_active' => ActiveAuth::class,
     ];
 }
