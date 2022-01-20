@@ -17,7 +17,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Dealskoo\\Admin\\": "src/"
+            "Dealskoo\\Admin\\": "src/",
+            "Database\\Factories\\Dealskoo\\Admin\\Models\\": "database/factories/"
         }
     },
     "autoload-dev": {
