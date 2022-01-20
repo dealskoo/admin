@@ -18,6 +18,7 @@ class Admin extends Authentication implements MustVerifyEmail
     protected $appends = ['avatar_url'];
 
     protected $fillable = [
+        'avatar',
         'name',
         'bio',
         'email',
