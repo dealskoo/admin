@@ -4,6 +4,7 @@ namespace Dealskoo\Admin\Tests;
 
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Providers\AdminServiceProvider;
+use Dealskoo\Admin\Tests\Http\Kernel;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -38,7 +39,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function resolveApplicationHttpKernel($app)
     {
-        $app->singleton(Illuminate\Contracts\Http\Kernel::class, Kernel::class);
+        $app->singleton(\Illuminate\Contracts\Http\Kernel::class, Kernel::class);
     }
 
     protected function setUp(): void
