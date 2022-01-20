@@ -12,22 +12,22 @@ class AdminTest extends TestCase
         parent::setUp();
     }
 
-    public function testAvatarUrl()
+    public function test_avatar_url()
     {
         $admin = Admin::factory()->create();
     }
 
-    public function testSendPasswordResetNotification()
+    public function test_send_password_reset_notification()
     {
 
     }
 
-    public function testRoles()
+    public function test_roles()
     {
 
     }
 
-    public function testCanDo()
+    public function test_can_do()
     {
 
     }

@@ -12,7 +12,7 @@ class PermissionTest extends TestCase
         parent::setUp();
     }
 
-    public function testPermissions()
+    public function test_permissions()
     {
         self::assertNotNull(PermissionManager::getPermission('admin.settings'));
         self::assertNotNull(PermissionManager::getPermission('roles.index'));

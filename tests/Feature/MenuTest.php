@@ -12,7 +12,7 @@ class MenuTest extends TestCase
         parent::setUp();
     }
 
-    public function testMenu()
+    public function test_menu()
     {
         self::assertNotNull(AdminMenu::findBy('title', 'admin::admin.dashboard'));
         self::assertNotNull(AdminMenu::findBy('title', 'admin::admin.settings'));

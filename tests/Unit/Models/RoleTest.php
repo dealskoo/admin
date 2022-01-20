@@ -12,17 +12,17 @@ class RoleTest extends TestCase
         parent::setUp();
     }
 
-    public function testAdmins()
+    public function test_admins()
     {
         $role = Role::factory()->create();
     }
 
-    public function testPermissions()
+    public function test_permissions()
     {
 
     }
 
-    public function testCanDo()
+    public function test_can_do()
     {
 
     }
