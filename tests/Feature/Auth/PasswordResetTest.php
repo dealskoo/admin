@@ -5,7 +5,6 @@ namespace Dealskoo\Admin\Tests\Feature\Auth;
 use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Notifications\ResetAdminPassword;
 use Dealskoo\Admin\Tests\TestCase;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 

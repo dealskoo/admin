@@ -4,9 +4,12 @@ namespace Dealskoo\Admin\Tests\Unit\Models;
 
 use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,6 +26,11 @@ class AdminTest extends TestCase
     }
 
     public function test_roles()
+    {
+
+    }
+
+    public function test_can_do_owner()
     {
 
     }
