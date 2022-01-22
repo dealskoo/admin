@@ -17,6 +17,8 @@ class EmailChangeNotification extends Notification
 {
     use Queueable;
 
+    public $url = '';
+
     /**
      * Create a new notification instance.
      *
@@ -46,18 +48,23 @@ class EmailChangeNotification extends Notification
     public function toMail($notifiable)
     {
         Session::put('admin_email_change_verify', $notifiable->routes['mail']);
-        $url = URL::temporarySignedRoute(
+        $this->url = $this->url($notifiable);
+        return (new MailMessage)
+            ->subject(__('Email Verify Notification'))
+            ->line(__('You are receiving this email because we received an email change request for your account.'))
+            ->action(__('Verify Email'), $this->url)
+            ->line(__('This verify email link will expire in :count minutes.', ['count' => config('auth.passwords.admins.expire')]))
+            ->line(__('If you did not request an email change, no further action is required.'));
+    }
+
+    protected function url($notifiable)
+    {
+        return URL::temporarySignedRoute(
             'admin.account.email.verify',
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             [
                 'hash' => sha1($notifiable->routes['mail']),
             ]
         );
-        return (new MailMessage)
-            ->subject(__('Email Verify Notification'))
-            ->line(__('You are receiving this email because we received an email change request for your account.'))
-            ->action(__('Verify Email'), $url)
-            ->line(__('This verify email link will expire in :count minutes.', ['count' => config('auth.passwords.admins.expire')]))
-            ->line(__('If you did not request an email change, no further action is required.'));
     }
 }

@@ -2,8 +2,12 @@
 
 namespace Dealskoo\Admin\Tests\Feature;
 
+use Dealskoo\Admin\Models\Admin;
+use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Dealskoo\Admin\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Notification;
 
 class AccountControllerTest extends TestCase
 {
@@ -11,41 +15,89 @@ class AccountControllerTest extends TestCase
 
     public function test_profile()
     {
-        $response = $this->get('admin.account.profile');
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.account.profile'));
+        $response->assertStatus(200);
     }
 
     public function test_update_profile()
     {
-        $response = $this->post('admin.account.profile');
+        $admin = Admin::factory()->create();
+        $admin1 = Admin::factory()->make();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.account.profile'), $admin1->only([
+            'name',
+            'bio'
+        ]));
+        $response->assertStatus(302);
+        $admin->refresh();
+        $this->assertEquals($admin1->name, $admin->name);
     }
 
     public function test_avatar()
     {
-        $response = $this->post('admin.account.avatar');
+        $admin = Admin::factory()->create();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.account.avatar'), [
+            'file' => UploadedFile::fake()->image('file.jpg')
+        ]);
+        $response->assertStatus(200);
     }
 
     public function test_email()
     {
-        $response = $this->get('admin.account.email');
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.account.email'));
+        $response->assertStatus(200);
+
     }
 
     public function test_update_email()
     {
-        $response = $this->post('admin.account.email');
+        Notification::fake();
+        $admin = Admin::factory()->create();
+        $admin1 = Admin::factory()->make();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.account.email'), $admin1->only([
+            'email'
+        ]));
+        $response->assertStatus(302);
+        Notification::assertSentTo(Notification::route('mail', $admin1->email), EmailChangeNotification::class);
     }
 
     public function test_email_verify()
     {
-        $response = $this->get('admin.account.email.verify');
+        Notification::fake();
+        $admin = Admin::factory()->create();
+        $admin1 = Admin::factory()->make();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.account.email'), $admin1->only([
+            'email'
+        ]));
+        $response->assertStatus(302);
+        Notification::assertSentTo(Notification::route('mail', $admin1->email), EmailChangeNotification::class, function ($notification) use ($admin) {
+            $response = $this->actingAs($admin, 'admin')->get($notification->url);
+            $response->assertSessionHasNoErrors();
+            return true;
+        });
     }
 
     public function test_password()
     {
-        $response = $this->get('admin.account.password');
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.account.password'));
+        $response->assertStatus(200);
     }
 
     public function test_update_password()
     {
-        $response = $this->post('admin.account.password');
+        $password = '12345678';
+        $new_password = '23456789';
+        $admin = Admin::factory()->create();
+        $admin->password = bcrypt($password);
+        $admin->save();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.account.password'), [
+            'password' => $password,
+            'new_password' => $new_password,
+            'new_password_confirmation' => $new_password
+        ]);
+        $response->assertSessionHasNoErrors();
+        $response->assertStatus(302);
     }
 }

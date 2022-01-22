@@ -2,6 +2,8 @@
 
 namespace Dealskoo\Admin\Tests\Feature;
 
+use Dealskoo\Admin\Models\Admin;
+use Dealskoo\Admin\Models\Role;
 use Dealskoo\Admin\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -11,41 +13,70 @@ class RoleControllerTest extends TestCase
 
     public function test_index()
     {
-        $this->get(route('admin.roles.index'));
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.index'));
+        $response->assertStatus(200);
     }
 
     public function test_table()
     {
-        $this->get(route('admin.roles.index', ['HTTP_X-Requested-With' => 'XMLHttpRequest']));
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.index', ['HTTP_X-Requested-With' => 'XMLHttpRequest']));
+        $response->assertStatus(200);
     }
 
     public function test_store()
     {
-        $this->post(route('admin.roles.store'));
+        $admin = Admin::factory()->isOwner()->create();
+        $role = Role::factory()->make();
+        $response = $this->actingAs($admin, 'admin')->post(route('admin.roles.store'), $role->only([
+            'name'
+        ]));
+        $response->assertStatus(302);
     }
 
     public function test_create()
     {
-        $this->get(route('admin.roles.create'));
+        $admin = Admin::factory()->isOwner()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.create'));
+        $response->assertStatus(200);
     }
 
     public function test_show()
     {
-        $this->get(route('admin.roles.show'));
+        $admin = Admin::factory()->isOwner()->create();
+        $role = Role::factory()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.show', $role));
+        $response->assertStatus(200);
     }
 
     public function test_edit()
     {
-        $this->get(route('admin.roles.edit'));
+        $admin = Admin::factory()->isOwner()->create();
+        $role = Role::factory()->create();
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.edit', $role));
+        $response->assertStatus(200);
     }
 
     public function test_update()
     {
-        $this->put(route('admin.roles.update'));
+        $admin = Admin::factory()->isOwner()->create();
+        $role = Role::factory()->create();
+        $role1 = Role::factory()->make();
+        $response = $this->actingAs($admin, 'admin')->put(route('admin.roles.update', $role), $role1->only([
+            'name'
+        ]));
+        $response->assertStatus(302);
+        $role->refresh();
+        $this->assertEquals($role1->name, $role->name);
     }
 
     public function test_destroy()
     {
-        $this->delete(route('admin.roles.destroy'));
+        $admin = Admin::factory()->isOwner()->create();
+        $role = Role::factory()->create();
+        $response = $this->actingAs($admin, 'admin')->delete(route('admin.roles.destroy', $role));
+        $response->assertStatus(200);
+        $this->assertSoftDeleted($role);
     }
 }
