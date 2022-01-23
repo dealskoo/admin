@@ -39,6 +39,7 @@ class AccountController extends Controller
         } else {
             throwException(__('Please upload file'));
         }
+        return [];
     }
 
     public function email(Request $request)
