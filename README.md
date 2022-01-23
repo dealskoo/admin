@@ -61,7 +61,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ]
-    ]
+    ],
     
     'password_length' => 8,
 ];
