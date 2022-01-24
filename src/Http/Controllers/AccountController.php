@@ -4,6 +4,7 @@ namespace Dealskoo\Admin\Http\Controllers;
 
 use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -79,7 +80,7 @@ class AccountController extends Controller
             ]);
         } else {
             $admin = $request->user();
-            $admin->password = bcrypt($request->input('new_password'));
+            $admin->password = Hash::make($request->input('new_password'));
             $admin->save();
             return back()->with('success', __('admin::admin.update_success'));
         }
