@@ -2,13 +2,14 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
+use Dealskoo\Admin\Exceptions\AdminException;
 use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use function PHPUnit\Framework\throwException;
+use Illuminate\Validation\Rules;
 
 class AccountController extends Controller
 {
@@ -23,6 +24,9 @@ class AccountController extends Controller
         return back()->with('success', __('admin::admin.update_success'));
     }
 
+    /**
+     * @throws AdminException
+     */
     public function avatar(Request $request)
     {
         $request->validate([
@@ -38,9 +42,8 @@ class AccountController extends Controller
             $admin->save();
             return ['url' => Storage::url($path)];
         } else {
-            throwException(__('Please upload file'));
+            throw new AdminException(__('Please upload file'));
         }
-        return [];
     }
 
     public function email(Request $request)
@@ -67,8 +70,7 @@ class AccountController extends Controller
     {
         $request->validate([
             'password' => ['required', 'min:' . config('auth.password_length')],
-            'new_password' => ['required', 'min:' . config('auth.password_length')],
-            'new_password_confirmation' => ['required', 'min:' . config('auth.password_length'), 'same:new_password']
+            'new_password' => ['required', 'confirmed', Rules\Password::min(config('auth.password_length'))],
         ]);
 
         if (!$this->guard()->validate([
