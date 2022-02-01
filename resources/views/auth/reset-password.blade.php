@@ -21,7 +21,7 @@
                                 <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ __('admin::auth.create_new_password') }}</h4>
                                 <div class="mb-4">
                                     @if(empty($errors->all()))
-                                        <p class="text-muted mb-4">{{ __('admin::auth.create_new_password_tip',['length'=>config('admin.password_length')]) }}</p>
+                                        <p class="text-muted mb-4">{{ __('admin::auth.create_new_password_tip',['length'=>config('auth.password_length')]) }}</p>
                                     @else
                                         @foreach($errors->all() as $error)
                                             <p class="text-danger mb-0">{{ $error }}</p>
@@ -45,7 +45,7 @@
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password" class="form-control"
-                                               required minlength="{{ config('admin.password_length') }}" tabindex="2"
+                                               required minlength="{{ config('auth.password_length') }}" tabindex="2"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -59,7 +59,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password_confirmation" name="password_confirmation"
                                                required tabindex="3" class="form-control"
-                                               minlength="{{ config('admin.password_length') }}"
+                                               minlength="{{ config('auth.password_length') }}"
                                                placeholder="{{ __('admin::auth.confirm_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
