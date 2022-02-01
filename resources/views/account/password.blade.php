@@ -48,7 +48,7 @@
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="password" name="password"
                                                required tabindex="1" autofocus
-                                               min="{{ config('admin.password_length') }}"
+                                               minlength="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::admin.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -66,7 +66,7 @@
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="new_password"
                                                name="new_password" tabindex="2"
-                                               min="{{ config('admin.password_length') }}" required
+                                               minlength="{{ config('admin.password_length') }}" required
                                                placeholder="{{ __('admin::admin.new_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -84,7 +84,7 @@
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="confirm_new_password"
                                                name="new_password_confirmation" tabindex="3" required
-                                               min="{{ config('admin.password_length') }}"
+                                               minlength="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::admin.confirm_new_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>

@@ -45,7 +45,7 @@
                                     <label for="password" class="form-label">{{ __('admin::auth.password') }}</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password" name="password" class="form-control"
-                                               required min="{{ config('admin.password_length') }}" tabindex="2"
+                                               required minlength="{{ config('admin.password_length') }}" tabindex="2"
                                                placeholder="{{ __('admin::auth.password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
@@ -59,7 +59,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="password" id="password_confirmation" name="password_confirmation"
                                                required tabindex="3" class="form-control"
-                                               min="{{ config('admin.password_length') }}"
+                                               minlength="{{ config('admin.password_length') }}"
                                                placeholder="{{ __('admin::auth.confirm_password_placeholder') }}">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
