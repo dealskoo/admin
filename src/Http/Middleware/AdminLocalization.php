@@ -20,7 +20,7 @@ class AdminLocalization
      */
     public function handle(Request $request, Closure $next)
     {
-        App::setLocale(Session::get('locale', config('app.locale')));
+        App::setLocale(Session::get('admin_locale', config('app.locale')));
         return $next($request);
     }
 }
