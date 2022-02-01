@@ -21,7 +21,8 @@ class RoleControllerTest extends TestCase
     public function test_table()
     {
         $admin = Admin::factory()->isOwner()->create();
-        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.index', ['HTTP_X-Requested-With' => 'XMLHttpRequest']));
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.roles.index'), ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response->assertJsonPath('recordsTotal', 0);
         $response->assertStatus(200);
     }
 

@@ -22,7 +22,8 @@ class AdminControllerTest extends TestCase
     public function test_table()
     {
         $admin = Admin::factory()->isOwner()->create();
-        $response = $this->actingAs($admin, 'admin')->get(route('admin.admins.index', ['HTTP_X-Requested-With' => 'XMLHttpRequest']));
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.admins.index'), ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response->assertJsonPath("recordsTotal", 1);
         $response->assertStatus(200);
     }
 
