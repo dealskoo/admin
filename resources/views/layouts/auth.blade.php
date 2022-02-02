@@ -22,7 +22,7 @@
 @yield('body')
 
 <footer class="footer footer-alt">
-    {{ config('admin.copyright') }}
+    {!! config('admin.copyright') !!}
 </footer>
 
 <!-- bundle -->
