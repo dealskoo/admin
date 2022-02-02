@@ -32,29 +32,23 @@ class InitCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $name = 'admin';
         $email = 'admin@admin.com';
         $password = 'admin888';
-        $admin = new Admin([
+        $admin = Admin::create([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
             'status' => true,
+            'owner' => true,
             'email_verified_at' => now(),
         ]);
-        $admin->owner = true;
-        if ($admin->save()) {
+        if ($admin) {
             $this->info('Admin create success!');
             $this->line('<info>email: </info>' . $email);
             $this->line('<info>password: </info>' . $password);
         }
-        return true;
     }
 }
