@@ -2,6 +2,7 @@
 
 namespace Dealskoo\Admin\Tests\Feature\Console;
 
+use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,5 +14,7 @@ class InitCommandTest extends TestCase
     {
         $this->artisan('admin:init')->assertSuccessful();
         $this->assertDatabaseCount('admins', 1);
+        $admin = Admin::query()->first();
+        $this->assertTrue($admin->owner);
     }
 }

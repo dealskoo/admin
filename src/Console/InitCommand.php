@@ -37,15 +37,15 @@ class InitCommand extends Command
         $name = 'admin';
         $email = 'admin@admin.com';
         $password = 'admin888';
-        $admin = Admin::create([
+        $admin = new Admin([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
             'status' => true,
-            'owner' => true,
             'email_verified_at' => now(),
         ]);
-        if ($admin) {
+        $admin->owner = true;
+        if ($admin->save()) {
             $this->info('Admin create success!');
             $this->line('<info>email: </info>' . $email);
             $this->line('<info>password: </info>' . $password);
