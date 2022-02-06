@@ -33,17 +33,13 @@ class AccountController extends Controller
             'file' => ['required', 'image', 'max:1000']
         ]);
 
-        if ($request->hasFile('file')) {
-            $image = $request->file('file');
-            $admin = $request->user();
-            $filename = $admin->id . '.' . $image->guessExtension();
-            $path = $request->file('file')->storeAs('admin/avatars', $filename);
-            $admin->avatar = $path;
-            $admin->save();
-            return ['url' => Storage::url($path)];
-        } else {
-            throw new AdminException(__('Please upload file'));
-        }
+        $image = $request->file('file');
+        $admin = $request->user();
+        $filename = $admin->id . '.' . $image->guessExtension();
+        $path = $request->file('file')->storeAs('admin/avatars', $filename);
+        $admin->avatar = $path;
+        $admin->save();
+        return ['url' => Storage::url($path)];
     }
 
     public function email(Request $request)
