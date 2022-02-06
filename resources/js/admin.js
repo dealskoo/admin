@@ -21,7 +21,7 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $('.avatar-pic').attr('src', data.url);
+                    $('.avatar-pic').attr('src', data.url + "?t=" + (new Date().getTime()));
                 }
             });
         }
