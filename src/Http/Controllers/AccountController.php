@@ -36,10 +36,10 @@ class AccountController extends Controller
         $image = $request->file('file');
         $admin = $request->user();
         $filename = $admin->id . '.' . $image->guessExtension();
-        $path = $request->file('file')->storeAs('admin/avatars', $filename);
+        $path = $image->storeAs('admin/avatars', $filename);
         $admin->avatar = $path;
         $admin->save();
-        return ['url' => Storage::url($path)];
+        return ['url' => $admin->avatar_url];
     }
 
     public function email(Request $request)
