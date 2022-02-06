@@ -16,14 +16,12 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
 
     Route::get('/locale/{locale}', [LocalizationController::class, '__invoke'])->name('locale');
 
-    Route::get('/banned', function () {
-        return view('admin::auth.banned');
-    })->name('banned');
+    Route::view('/banned', 'admin::auth.banned')->name('banned');
 
     Route::middleware(['guest:admin'])->group(function () {
         Route::get('/', function () {
             return redirect(\route('admin.dashboard'), 301);
-        });
+        })->name('welcome');
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
         Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
         Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
@@ -38,25 +36,19 @@ Route::middleware(['web', 'admin_locale'])->prefix(config('admin.route.prefix'))
         Route::get('/search', [SearchController::class, 'handle'])->name('search');
 
         Route::prefix('/account')->name('account.')->group(function () {
-            Route::get('/', function () {
-                return view('admin::account.profile');
-            })->name('profile');
+            Route::view('/', 'admin::account.profile')->name('profile');
 
             Route::post('/', [AccountController::class, 'store'])->name('profile');
 
             Route::post('/avatar', [AccountController::class, 'avatar'])->name('avatar');
 
-            Route::get('/email', function () {
-                return view('admin::account.email');
-            })->name('email');
+            Route::view('/email', 'admin::account.email')->name('email');
 
             Route::middleware(['throttle:6,1'])->post('/email', [AccountController::class, 'email'])->name('email');
 
             Route::middleware(['signed', 'throttle:6,1'])->get('/email/verify/{hash}', [AccountController::class, 'emailVerify'])->name('email.verify');
 
-            Route::get('/password', function () {
-                return view('admin::account.password');
-            })->name('password');
+            Route::view('/password', 'admin::account.password')->name('password');
 
             Route::post('/password', [AccountController::class, 'password'])->name('password');
         });

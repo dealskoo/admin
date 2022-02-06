@@ -12,7 +12,7 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screen_default()
     {
-        $response = $this->get(route('admin.'));
+        $response = $this->get(route('admin.welcome'));
         $response->assertRedirect(route('admin.dashboard'));
     }
 
