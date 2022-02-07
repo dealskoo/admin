@@ -59,7 +59,6 @@ return [
     'status' => 'Status',
     'action' => 'Action',
     'no_data_to_show' => 'No data to show',
-    'page_not_found' => 'Page Not Found',
     'entries' => 'Entries',
     'datatable_pagination' => 'Showing _START_ to _END_ of _TOTAL_',
     'datatable_info_empty' => 'Showing _START_ to _END_ of _TOTAL_',
