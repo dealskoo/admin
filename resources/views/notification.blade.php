@@ -1,5 +1,5 @@
 @extends('admin::layouts.panel')
-@section('title',$notification->data['title'])
+@section('title',__($notification->data['title']))
 
 @section('body')
     <div class="row">
@@ -28,7 +28,7 @@
                     @include('admin::includes.notification-sidebar')
                     <div class="page-aside-right">
                         <div class="mt-3">
-                            <h5 class="font-18">{{ $notification->data['title'] }}</h5>
+                            <h5 class="font-18">{{ __($notification->data['title']) }}</h5>
                             <hr>
                             <div class="d-flex mb-3 mt-1">
                                 <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>

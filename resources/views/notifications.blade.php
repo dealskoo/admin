@@ -1,5 +1,4 @@
 @extends('admin::layouts.panel')
-
 @section('title',__('admin::admin.notifications'))
 @section('body')
     <div class="row">
@@ -17,7 +16,6 @@
         </div>
     </div>
     <div class="row">
-
         <!-- Right Sidebar -->
         <div class="col-12">
             <div class="card">
@@ -31,7 +29,7 @@
                                         <li @if(!$notification->read_at)class="unread"@endif>
                                             <div class="row">
                                                 <div class="col-lg-10">
-                                                    <a href="{{ route('admin.notification.show',$notification) }}">{{ $notification->data['title'] }}</a>
+                                                    <a href="{{ route('admin.notification.show',$notification) }}">{{ __($notification->data['title']) }}</a>
                                                 </div>
                                                 <div class="col-lg-2">
                                                     <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
