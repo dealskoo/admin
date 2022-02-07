@@ -24,9 +24,6 @@ class AccountController extends Controller
         return back()->with('success', __('admin::admin.update_success'));
     }
 
-    /**
-     * @throws AdminException
-     */
     public function avatar(Request $request)
     {
         $request->validate([
