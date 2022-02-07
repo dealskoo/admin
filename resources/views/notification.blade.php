@@ -1,9 +1,5 @@
 @extends('admin::layouts.panel')
-@if($notification)
-    @section('title',$notification->data['title'])
-@else
-    @section('title',__('admin::admin.notification'))
-@endif
+@section('title',$notification->data['title'])
 
 @section('body')
     <div class="row">
@@ -31,19 +27,15 @@
                 <div class="card-body">
                     @include('admin::includes.notification-sidebar')
                     <div class="page-aside-right">
-                        @if($notification)
-                            <div class="mt-3">
-                                <h5 class="font-18">{{ $notification->data['title'] }}</h5>
-                                <hr>
-                                <div class="d-flex mb-3 mt-1">
-                                    <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
-                                </div>
-                                @include($notification->data['view'])
+                        <div class="mt-3">
+                            <h5 class="font-18">{{ $notification->data['title'] }}</h5>
+                            <hr>
+                            <div class="d-flex mb-3 mt-1">
+                                <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
                             </div>
-                            <!-- end .mt-4 -->
-                        @else
-                            @include('admin::404')
-                        @endif
+                            @include($notification->data['view'])
+                        </div>
+                        <!-- end .mt-4 -->
                     </div>
                     <!-- end inbox-rightbar-->
                 </div>
