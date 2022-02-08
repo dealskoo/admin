@@ -43,7 +43,7 @@ class AccountControllerTest extends TestCase
             'file' => UploadedFile::fake()->image('file.jpg')
         ]);
         $response->assertStatus(200);
-        Storage::disk()->assertExists('admin/avatars/' . $admin->id . '.jpg');
+        Storage::assertExists('admin/avatars/' . $admin->id . '.jpg');
     }
 
     public function test_email()
