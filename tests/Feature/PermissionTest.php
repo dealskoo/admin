@@ -4,13 +4,11 @@ namespace Dealskoo\Admin\Tests\Feature;
 
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PermissionTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
+    use RefreshDatabase;
 
     public function test_permissions()
     {

@@ -12,11 +12,6 @@ class RoleTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function test_admins()
     {
         $role = Role::factory()->create();

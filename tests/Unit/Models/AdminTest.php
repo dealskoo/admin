@@ -15,11 +15,6 @@ class AdminTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function test_avatar_url()
     {
         $admin = Admin::factory()->create();
