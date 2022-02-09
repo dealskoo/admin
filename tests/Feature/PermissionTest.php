@@ -12,18 +12,18 @@ class PermissionTest extends TestCase
 
     public function test_permissions()
     {
-        self::assertNotNull(PermissionManager::getPermission('admin.settings'));
-        self::assertNotNull(PermissionManager::getPermission('roles.index'));
-        self::assertNotNull(PermissionManager::getPermission('roles.show'));
-        self::assertNotNull(PermissionManager::getPermission('roles.create'));
-        self::assertNotNull(PermissionManager::getPermission('roles.edit'));
-        self::assertNotNull(PermissionManager::getPermission('roles.destroy'));
+        $this->assertNotNull(PermissionManager::getPermission('admin.settings'));
+        $this->assertNotNull(PermissionManager::getPermission('roles.index'));
+        $this->assertNotNull(PermissionManager::getPermission('roles.show'));
+        $this->assertNotNull(PermissionManager::getPermission('roles.create'));
+        $this->assertNotNull(PermissionManager::getPermission('roles.edit'));
+        $this->assertNotNull(PermissionManager::getPermission('roles.destroy'));
 
-        self::assertNotNull(PermissionManager::getPermission('admins.index'));
-        self::assertNotNull(PermissionManager::getPermission('admins.show'));
-        self::assertNotNull(PermissionManager::getPermission('admins.create'));
-        self::assertNotNull(PermissionManager::getPermission('admins.edit'));
-        self::assertNotNull(PermissionManager::getPermission('admins.destroy'));
-        self::assertNotNull(PermissionManager::getPermission('admins.login'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.index'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.show'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.create'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.edit'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.destroy'));
+        $this->assertNotNull(PermissionManager::getPermission('admins.login'));
     }
 }
