@@ -18,7 +18,7 @@ class Slug implements Rule
      *
      * @return void
      */
-    public function __construct($table, $field, $ignore_value, $ignore_field)
+    public function __construct($table, $field, $ignore_value = null, $ignore_field = null)
     {
         $this->table = $table;
         $this->field = $field;
@@ -36,7 +36,11 @@ class Slug implements Rule
     public function passes($attribute, $value)
     {
         if (preg_match('/^[\w\d_]+$/i', $value)) {
-            $row = DB::table($this->table)->where($this->field, Str::lower($value))->where($this->ignore_field, '!=', $this->ignore_value)->first();
+            $builder = DB::table($this->table)->where($this->field, Str::lower($value));
+            if ($this->ignore_value && $this->ignore_field) {
+                $builder = $builder->where($this->ignore_field, '!=', $this->ignore_value);
+            }
+            $row = $builder->first();
             if ($row) {
                 return false;
             } else {
