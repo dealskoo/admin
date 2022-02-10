@@ -2,21 +2,17 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
-use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->user()->canDo('admins.index')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.index'), 403);
         if ($request->ajax()) {
             return $this->table($request);
         } else {
@@ -86,18 +82,14 @@ class AdminController extends Controller
 
     public function create(Request $request)
     {
-        if (!$request->user()->canDo('admins.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.create'), 403);
         $roles = Role::all();
         return view('admin::admin.create', ['roles' => $roles]);
     }
 
     public function store(Request $request)
     {
-        if (!$request->user()->canDo('admins.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.create'), 403);
         $request->validate([
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:admins'],
@@ -115,18 +107,14 @@ class AdminController extends Controller
 
     public function show(Request $request, $id)
     {
-        if (!$request->user()->canDo('admins.show')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.show'), 403);
         $admin = Admin::query()->findOrFail($id);
         return view('admin::admin.show', ['admin' => $admin]);
     }
 
     public function edit(Request $request, $id)
     {
-        if (!$request->user()->canDo('admins.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.edit'), 403);
         $admin = Admin::query()->findOrFail($id);
         $roles = Role::all();
         return view('admin::admin.edit', ['admin' => $admin, 'roles' => $roles]);
@@ -134,9 +122,7 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (!$request->user()->canDo('admins.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.edit'), 403);
         $request->validate([
             'name' => ['required', 'string'],
             'roles' => ['array']
@@ -152,17 +138,13 @@ class AdminController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        if (!$request->user()->canDo('admins.destroy')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.destroy'), 403);
         return ['status' => Admin::destroy($id)];
     }
 
     public function login(Request $request, $id)
     {
-        if (!$request->user()->canDo('admins.login')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('admins.login'), 403);
         $admin = Admin::query()->findOrFail($id);
         $this->guard()->login($admin);
         return redirect(route('admin.dashboard'));

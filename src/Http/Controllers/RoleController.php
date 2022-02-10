@@ -12,9 +12,7 @@ class RoleController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->user()->canDo('roles.index')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.index'), 403);
         if ($request->ajax()) {
             return $this->table($request);
         } else {
@@ -73,18 +71,14 @@ class RoleController extends Controller
 
     public function create(Request $request)
     {
-        if (!$request->user()->canDo('roles.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.create'), 403);
         $permissions = PermissionManager::all();
         return view('admin::role.create', ['permissions' => $permissions]);
     }
 
     public function store(Request $request)
     {
-        if (!$request->user()->canDo('roles.create')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.create'), 403);
         $request->validate([
             'name' => ['required', 'unique:roles'],
             'permissions' => ['array']
@@ -102,18 +96,14 @@ class RoleController extends Controller
 
     public function show(Request $request, $id)
     {
-        if (!$request->user()->canDo('roles.show')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.show'), 403);
         $role = Role::query()->findOrFail($id);
         return view('admin::role.show', ['role' => $role]);
     }
 
     public function edit(Request $request, $id)
     {
-        if (!$request->user()->canDo('roles.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.edit'), 403);
         $role = Role::query()->findOrFail($id);
         $permissions = PermissionManager::all();
         return view('admin::role.edit', ['role' => $role, 'permissions' => $permissions]);
@@ -121,9 +111,7 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (!$request->user()->canDo('roles.edit')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.edit'), 403);
         $request->validate([
             'name' => ['required', 'unique:roles,name,' . $id . ',id'],
             'permissions' => ['array']
@@ -142,9 +130,7 @@ class RoleController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        if (!$request->user()->canDo('roles.destroy')) {
-            abort(403);
-        }
+        abort_if(!$request->user()->canDo('roles.destroy'), 403);
         return ['status' => Role::destroy($id)];
     }
 }

@@ -21,11 +21,8 @@ class NotificationController extends Controller
     public function show(Request $request, $id)
     {
         $notification = $request->user()->notifications()->where('id', $id)->first();
-        if ($notification) {
-            $notification->markAsRead();
-        } else {
-            abort(404);
-        }
+        abort_if(!$notification, 404);
+        $notification->markAsRead();
         return view('admin::notification', ['notification' => $notification]);
     }
 
