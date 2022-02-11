@@ -42,25 +42,25 @@ class AdminServiceProvider extends ServiceProvider
             $this->commands([
                 InitCommand::class,
             ]);
+
+            $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../../config/admin.php' => config_path('admin.php')
+            ], 'config');
+            $this->publishes([
+                __DIR__ . '/../../public' => public_path('vendor/admin')
+            ], 'public');
+            $this->publishes([
+                __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/admin'),
+            ], 'lang');
         }
 
         $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
-
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'admin');
-
-        $this->publishes([
-            __DIR__ . '/../../config/admin.php' => config_path('admin.php')
-        ], 'config');
-        $this->publishes([
-            __DIR__ . '/../../public' => public_path('vendor/admin')
-        ], 'public');
-        $this->publishes([
-            __DIR__ . '/../../resources/lang' => resource_path('lang/vendor/admin'),
-        ], 'lang');
 
         Menu::create('admin_navbar', function ($menu) {
             $menu->enableOrdering();
