@@ -2,28 +2,12 @@
 
 namespace Dealskoo\Admin\Tests;
 
-use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Admin;
-use Dealskoo\Admin\Providers\AdminServiceProvider;
 use Dealskoo\Admin\Tests\Http\Kernel;
 use Illuminate\Encryption\Encrypter;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
-    protected function getPackageProviders($app)
-    {
-        return [
-            AdminServiceProvider::class
-        ];
-    }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'PermissionManager' => PermissionManager::class
-        ];
-    }
-
     public function ignorePackageDiscoveriesFrom()
     {
         return [];
