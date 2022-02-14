@@ -53,7 +53,7 @@
                                     <label for="email" class="form-label">{{ __('admin::admin.email') }}</label>
                                     <input type="email" class="form-control" id="email" name="email" required
                                            value="{{ old('email',$admin->email) }}" autofocus tabindex="2" readonly
-                                           placeholder="{{ __('admin::admin.name_placeholder') }}">
+                                           placeholder="{{ __('admin::admin.email_placeholder') }}">
                                 </div>
                             </div>
                         </div> <!-- end row -->
