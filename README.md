@@ -133,6 +133,13 @@ class RedirectIfAuthenticated
     ];
 ```
 
+## Create Notification Migrate
+
+```bash
+$ php artisan notifications:table
+$ php artisan migrate
+```
+
 ## Support
 
 - [Dealskoo](https://www.dealskoo.com)
