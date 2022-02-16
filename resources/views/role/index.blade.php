@@ -53,7 +53,7 @@
 @section('script')
     <script type="text/javascript">
         $(function () {
-            $('#roles_table').dataTable({
+            let table = $('#roles_table').dataTable({
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{ route('admin.roles.index') }}",
@@ -70,21 +70,13 @@
                 "drawCallback": function () {
                     $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
                     $('#roles_table tr td:nth-child(5)').addClass('table-action');
-                    $('.delete-btn').on('click', function (e) {
-                        let table = $('#' + $(this).data('table'));
-                        let url = $(this).data('url');
-                        $.ajax({
-                            url: url,
-                            type: 'DELETE',
-                            processData: false,
-                            contentType: false,
-                            success: function (data) {
-                                table.DataTable().ajax.reload();
-                            }
-                        });
-                    });
+                    delete_listener();
                 }
-            })
+            });
+
+            table.on('childRow.dt', function (e, row) {
+                delete_listener();
+            });
         });
     </script>
 @endsection
