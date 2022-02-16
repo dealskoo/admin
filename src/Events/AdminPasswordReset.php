@@ -2,12 +2,7 @@
 
 namespace Dealskoo\Admin\Events;
 
-use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
+use Dealskoo\Admin\Models\Admin;
 use Illuminate\Queue\SerializesModels;
 
 class AdminPasswordReset
@@ -16,7 +11,7 @@ class AdminPasswordReset
 
     public $admin;
 
-    public function __construct($admin)
+    public function __construct(Admin $admin)
     {
         $this->admin = $admin;
     }
