@@ -1370,5 +1370,5 @@ function ($) {
                 }
             });
         });
-    }
+    };
 }(window.jQuery);
