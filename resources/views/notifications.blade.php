@@ -28,7 +28,7 @@
                                     @foreach($notifications as $notification)
                                         <li @if(!$notification->read_at)class="unread"@endif>
                                             <div class="row">
-                                                <div class="col-lg-10">
+                                                <div class="col-lg-10 ps-4">
                                                     <a href="{{ route('admin.notification.show',$notification) }}">{{ __($notification->data['title']) }}</a>
                                                 </div>
                                                 <div class="col-lg-2">
