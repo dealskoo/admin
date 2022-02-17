@@ -3,11 +3,13 @@
 namespace Dealskoo\Admin\Events;
 
 use Dealskoo\Admin\Models\Admin;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class AdminPasswordReset
 {
-    use SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $admin;
 
