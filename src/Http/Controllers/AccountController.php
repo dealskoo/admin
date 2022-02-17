@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
-use Dealskoo\Admin\Exceptions\AdminException;
 use Dealskoo\Admin\Notifications\EmailChangeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
