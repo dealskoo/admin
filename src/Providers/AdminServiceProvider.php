@@ -26,6 +26,17 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->bind(Dashboard::class, DefaultDashboard::class);
         $this->app->bind(Searcher::class, DefaultSearcher::class);
         $this->app->singleton('admin_menu', function () {
+            Menu::create('admin_navbar', function ($menu) {
+                $menu->enableOrdering();
+                $menu->addHeader('admin::admin.navigation');
+                $menu->setPresenter(AdminPresenter::class);
+                $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
+                $menu->dropdown('admin::admin.settings', function ($sub) {
+                    $sub->route('admin.roles.index', 'admin::admin.roles', [], ['permission' => 'roles.index']);
+                    $sub->route('admin.admins.index', 'admin::admin.admins', [], ['permission' => 'admins.index']);
+                }, ['icon' => 'uil-bright', 'permission' => 'admin.settings'])->order(100);
+            });
+
             return Menu::instance('admin_navbar');
         });
         $this->app->singleton('permission_manager', \Dealskoo\Admin\PermissionManager::class);
@@ -61,17 +72,6 @@ class AdminServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
 
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'admin');
-
-        Menu::create('admin_navbar', function ($menu) {
-            $menu->enableOrdering();
-            $menu->addHeader('admin::admin.navigation');
-            $menu->setPresenter(AdminPresenter::class);
-            $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
-            $menu->dropdown('admin::admin.settings', function ($sub) {
-                $sub->route('admin.roles.index', 'admin::admin.roles', [], ['permission' => 'roles.index']);
-                $sub->route('admin.admins.index', 'admin::admin.admins', [], ['permission' => 'admins.index']);
-            }, ['icon' => 'uil-bright', 'permission' => 'admin.settings'])->order(100);
-        });
 
         PermissionManager::add(new Permission('admin.settings', 'Settings'));
         PermissionManager::add(new Permission('roles.index', 'Role List'), 'admin.settings');
