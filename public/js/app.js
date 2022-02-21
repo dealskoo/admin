@@ -1356,6 +1356,21 @@ function ($) {
         }
     });
 
+    $('.upload-btn').on('click', function () {
+        $('.file-input').click();
+    });
+
+    $('.file-input').on('change', function (e) {
+        if (e.target.files && e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function (event) {
+                let dataUrl = reader.result;
+                $('.file-pic').attr('src', dataUrl);
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+
     window.delete_listener = function () {
         $('.delete-btn').on('click', function (e) {
             let table = $('#' + $(this).data('table'));
