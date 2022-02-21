@@ -35,7 +35,7 @@ class Slug implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (preg_match('/^[\w\d_]+$/i', $value)) {
+        if (preg_match('/^[\w\d_-]+$/i', $value)) {
             $builder = DB::table($this->table)->where($this->field, Str::lower($value));
             if ($this->ignore_value && $this->ignore_field) {
                 $builder = $builder->where($this->ignore_field, '!=', $this->ignore_value);
