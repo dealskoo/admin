@@ -57,4 +57,26 @@
             });
         });
     };
+
+    $('.tag-input').parents('form').on('keypress', function (event) {
+        return event.keyCode != 13;
+    });
+
+    $('.tag-input').on('keyup', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            let tag = $(this).val().toLowerCase();
+            let tags = $("input[name='tags[]']").map(function () {
+                return $(this).val();
+            }).get();
+            $(this).val('');
+            if ($.inArray(tag, tags) === -1) {
+                let tag_html = '<div class="badge bg-primary rounded-pill position-relative me-2 mt-2 tag-badge">' + tag + '<input type="hidden" name="tags[]" value="' + tag + '"><span class="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle mdi mdi-close tag-remove"></span></div>';
+                $('.tags-box').append(tag_html);
+            }
+        }
+    });
+
+    $('body').on('click', '.tag-remove', function (e) {
+        $(this).parents('.tag-badge').remove();
+    });
 }(window.jQuery);
