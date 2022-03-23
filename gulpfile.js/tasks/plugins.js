@@ -89,8 +89,7 @@ const copyAssets = function (done) {
             "./node_modules/ion-rangeslider/js/ion.rangeSlider.min.js",
             "./node_modules/frappe-gantt/dist/frappe-gantt.min.js",
             "./node_modules/jquery.rateit/scripts/jquery.rateit.min.js",
-            {"name": "fullcalendar.min.js", "file": "./node_modules/fullcalendar/main.min.js"},
-            "./node_modules/editor.md/editormd.min.js"
+            {"name": "fullcalendar.min.js", "file": "./node_modules/fullcalendar/main.min.js"}
         ],
         css: [
             "./node_modules/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css",
@@ -110,8 +109,7 @@ const copyAssets = function (done) {
 
             {"name": "jstree.min.css", "file": "./node_modules/jstree/dist/themes/default/style.min.css"},
             {"name": "32px.png", "file": "./node_modules/jstree/dist/themes/default/32px.png"},
-            {"name": "throbber.gif", "file": "./node_modules/jstree/dist/themes/default/throbber.gif"},
-            "./node_modules/editor.md/css/editormd.css"
+            {"name": "throbber.gif", "file": "./node_modules/jstree/dist/themes/default/throbber.gif"}
         ]
     };
 
