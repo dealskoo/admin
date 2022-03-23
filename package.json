@@ -53,6 +53,7 @@
         "daterangepicker": "^3.1.0",
         "dragula": "^3.7.3",
         "dropzone": "^5.9.3",
+        "editor.md": "^1.5.0",
         "frappe-gantt": "^0.5.0",
         "fullcalendar": "^5.10.1",
         "gmaps": "^0.4.25",

@@ -31,11 +31,11 @@ function watchFiles() {
 gulp.task("watch", gulp.parallel(watchFiles));
 
 // default
-gulp.task('default', gulp.series('copyAssets', 'compileSaas', 'compileJs', 'watch'), function (done) {
+gulp.task('default', gulp.series('copyAssets', 'compileSaas', 'compileJs', 'copyLibs', 'watch'), function (done) {
     done();
 });
 
 
 // build
-gulp.task("build", gulp.series('copyAssets', 'compileSaas', 'compileJs'));
+gulp.task("build", gulp.series('copyAssets', 'compileSaas', 'compileJs', 'copyLibs'));
 
