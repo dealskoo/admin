@@ -13,6 +13,12 @@ const copyLibs = function () {
 
     let outPlugins = 'public/js/vendor/plugins/';
 
+    let srcLanguages = [
+        './node_modules/editor.md/languages/**/*'
+    ];
+
+    let outLanguages = 'public/js/vendor/languages/';
+
     let srcFonts = [
         './node_modules/editor.md/fonts/**/*'
     ];
@@ -25,6 +31,8 @@ const copyLibs = function () {
     let outImages = 'public/css/images/';
 
     gulp.src(srcPlugins).pipe(gulp.dest(outPlugins));
+
+    gulp.src(srcLanguages).pipe(gulp.dest(outLanguages));
 
     gulp.src(srcFonts).pipe(gulp.dest(outFonts));
 
