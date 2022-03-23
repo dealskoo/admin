@@ -70,3 +70,12 @@
         box-shadow: none;
     }
 }
+
+.editormd {
+    border-radius: 0.25rem;
+    margin-bottom: 0 !important;
+}
+
+.editormd-fullscreen {
+    z-index: 9999;
+}

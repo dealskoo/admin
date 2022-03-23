@@ -21216,3 +21216,12 @@ div.dataTables_scrollBody > table > :not(:first-child) {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+
+.editormd {
+  border-radius: 0.25rem;
+  margin-bottom: 0 !important;
+}
+
+.editormd-fullscreen {
+  z-index: 9999;
+}
