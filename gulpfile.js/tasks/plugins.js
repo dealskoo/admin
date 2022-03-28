@@ -111,7 +111,10 @@ const copyAssets = function (done) {
             {"name": "jstree.min.css", "file": "./node_modules/jstree/dist/themes/default/style.min.css"},
             {"name": "32px.png", "file": "./node_modules/jstree/dist/themes/default/32px.png"},
             {"name": "throbber.gif", "file": "./node_modules/jstree/dist/themes/default/throbber.gif"},
-            "./node_modules/editor.md/css/editormd.min.css"
+            "./node_modules/editor.md/css/editormd.min.css",
+            "./node_modules/github-markdown-css/github-markdown.css",
+            "./node_modules/github-markdown-css/github-markdown-dark.css",
+            "./node_modules/github-markdown-css/github-markdown-light.css"
         ]
     };
 
