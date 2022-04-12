@@ -11,7 +11,7 @@ trait HasSlug
         $this->attributes['slug'] = Str::lower($value);
     }
 
-    public function getRouteKey()
+    public function getSlugRouteKey()
     {
         return $this->slug ?? $this->getKey();
     }
