@@ -10,4 +10,14 @@ trait HasSlug
     {
         $this->attributes['slug'] = Str::lower($value);
     }
+
+    public function getRouteKey()
+    {
+        return $this->slug ?? $this->getKey();
+    }
+
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $query->where($this->getKeyName(), $slug)->orWhere('slug', $slug);
+    }
 }
