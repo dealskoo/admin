@@ -15,6 +15,7 @@ const
             js: [
                 baseAssets + "js/ui/component.dragula.js",
                 baseAssets + "js/ui/component.fileupload.js",
+                baseAssets + "js/ui/component.imageupload.js",
                 baseAssets + "js/ui/component.chat.js",
                 baseAssets + "js/ui/component.todo.js",
                 baseAssets + "js/ui/component.range-slider.js",
