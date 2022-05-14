@@ -7,6 +7,7 @@ use Dealskoo\Admin\Contracts\Dashboard;
 use Dealskoo\Admin\Contracts\Searcher;
 use Dealskoo\Admin\Contracts\Support\DefaultDashboard;
 use Dealskoo\Admin\Contracts\Support\DefaultSearcher;
+use Dealskoo\Admin\Facades\AdminMenu;
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Menu\AdminPresenter;
 use Dealskoo\Admin\Permission;
@@ -30,11 +31,6 @@ class AdminServiceProvider extends ServiceProvider
                 $menu->enableOrdering();
                 $menu->addHeader('admin::admin.navigation');
                 $menu->setPresenter(AdminPresenter::class);
-                $menu->route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
-                $menu->dropdown('admin::admin.settings', function ($sub) {
-                    $sub->route('admin.roles.index', 'admin::admin.roles', [], ['permission' => 'roles.index']);
-                    $sub->route('admin.admins.index', 'admin::admin.admins', [], ['permission' => 'admins.index']);
-                }, ['icon' => 'uil-bright', 'permission' => 'admin.settings'])->order(100);
             });
 
             return Menu::instance('admin_navbar');
@@ -86,5 +82,11 @@ class AdminServiceProvider extends ServiceProvider
         PermissionManager::add(new Permission('admins.edit', 'Edit Admin'), 'admins.index');
         PermissionManager::add(new Permission('admins.destroy', 'Destroy Admin'), 'admins.index');
         PermissionManager::add(new Permission('admins.login', 'Login Admin'), 'admins.login');
+
+        AdminMenu::route('admin.dashboard', 'admin::admin.dashboard', [], ['icon' => 'uil-home-alt']);
+        AdminMenu::dropdown('admin::admin.settings', function ($menu) {
+            $menu->route('admin.roles.index', 'admin::admin.roles', [], ['permission' => 'roles.index']);
+            $menu->route('admin.admins.index', 'admin::admin.admins', [], ['permission' => 'admins.index']);
+        }, ['icon' => 'uil-bright', 'permission' => 'admin.settings'])->order(100);
     }
 }
