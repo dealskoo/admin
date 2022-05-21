@@ -50,14 +50,17 @@ class AdminController extends Controller
             $row[] = Carbon::parse($admin->created_at)->format('Y-m-d H:i:s');
             $row[] = Carbon::parse($admin->updated_at)->format('Y-m-d H:i:s');
             $row[] = $admin->status ? '<span class="badge bg-success">' . __('admin::admin.active') . '</span>' : '<span class="badge bg-danger">' . __('admin::admin.inactive') . '</span>';
+
+            $login_link = '';
+            if ($can_login && $admin->id != $request->user()->id) {
+                $login_link = '<a href="' . route('admin.admins.login', $admin) . '" class="action-icon"><i class="mdi mdi-view-dashboard"></i></a>';
+            }
+
             $view_link = '';
             if ($can_view) {
                 $view_link = '<a href="' . route('admin.admins.show', $admin) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
             }
-            $login_link = '';
-            if ($can_login && $admin->id != $request->user()->id) {
-                $login_link = '<a href="' . route('admin.admins.login', $admin) . '" class="action-icon"><i class="mdi mdi-login-variant"></i></a>';
-            }
+
 
             $edit_link = '';
             if ($can_edit) {
@@ -69,7 +72,7 @@ class AdminController extends Controller
                 $destroy_link = '<a href="javascript:void(0);" class="action-icon delete-btn" data-table="admins_table" data-url="' . route('admin.admins.destroy', $admin) . '"> <i class="mdi mdi-delete"></i></a>';
             }
 
-            $row[] = $view_link . $login_link . $edit_link . $destroy_link;
+            $row[] = $login_link . $view_link . $edit_link . $destroy_link;
             $rows[] = $row;
         }
         return [

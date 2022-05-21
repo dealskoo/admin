@@ -88,7 +88,8 @@ class AdminControllerTest extends TestCase
     {
         $admin = Admin::factory()->isOwner()->create();
         $admin1 = Admin::factory()->create();
-        $this->actingAs($admin, 'admin')->get(route('admin.admins.login', $admin1));
+        $response = $this->actingAs($admin, 'admin')->get(route('admin.admins.login', $admin1));
         $this->assertAuthenticatedAs($admin1, 'admin');
+        $response->assertRedirect(route('admin.dashboard'));
     }
 }
