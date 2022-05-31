@@ -9,13 +9,13 @@ return [
     'logo_sm_dark' => '/vendor/admin/images/logo_sm_dark.svg',
     'copyright' => '2014 - ' . date('Y') . ' ' . config('app.name'),
     'footer_menus' => [[
-        'name' => 'about',
+        'name' => 'About',
         'url' => 'admin.dashboard'
     ], [
-        'name' => 'support',
+        'name' => 'Support',
         'url' => 'admin.login'
     ], [
-        'name' => 'contact_us',
+        'name' => 'Contact US',
         'url' => 'admin.login'
     ]],
     'languages' => ['en' => [

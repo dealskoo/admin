@@ -249,7 +249,7 @@
                         <div class="text-md-end footer-links d-none d-md-block">
                             @foreach(config('admin.footer_menus') as $menu)
                                 <a target="_blank" href="{{ route($menu['url']) }}">
-                                    {{ __('admin::admin.'.$menu['name']) }}
+                                    {{ __($menu['name']) }}
                                 </a>
                             @endforeach
                         </div>
