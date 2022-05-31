@@ -5,10 +5,11 @@ namespace Dealskoo\Admin\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Role extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Searchable;
 
     protected $fillable = [
         'name'
@@ -31,5 +32,12 @@ class Role extends Model
     public function canDo($permissionKey)
     {
         return $this->permissions->contains('key', $permissionKey);
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only([
+            'name'
+        ]);
     }
 }

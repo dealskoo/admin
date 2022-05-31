@@ -20,6 +20,6 @@
     </coverage>
 
     <php>
-
+        <env name="SCOUT_DRIVER" value="collection"/>
     </php>
 </phpunit>

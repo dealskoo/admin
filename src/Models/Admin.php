@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authentication;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 use Laravolt\Avatar\Facade as Avatar;
 
 class Admin extends Authentication implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, Searchable;
 
     protected $appends = ['avatar_url'];
 
@@ -75,5 +76,14 @@ class Admin extends Authentication implements MustVerifyEmail
             }
             return false;
         }
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only([
+            'name',
+            'bio',
+            'email'
+        ]);
     }
 }
