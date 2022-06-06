@@ -18,6 +18,6 @@ trait HasSlug
 
     public function scopeFindBySlug($query, $slug)
     {
-        return $query->where($this->getKeyName(), $slug)->orWhere('slug', $slug);
+        return $query->where($this->getKeyName(), $slug)->orWhere('slug', $slug)->first();
     }
 }
