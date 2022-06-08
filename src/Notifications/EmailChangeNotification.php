@@ -5,7 +5,6 @@ namespace Dealskoo\Admin\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
@@ -57,7 +56,7 @@ class EmailChangeNotification extends Notification
     {
         return URL::temporarySignedRoute(
             'admin.account.email.verify',
-            now()->addMinutes(Config::get('auth.verification.expire', 60)),
+            now()->addMinutes(config('auth.verification.expire', 60)),
             [
                 'hash' => sha1($notifiable->routes['mail']),
             ]
