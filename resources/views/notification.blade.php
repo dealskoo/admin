@@ -31,7 +31,7 @@
                             <h5 class="font-18">{{ __($notification->data['title']) }}</h5>
                             <hr>
                             <div class="d-flex mb-3 mt-1">
-                                <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
+                                <small>{{ $notification->created_at->diffForHumans() }}</small>
                             </div>
                             @include($notification->data['view'])
                         </div>

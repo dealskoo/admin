@@ -141,7 +141,7 @@
                                         <p class="notify-details">{{ $notification->data['title'] }}
                                             @if(empty($notification->data['message']))
                                                 <small
-                                                    class="text-muted">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
+                                                    class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
                                             @else
                                                 <small class="text-muted">{{ $notification->data['message'] }}</small>
                                             @endif

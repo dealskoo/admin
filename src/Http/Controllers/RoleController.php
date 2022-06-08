@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Admin\Http\Controllers;
 
-use Carbon\Carbon;
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Models\Permission;
 use Dealskoo\Admin\Models\Role;
@@ -43,8 +42,8 @@ class RoleController extends Controller
             $row = [];
             $row[] = $role->id;
             $row[] = $role->name;
-            $row[] = Carbon::parse($role->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($role->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $role->created_at->format('Y-m-d H:i:s');
+            $row[] = $role->updated_at->format('Y-m-d H:i:s');
             $view_link = '';
             if ($can_view) {
                 $view_link = '<a href="' . route('admin.roles.show', $role) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';

@@ -5,7 +5,6 @@ namespace Dealskoo\Admin\Http\Controllers;
 use Dealskoo\Admin\Models\Admin;
 use Dealskoo\Admin\Models\Role;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
@@ -47,8 +46,8 @@ class AdminController extends Controller
             $row[] = $admin->id;
             $row[] = '<img src="' . $admin->avatar_url . '" alt="' . $admin->name . '" title="' . $admin->name . '" class="me-2 rounded-circle"><p class="m-0 d-inline-block align-middle font-16">' . $admin->name . '</p>';
             $row[] = $admin->email;
-            $row[] = Carbon::parse($admin->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($admin->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $admin->created_at->format('Y-m-d H:i:s');
+            $row[] = $admin->updated_at->format('Y-m-d H:i:s');
             $row[] = $admin->status ? '<span class="badge bg-success">' . __('admin::admin.active') . '</span>' : '<span class="badge bg-danger">' . __('admin::admin.inactive') . '</span>';
 
             $login_link = '';
